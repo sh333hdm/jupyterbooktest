@@ -1,8 +1,8 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-title: Sophie's book
-author: Sophie 
+title: Applied Statistics Projektarbeit
+author: Sophie Horn
 logo: logo.png
 
 # Force re-execution of notebooks on each build.
