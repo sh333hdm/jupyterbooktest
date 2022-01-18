@@ -1,0 +1,2724 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Model: Regression &#8212; Applied Statistics Projektarbeit</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Model: Klassifikation" href="classification.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Applied Statistics Projektarbeit</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Dieses Buch durchsuchen ..." aria-label="Dieses Buch durchsuchen ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Plan
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="data.html">
+   Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="classification.html">
+   Model: Klassifikation
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Model: Regression
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Navigation umschalten" aria-controls="site-navigation"
+                title="Navigation umschalten" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Laden Sie diese Seite herunter"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/regression.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Quelldatei herunterladen" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="In PDF drucken"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Quell-Repository"><i
+                    class="fab fa-github"></i>Repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fregression.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Öffnen Sie ein Problem"><i class="fas fa-lightbulb"></i>offenes Thema</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Vollbildmodus"
+        title="Vollbildmodus"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/regression.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Starten Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Inhalt
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#models-statsmodels">
+   Models statsmodels
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#statsmodels-ols">
+     Statsmodels OLS
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#regression-diagnostics">
+     Regression Diagnostics
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#statsmodel-lasso">
+     Statsmodel Lasso
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#natural-spline-statsmodel">
+     Natural Spline Statsmodel
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#evaluation">
+     Evaluation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-sklearn">
+   Model sklearn
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sklearn-ols">
+     sklearn OLS
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sklearn-lasso">
+     sklearn Lasso
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sklearn-spline">
+     sklearn Spline
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#evaluation-sklearn">
+     Evaluation Sklearn
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="model-regression">
+<h1>Model: Regression<a class="headerlink" href="#model-regression" title="Permalink to this headline">¶</a></h1>
+<p>In diesem Notebook werden verschieden Regressionsmodell angewendet, um den mittleren Immobilienpreis von Distrikten in Kalifornien vorherzusagen. Dabei ist die Anforderung an die Model einen RMSE von kleiner 70 Tsd. USD zu erzielen. Dann wird das Projekt als Erfolg gewertet.</p>
+<p>Die Regressionsmodelle werden in diesem Notebook mit Statsmodels und der Bibliothek scikit-learn durchgeführt. Die Auswahl der Modelle wird beim jeweiligen Modell begründet und beschrieben. Grundlegend ist jedes Modell in <em>Data preperation</em>, <em>Build</em> und <em>Metrics und Validation</em> unterteilt. Für das beste Modell der jeweiligen Bibliothek wird eine Evaluation mit den Testdaten durchgeführt.</p>
+<section id="models-statsmodels">
+<h2>Models statsmodels<a class="headerlink" href="#models-statsmodels" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="kn">from</span> <span class="nn">patsy</span> <span class="kn">import</span> <span class="n">dmatrices</span>
+<span class="kn">from</span> <span class="nn">func</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
+<span class="kn">from</span> <span class="nn">statsmodels.tools.eval_measures</span> <span class="kn">import</span> <span class="n">mse</span><span class="p">,</span> <span class="n">rmse</span>
+<span class="kn">from</span> <span class="nn">statsmodels.compat</span> <span class="kn">import</span> <span class="n">lzip</span>
+<span class="kn">from</span> <span class="nn">statsmodels.stats.outliers_influence</span> <span class="kn">import</span> <span class="n">variance_inflation_factor</span>
+
+<span class="o">%</span><span class="k">load_ext</span> autoreload
+<span class="o">%</span><span class="k">autoreload</span> 2
+</pre></div>
+</div>
+</div>
+</div>
+<section id="statsmodels-ols">
+<h3>Statsmodels OLS<a class="headerlink" href="#statsmodels-ols" title="Permalink to this headline">¶</a></h3>
+<p><strong>Data preperation</strong></p>
+<p>Zur <em>Data preperation</em> bei Nutzung der Bibliothek Statsmodels werden Funktion aus der der Datei <a class="reference external" href="http://func.py">func.py</a> verwendet. Diese werden im Notebook Data näher erläutert.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">read_data</span><span class="p">()</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">transform_data</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="n">train_dataset</span><span class="p">,</span> <span class="n">evaluate_dataset</span><span class="p">,</span> <span class="n">train_dataset_total</span><span class="p">,</span> <span class="n">test_dataset</span> <span class="o">=</span> <span class="n">split_data</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="n">train_dataset</span> <span class="o">=</span> <span class="n">fill_missingdata</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">)</span>
+<span class="n">train_dataset</span> <span class="o">=</span> <span class="n">add_feautures</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">)</span>
+<span class="n">train_dataset</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="o">~</span>\<span class="n">AppData</span>\<span class="n">Local</span>\<span class="n">Temp</span><span class="o">/</span><span class="n">ipykernel_960</span><span class="o">/</span><span class="mf">2720515760.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">df</span> <span class="o">=</span> <span class="n">read_data</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">df</span> <span class="o">=</span> <span class="n">transform_data</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">train_dataset</span><span class="p">,</span> <span class="n">evaluate_dataset</span><span class="p">,</span> <span class="n">train_dataset_total</span><span class="p">,</span> <span class="n">test_dataset</span> <span class="o">=</span> <span class="n">split_data</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">train_dataset</span> <span class="o">=</span> <span class="n">fill_missingdata</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">train_dataset</span> <span class="o">=</span> <span class="n">add_feautures</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">)</span>
+
+<span class="ne">ValueError</span>: not enough values to unpack (expected 4, got 2)
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Model 1 OLS: Build</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lm1</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span> <span class="o">=</span><span class="s1">&#39;median_house_value ~ median_income&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">train_dataset</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Als erstes Modell wir eine einfach lineare Regression gewählt. Als unabhängige Variable wir <em>median_income</em> gewählt, da das mittlere Einkommen eines Bezirks die höchste Korrelation zu <em>median_house_value</em> aufweist.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_dataset</span><span class="p">[</span><span class="s1">&#39;y_pred&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">lm1</span><span class="o">.</span><span class="n">predict</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Model OLS 1: Metrics and Evaluation</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lm1</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="simpletable">
+<caption>OLS Regression Results</caption>
+<tr>
+  <th>Dep. Variable:</th>    <td>median_house_value</td> <th>  R-squared:         </th>  <td>   0.470</td>  
+</tr>
+<tr>
+  <th>Model:</th>                    <td>OLS</td>        <th>  Adj. R-squared:    </th>  <td>   0.470</td>  
+</tr>
+<tr>
+  <th>Method:</th>              <td>Least Squares</td>   <th>  F-statistic:       </th>  <td>1.318e+04</td> 
+</tr>
+<tr>
+  <th>Date:</th>              <td>Tue, 18 Jan 2022</td>  <th>  Prob (F-statistic):</th>   <td>  0.00</td>   
+</tr>
+<tr>
+  <th>Time:</th>                  <td>18:07:28</td>      <th>  Log-Likelihood:    </th> <td>-1.8964e+05</td>
+</tr>
+<tr>
+  <th>No. Observations:</th>       <td> 14860</td>       <th>  AIC:               </th>  <td>3.793e+05</td> 
+</tr>
+<tr>
+  <th>Df Residuals:</th>           <td> 14858</td>       <th>  BIC:               </th>  <td>3.793e+05</td> 
+</tr>
+<tr>
+  <th>Df Model:</th>               <td>     1</td>       <th>                     </th>      <td> </td>     
+</tr>
+<tr>
+  <th>Covariance Type:</th>       <td>nonrobust</td>     <th>                     </th>      <td> </td>     
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+        <td></td>           <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>Intercept</th>     <td> 4.558e+04</td> <td> 1562.533</td> <td>   29.169</td> <td> 0.000</td> <td> 4.25e+04</td> <td> 4.86e+04</td>
+</tr>
+<tr>
+  <th>median_income</th> <td> 4.165e+04</td> <td>  362.802</td> <td>  114.790</td> <td> 0.000</td> <td> 4.09e+04</td> <td> 4.24e+04</td>
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+  <th>Omnibus:</th>       <td>3132.062</td> <th>  Durbin-Watson:     </th> <td>   2.001</td>
+</tr>
+<tr>
+  <th>Prob(Omnibus):</th>  <td> 0.000</td>  <th>  Jarque-Bera (JB):  </th> <td>7037.353</td>
+</tr>
+<tr>
+  <th>Skew:</th>           <td> 1.205</td>  <th>  Prob(JB):          </th> <td>    0.00</td>
+</tr>
+<tr>
+  <th>Kurtosis:</th>       <td> 5.357</td>  <th>  Cond. No.          </th> <td>    10.2</td>
+</tr>
+</table><br/><br/>Notes:<br/>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</div></div>
+</div>
+<p>Die Kenngrößen in der summary() sind wie erwartet nicht besonders gut. Der Adj. R-squared liegt bei 0.47. Dieser besagt, dass unter 50% der Streuung der Werte durch das Modell korrekt vorhergesagt werden kann. Weitere Kenngrößen werden im Vergleich zum zweiten Modell betrachtet.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r2_lm1</span><span class="p">,</span> <span class="n">rmse_lm1</span><span class="p">,</span> <span class="n">mse_lm1</span> <span class="o">=</span> <span class="n">metrics_stats</span><span class="p">(</span><span class="n">lm1</span><span class="p">,</span><span class="n">train_dataset</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>r2:  0.47
+RMSE  84343.17
+MSE:  7113770789.24
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ebenfalls liegt der RMSE mit 84.343 USD über dem Zielwert von 70 Tsd. USD. Das Modell kann dementsprechend nicht als Erfolg gewertet werden.</p>
+<p><strong>Model 2 OLS: Build</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lm2</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span> <span class="o">=</span><span class="s1">&#39;median_house_value ~ median_income + total_rooms_total_bedrooms&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">train_dataset</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add the regression predictions (as &quot;pred&quot;) to our DataFrame</span>
+<span class="n">train_dataset</span><span class="p">[</span><span class="s1">&#39;y_pred&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">lm2</span><span class="o">.</span><span class="n">predict</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Model 2 OLS: Metrics and Evaluate</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lm2</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="simpletable">
+<caption>OLS Regression Results</caption>
+<tr>
+  <th>Dep. Variable:</th>    <td>median_house_value</td> <th>  R-squared:         </th>  <td>   0.504</td>  
+</tr>
+<tr>
+  <th>Model:</th>                    <td>OLS</td>        <th>  Adj. R-squared:    </th>  <td>   0.504</td>  
+</tr>
+<tr>
+  <th>Method:</th>              <td>Least Squares</td>   <th>  F-statistic:       </th>  <td>   7548.</td>  
+</tr>
+<tr>
+  <th>Date:</th>              <td>Tue, 18 Jan 2022</td>  <th>  Prob (F-statistic):</th>   <td>  0.00</td>   
+</tr>
+<tr>
+  <th>Time:</th>                  <td>18:07:39</td>      <th>  Log-Likelihood:    </th> <td>-1.8914e+05</td>
+</tr>
+<tr>
+  <th>No. Observations:</th>       <td> 14860</td>       <th>  AIC:               </th>  <td>3.783e+05</td> 
+</tr>
+<tr>
+  <th>Df Residuals:</th>           <td> 14857</td>       <th>  BIC:               </th>  <td>3.783e+05</td> 
+</tr>
+<tr>
+  <th>Df Model:</th>               <td>     2</td>       <th>                     </th>      <td> </td>     
+</tr>
+<tr>
+  <th>Covariance Type:</th>       <td>nonrobust</td>     <th>                     </th>      <td> </td>     
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+               <td></td>                 <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>Intercept</th>                  <td> 1.232e+05</td> <td> 2863.056</td> <td>   43.015</td> <td> 0.000</td> <td> 1.18e+05</td> <td> 1.29e+05</td>
+</tr>
+<tr>
+  <th>median_income</th>              <td> 5.317e+04</td> <td>  503.530</td> <td>  105.585</td> <td> 0.000</td> <td> 5.22e+04</td> <td> 5.42e+04</td>
+</tr>
+<tr>
+  <th>total_rooms_total_bedrooms</th> <td>-2.447e+04</td> <td>  766.895</td> <td>  -31.905</td> <td> 0.000</td> <td> -2.6e+04</td> <td> -2.3e+04</td>
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+  <th>Omnibus:</th>       <td>3447.422</td> <th>  Durbin-Watson:     </th> <td>   1.994</td> 
+</tr>
+<tr>
+  <th>Prob(Omnibus):</th>  <td> 0.000</td>  <th>  Jarque-Bera (JB):  </th> <td>11010.460</td>
+</tr>
+<tr>
+  <th>Skew:</th>           <td> 1.178</td>  <th>  Prob(JB):          </th> <td>    0.00</td> 
+</tr>
+<tr>
+  <th>Kurtosis:</th>       <td> 6.497</td>  <th>  Cond. No.          </th> <td>    29.4</td> 
+</tr>
+</table><br/><br/>Notes:<br/>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</div></div>
+</div>
+<p>Im Vergleich zu Model 1 erreicht das Model 2 besser statistische Kenngröße. Der Adj. R-squared liegt bei ca. 3% über dem vom Model 1. Sowohl die Kenngröße der F-Statistik, wie auch AIC und BIC sind höher als bei Model 1.</p>
+<blockquote>
+<div><p>Hinweis: Zu diesem Modell wird ausführlich Regression Diagnostics durchgeführt.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r2_lm2</span><span class="p">,</span> <span class="n">rmse_lm2</span><span class="p">,</span> <span class="n">mse_lm2</span> <span class="o">=</span> <span class="n">metrics_stats</span><span class="p">(</span><span class="n">lm2</span><span class="p">,</span><span class="n">train_dataset</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>r2:  0.504
+RMSE  81594.26
+MSE:  6657623728.31
+</pre></div>
+</div>
+</div>
+</div>
+<p>Der RMSE liegt mit ca. 81,6 Tsd. USD immer noch deutlich über 70 Tsd. USD. Es muss dementsprechend ein geeigneteres Modell gefunden werden.</p>
+<p><strong>Model 3 OLS: Build</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lm3</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span> <span class="o">=</span><span class="s1">&#39;median_house_value ~ median_income + C(ocean_proximity) + households_population + total_rooms_households +C(geohash) + housing_median_age&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">train_dataset</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Im dritten Modell werden mehr Variablen aus dem ursprünglichen Datensatz berücksichtigt. Nicht miteingeschlossen werden:
+Nicht im Modell berücksichtigt werden folgende Features</p>
+<ul class="simple">
+<li><p><em>longitude</em>, <em>latidue</em> (siehe Feauture Selection)</p></li>
+<li><p><em>total_rooms</em>, <em>total__bedrooms</em>, <em>population</em> und <em>households</em>, da die Korrelation dieser Merkmale untereinander zu hoch ist (siehe Feauture Selection)</p></li>
+<li><p><em>price_category</em>, da diese aus <em>median_house_value</em> abgeleitet wird</p></li>
+<li><p><em>total_rooms_total_bedrooms</em>, da nach einmaliger Durchführung der Klassifikation ein p-Wert von P|z|=0.555 ermittelt wurde</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_dataset</span><span class="p">[</span><span class="s1">&#39;y_pred&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">lm3</span><span class="o">.</span><span class="n">predict</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Model OLS 3: Metrics and Evaluation</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lm3</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="simpletable">
+<caption>OLS Regression Results</caption>
+<tr>
+  <th>Dep. Variable:</th>    <td>median_house_value</td> <th>  R-squared:         </th>  <td>   0.698</td>  
+</tr>
+<tr>
+  <th>Model:</th>                    <td>OLS</td>        <th>  Adj. R-squared:    </th>  <td>   0.698</td>  
+</tr>
+<tr>
+  <th>Method:</th>              <td>Least Squares</td>   <th>  F-statistic:       </th>  <td>   879.6</td>  
+</tr>
+<tr>
+  <th>Date:</th>              <td>Tue, 18 Jan 2022</td>  <th>  Prob (F-statistic):</th>   <td>  0.00</td>   
+</tr>
+<tr>
+  <th>Time:</th>                  <td>18:07:47</td>      <th>  Log-Likelihood:    </th> <td>-1.8545e+05</td>
+</tr>
+<tr>
+  <th>No. Observations:</th>       <td> 14860</td>       <th>  AIC:               </th>  <td>3.710e+05</td> 
+</tr>
+<tr>
+  <th>Df Residuals:</th>           <td> 14820</td>       <th>  BIC:               </th>  <td>3.713e+05</td> 
+</tr>
+<tr>
+  <th>Df Model:</th>               <td>    39</td>       <th>                     </th>      <td> </td>     
+</tr>
+<tr>
+  <th>Covariance Type:</th>       <td>nonrobust</td>     <th>                     </th>      <td> </td>     
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+                  <td></td>                    <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>Intercept</th>                        <td> 2.077e+04</td> <td> 1.11e+04</td> <td>    1.869</td> <td> 0.062</td> <td>-1009.176</td> <td> 4.25e+04</td>
+</tr>
+<tr>
+  <th>C(ocean_proximity)[T.INLAND]</th>     <td>-4.735e+04</td> <td> 1899.713</td> <td>  -24.923</td> <td> 0.000</td> <td>-5.11e+04</td> <td>-4.36e+04</td>
+</tr>
+<tr>
+  <th>C(ocean_proximity)[T.ISLAND]</th>     <td> 1.414e+05</td> <td> 4.63e+04</td> <td>    3.054</td> <td> 0.002</td> <td> 5.07e+04</td> <td> 2.32e+05</td>
+</tr>
+<tr>
+  <th>C(ocean_proximity)[T.NEAR BAY]</th>   <td>-1.633e+04</td> <td> 2344.659</td> <td>   -6.967</td> <td> 0.000</td> <td>-2.09e+04</td> <td>-1.17e+04</td>
+</tr>
+<tr>
+  <th>C(ocean_proximity)[T.NEAR OCEAN]</th> <td> 7776.8061</td> <td> 1876.598</td> <td>    4.144</td> <td> 0.000</td> <td> 4098.441</td> <td> 1.15e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9mu]</th>                <td>-9.291e+04</td> <td> 1.06e+04</td> <td>   -8.726</td> <td> 0.000</td> <td>-1.14e+05</td> <td> -7.2e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9mv]</th>                <td>-1.032e+05</td> <td> 1.21e+04</td> <td>   -8.550</td> <td> 0.000</td> <td>-1.27e+05</td> <td>-7.96e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9my]</th>                <td>-1.057e+05</td> <td> 2.07e+04</td> <td>   -5.106</td> <td> 0.000</td> <td>-1.46e+05</td> <td>-6.51e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9nz]</th>                <td>-7891.4962</td> <td> 6.46e+04</td> <td>   -0.122</td> <td> 0.903</td> <td>-1.35e+05</td> <td> 1.19e+05</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9pp]</th>                <td>-1.768e+05</td> <td> 1.39e+04</td> <td>  -12.713</td> <td> 0.000</td> <td>-2.04e+05</td> <td> -1.5e+05</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9pr]</th>                <td>-1.673e+05</td> <td> 1.37e+04</td> <td>  -12.243</td> <td> 0.000</td> <td>-1.94e+05</td> <td>-1.41e+05</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9q3]</th>                <td>-4.218e+04</td> <td> 1.47e+04</td> <td>   -2.875</td> <td> 0.004</td> <td>-7.09e+04</td> <td>-1.34e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9q4]</th>                <td>-5.066e+04</td> <td> 1.13e+04</td> <td>   -4.486</td> <td> 0.000</td> <td>-7.28e+04</td> <td>-2.85e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9q5]</th>                <td>-5.132e+04</td> <td> 1.07e+04</td> <td>   -4.810</td> <td> 0.000</td> <td>-7.22e+04</td> <td>-3.04e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9q6]</th>                <td>-8.959e+04</td> <td> 1.17e+04</td> <td>   -7.654</td> <td> 0.000</td> <td>-1.13e+05</td> <td>-6.66e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9q7]</th>                <td>-1.138e+05</td> <td> 1.12e+04</td> <td>  -10.137</td> <td> 0.000</td> <td>-1.36e+05</td> <td>-9.18e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9q8]</th>                <td> 6447.5693</td> <td> 1.09e+04</td> <td>    0.590</td> <td> 0.555</td> <td> -1.5e+04</td> <td> 2.79e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9q9]</th>                <td> -6.32e+04</td> <td> 1.07e+04</td> <td>   -5.907</td> <td> 0.000</td> <td>-8.42e+04</td> <td>-4.22e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9qb]</th>                <td>-8.704e+04</td> <td> 1.11e+04</td> <td>   -7.861</td> <td> 0.000</td> <td>-1.09e+05</td> <td>-6.53e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9qc]</th>                <td>-1.057e+05</td> <td> 1.09e+04</td> <td>   -9.723</td> <td> 0.000</td> <td>-1.27e+05</td> <td>-8.44e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9qd]</th>                <td>-1.113e+05</td> <td> 1.11e+04</td> <td>  -10.042</td> <td> 0.000</td> <td>-1.33e+05</td> <td>-8.95e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9qe]</th>                <td>-1.051e+05</td> <td> 1.35e+04</td> <td>   -7.803</td> <td> 0.000</td> <td>-1.31e+05</td> <td>-7.87e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9qf]</th>                <td>-1.017e+05</td> <td> 1.18e+04</td> <td>   -8.616</td> <td> 0.000</td> <td>-1.25e+05</td> <td>-7.86e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9qg]</th>                <td>-1.168e+05</td> <td> 3.83e+04</td> <td>   -3.046</td> <td> 0.002</td> <td>-1.92e+05</td> <td>-4.16e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9qh]</th>                <td>-8.209e+04</td> <td> 1.07e+04</td> <td>   -7.644</td> <td> 0.000</td> <td>-1.03e+05</td> <td> -6.1e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9qj]</th>                <td>-1.109e+05</td> <td>  1.3e+04</td> <td>   -8.530</td> <td> 0.000</td> <td>-1.36e+05</td> <td>-8.54e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9qk]</th>                <td>  -1.6e+05</td> <td> 1.69e+04</td> <td>   -9.475</td> <td> 0.000</td> <td>-1.93e+05</td> <td>-1.27e+05</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9qm]</th>                <td> -1.34e+05</td> <td> 3.83e+04</td> <td>   -3.494</td> <td> 0.000</td> <td>-2.09e+05</td> <td>-5.88e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9qn]</th>                <td>-1.419e+05</td> <td> 2.21e+04</td> <td>   -6.418</td> <td> 0.000</td> <td>-1.85e+05</td> <td>-9.85e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9qs]</th>                <td>-9.862e+04</td> <td> 4.63e+04</td> <td>   -2.129</td> <td> 0.033</td> <td>-1.89e+05</td> <td>-7819.820</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9r0]</th>                <td>-1.178e+05</td> <td> 1.29e+04</td> <td>   -9.162</td> <td> 0.000</td> <td>-1.43e+05</td> <td>-9.26e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9r1]</th>                <td>-1.191e+05</td> <td> 1.16e+04</td> <td>  -10.224</td> <td> 0.000</td> <td>-1.42e+05</td> <td>-9.62e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9r2]</th>                <td>-1.273e+05</td> <td> 1.69e+04</td> <td>   -7.544</td> <td> 0.000</td> <td> -1.6e+05</td> <td>-9.42e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9r3]</th>                <td>-1.339e+05</td> <td> 1.76e+04</td> <td>   -7.618</td> <td> 0.000</td> <td>-1.68e+05</td> <td>-9.95e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9r4]</th>                <td>-1.245e+05</td> <td>  1.5e+04</td> <td>   -8.287</td> <td> 0.000</td> <td>-1.54e+05</td> <td> -9.5e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9r6]</th>                <td>-1.447e+05</td> <td> 2.82e+04</td> <td>   -5.138</td> <td> 0.000</td> <td>   -2e+05</td> <td>-8.95e+04</td>
+</tr>
+<tr>
+  <th>median_income</th>                    <td> 3.675e+04</td> <td>  315.559</td> <td>  116.458</td> <td> 0.000</td> <td> 3.61e+04</td> <td> 3.74e+04</td>
+</tr>
+<tr>
+  <th>households_population</th>            <td> 3.193e+05</td> <td> 5806.672</td> <td>   54.995</td> <td> 0.000</td> <td> 3.08e+05</td> <td> 3.31e+05</td>
+</tr>
+<tr>
+  <th>total_rooms_households</th>           <td>  946.3246</td> <td>  222.374</td> <td>    4.256</td> <td> 0.000</td> <td>  510.445</td> <td> 1382.205</td>
+</tr>
+<tr>
+  <th>housing_median_age</th>               <td>  476.5986</td> <td>   47.637</td> <td>   10.005</td> <td> 0.000</td> <td>  383.224</td> <td>  569.973</td>
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+  <th>Omnibus:</th>       <td>2996.313</td> <th>  Durbin-Watson:     </th> <td>   1.992</td> 
+</tr>
+<tr>
+  <th>Prob(Omnibus):</th>  <td> 0.000</td>  <th>  Jarque-Bera (JB):  </th> <td>13004.817</td>
+</tr>
+<tr>
+  <th>Skew:</th>           <td> 0.931</td>  <th>  Prob(JB):          </th> <td>    0.00</td> 
+</tr>
+<tr>
+  <th>Kurtosis:</th>       <td> 7.187</td>  <th>  Cond. No.          </th> <td>4.20e+03</td> 
+</tr>
+</table><br/><br/>Notes:<br/>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.<br/>[2] The condition number is large, 4.2e+03. This might indicate that there are<br/>strong multicollinearity or other numerical problems.</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r2_lm3</span><span class="p">,</span> <span class="n">rmse_lm3</span><span class="p">,</span> <span class="n">mse_lm3</span> <span class="o">=</span> <span class="n">metrics_stats</span><span class="p">(</span><span class="n">lm3</span><span class="p">,</span><span class="n">train_dataset</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>r2:  0.6983
+RMSE  63633.85
+MSE:  4049267444.27
+</pre></div>
+</div>
+</div>
+</div>
+<p>Durch Model 3 konnte ein RMSE von 63.633 USD und damit unter der Grenze von 70 Tsd. USD erzielt werden. Erst nach Evaluation mit einem Testdatenset kann, dass Model Erfolg gewertet werden.</p>
+</section>
+<section id="regression-diagnostics">
+<h3>Regression Diagnostics<a class="headerlink" href="#regression-diagnostics" title="Permalink to this headline">¶</a></h3>
+<p><strong>Outliner and High-Leverage</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">graphics</span><span class="o">.</span><span class="n">influence_plot</span><span class="p">(</span><span class="n">lm2</span><span class="p">,</span> <span class="n">criterion</span><span class="o">=</span><span class="s2">&quot;cooks&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/regression_37_0.png" src="_images/regression_37_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lm_cooksd</span> <span class="o">=</span> <span class="n">lm2</span><span class="o">.</span><span class="n">get_influence</span><span class="p">()</span><span class="o">.</span><span class="n">cooks_distance</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">[</span><span class="s2">&quot;median_house_value&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Anzahl an Datensätzen:&#39;</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="n">critical_d</span> <span class="o">=</span> <span class="mi">4</span><span class="o">/</span><span class="n">n</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Kritische Cook distance:&#39;</span><span class="p">,</span> <span class="n">critical_d</span><span class="p">)</span>
+<span class="n">out_d</span> <span class="o">=</span> <span class="n">lm_cooksd</span> <span class="o">&gt;</span> <span class="n">critical_d</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Anzahl Datensätze mit kritischer Cooks distance:&quot;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">lm_cooksd</span><span class="p">[</span><span class="n">out_d</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Anzahl an Datensätzen: 14860
+Kritische Cook distance: 0.00026917900403768504
+Anzahl Datensätze mit kritischer Cooks distance: 914
+</pre></div>
+</div>
+</div>
+</div>
+<p>914 Datensätzen besitzen eine kritische Cooks Distanz. Dabei handelt es sich um vermutliche outliner mit leverage. Um das einfachste Vorgehen zu wählen werden die observation entfernt.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_dataset</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">out_d</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Int64Index([ 8646, 14930, 14468, 15755,  8923,  5486, 17046,  4032, 17172,
+            15195,
+            ...
+             2420,  8867,  3103, 15668, 15231, 15663, 14371, 11520,  4609,
+            16880],
+           dtype=&#39;int64&#39;, length=914)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_dataset_opt</span> <span class="o">=</span> <span class="n">train_dataset</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">train_dataset</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">out_d</span><span class="p">])</span>
+<span class="n">train_dataset_opt</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>longitude</th>
+      <th>latitude</th>
+      <th>housing_median_age</th>
+      <th>total_rooms</th>
+      <th>total_bedrooms</th>
+      <th>population</th>
+      <th>households</th>
+      <th>median_income</th>
+      <th>median_house_value</th>
+      <th>ocean_proximity</th>
+      <th>price_category</th>
+      <th>households_population</th>
+      <th>total_rooms_households</th>
+      <th>total_rooms_total_bedrooms</th>
+      <th>geohash</th>
+      <th>y_pred</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>13940</th>
+      <td>-117.16</td>
+      <td>34.26</td>
+      <td>27.0</td>
+      <td>9285</td>
+      <td>1621.0</td>
+      <td>1135</td>
+      <td>410</td>
+      <td>2.5446</td>
+      <td>135200.0</td>
+      <td>INLAND</td>
+      <td>below</td>
+      <td>0.361233</td>
+      <td>22.646341</td>
+      <td>5.727946</td>
+      <td>9qh</td>
+      <td>134493.482071</td>
+    </tr>
+    <tr>
+      <th>14754</th>
+      <td>-117.05</td>
+      <td>32.56</td>
+      <td>17.0</td>
+      <td>985</td>
+      <td>233.0</td>
+      <td>811</td>
+      <td>223</td>
+      <td>2.8750</td>
+      <td>134500.0</td>
+      <td>NEAR OCEAN</td>
+      <td>below</td>
+      <td>0.274969</td>
+      <td>4.417040</td>
+      <td>4.227468</td>
+      <td>9mu</td>
+      <td>141379.468281</td>
+    </tr>
+    <tr>
+      <th>4404</th>
+      <td>-118.23</td>
+      <td>34.07</td>
+      <td>40.0</td>
+      <td>506</td>
+      <td>119.0</td>
+      <td>397</td>
+      <td>114</td>
+      <td>3.1944</td>
+      <td>143800.0</td>
+      <td>&lt;1H OCEAN</td>
+      <td>below</td>
+      <td>0.287154</td>
+      <td>4.438596</td>
+      <td>4.252101</td>
+      <td>9q5</td>
+      <td>201806.147088</td>
+    </tr>
+    <tr>
+      <th>18791</th>
+      <td>-122.56</td>
+      <td>40.75</td>
+      <td>20.0</td>
+      <td>1182</td>
+      <td>250.0</td>
+      <td>512</td>
+      <td>210</td>
+      <td>1.7935</td>
+      <td>74500.0</td>
+      <td>INLAND</td>
+      <td>below</td>
+      <td>0.410156</td>
+      <td>5.628571</td>
+      <td>4.728000</td>
+      <td>9r0</td>
+      <td>67353.020912</td>
+    </tr>
+    <tr>
+      <th>4387</th>
+      <td>-118.26</td>
+      <td>34.08</td>
+      <td>46.0</td>
+      <td>945</td>
+      <td>250.0</td>
+      <td>910</td>
+      <td>252</td>
+      <td>3.5039</td>
+      <td>187500.0</td>
+      <td>&lt;1H OCEAN</td>
+      <td>above</td>
+      <td>0.276923</td>
+      <td>3.750000</td>
+      <td>3.780000</td>
+      <td>9q5</td>
+      <td>212121.028562</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>8243</th>
+      <td>-118.18</td>
+      <td>33.78</td>
+      <td>17.0</td>
+      <td>1419</td>
+      <td>436.0</td>
+      <td>1300</td>
+      <td>360</td>
+      <td>2.0769</td>
+      <td>100000.0</td>
+      <td>NEAR OCEAN</td>
+      <td>below</td>
+      <td>0.276923</td>
+      <td>3.941667</td>
+      <td>3.254587</td>
+      <td>9q5</td>
+      <td>153816.427795</td>
+    </tr>
+    <tr>
+      <th>12332</th>
+      <td>-116.47</td>
+      <td>33.94</td>
+      <td>18.0</td>
+      <td>2233</td>
+      <td>471.0</td>
+      <td>919</td>
+      <td>388</td>
+      <td>3.2578</td>
+      <td>85200.0</td>
+      <td>INLAND</td>
+      <td>below</td>
+      <td>0.422198</td>
+      <td>5.755155</td>
+      <td>4.740977</td>
+      <td>9qj</td>
+      <td>131107.542754</td>
+    </tr>
+    <tr>
+      <th>5775</th>
+      <td>-118.27</td>
+      <td>34.16</td>
+      <td>48.0</td>
+      <td>1301</td>
+      <td>253.0</td>
+      <td>637</td>
+      <td>260</td>
+      <td>4.3438</td>
+      <td>252700.0</td>
+      <td>&lt;1H OCEAN</td>
+      <td>above</td>
+      <td>0.408163</td>
+      <td>5.003846</td>
+      <td>5.142292</td>
+      <td>9q5</td>
+      <td>287036.707692</td>
+    </tr>
+    <tr>
+      <th>13740</th>
+      <td>-117.19</td>
+      <td>34.03</td>
+      <td>36.0</td>
+      <td>2223</td>
+      <td>361.0</td>
+      <td>942</td>
+      <td>331</td>
+      <td>4.6806</td>
+      <td>152400.0</td>
+      <td>INLAND</td>
+      <td>above</td>
+      <td>0.351380</td>
+      <td>6.716012</td>
+      <td>6.157895</td>
+      <td>9qh</td>
+      <td>199057.786696</td>
+    </tr>
+    <tr>
+      <th>10245</th>
+      <td>-117.86</td>
+      <td>33.90</td>
+      <td>25.0</td>
+      <td>3205</td>
+      <td>409.0</td>
+      <td>1291</td>
+      <td>408</td>
+      <td>7.2478</td>
+      <td>299200.0</td>
+      <td>&lt;1H OCEAN</td>
+      <td>above</td>
+      <td>0.316034</td>
+      <td>7.855392</td>
+      <td>7.836186</td>
+      <td>9qh</td>
+      <td>325295.111038</td>
+    </tr>
+  </tbody>
+</table>
+<p>13946 rows × 16 columns</p>
+</div></div></div>
+</div>
+<p><strong>Non-linearity and heteroscedasticity</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">graphics</span><span class="o">.</span><span class="n">plot_partregress_grid</span><span class="p">(</span><span class="n">lm2</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">pad</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>eval_env: 1
+eval_env: 1
+eval_env: 1
+</pre></div>
+</div>
+<img alt="_images/regression_43_1.png" src="_images/regression_43_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_fitted_y</span> <span class="o">=</span> <span class="n">lm2</span><span class="o">.</span><span class="n">fittedvalues</span>
+
+<span class="c1">#  Plot</span>
+<span class="n">plot</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">residplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">model_fitted_y</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;median_house_value&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">train_dataset</span><span class="p">,</span> <span class="n">lowess</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                     <span class="n">scatter_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">},</span> 
+                     <span class="n">line_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;lw&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.8</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/regression_44_0.png" src="_images/regression_44_0.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>keine ungleichmäßige Verteilung der residuals: Hinweis auf Heteroscedasticity</p></li>
+<li><p>Vermutlich auch keine lineare Beziehung da die rote Linie sich von der gestrichelten unterscheidet</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Breusch-Pagan Lagrange Multiplier test</span>
+
+<span class="n">name</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Lagrange multiplier statistic&#39;</span><span class="p">,</span> <span class="s1">&#39;p-value&#39;</span><span class="p">,</span> <span class="s1">&#39;f-value&#39;</span><span class="p">,</span> <span class="s1">&#39;f p-value&#39;</span><span class="p">]</span>
+<span class="n">test</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">het_breuschpagan</span><span class="p">(</span><span class="n">lm2</span><span class="o">.</span><span class="n">resid</span><span class="p">,</span> <span class="n">lm3</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">exog</span><span class="p">)</span>
+<span class="n">lzip</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Lagrange multiplier statistic&#39;, 1718.4289650374958),
+ (&#39;p-value&#39;, 0.0),
+ (&#39;f-value&#39;, 49.68987383448796),
+ (&#39;f p-value&#39;, 0.0)]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Beide p-werte liegen deutlich unter 0.05. Daher wird die Null-Hypothese abgelehnt.
+Das deutet ist ebenfalls ein Indikator für Heteroscedasticity. Eine mögliche Lösung ist in diesem Fall die Anwendung eines Regression Splines. Dies wird in einem der folgenenden Abschnitten untersucht.</p>
+<p><strong>Non-normally distributed errors</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Jarque-Bera test</span>
+<span class="n">name</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Jarque-Bera&#39;</span><span class="p">,</span> <span class="s1">&#39;Chi^2 two-tail prob.&#39;</span><span class="p">,</span> <span class="s1">&#39;Skew&#39;</span><span class="p">,</span> <span class="s1">&#39;Kurtosis&#39;</span><span class="p">]</span>
+<span class="n">test</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">jarque_bera</span><span class="p">(</span><span class="n">lm2</span><span class="o">.</span><span class="n">resid</span><span class="p">)</span>
+
+<span class="n">lzip</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Jarque-Bera&#39;, 11010.460298680517),
+ (&#39;Chi^2 two-tail prob.&#39;, 0.0),
+ (&#39;Skew&#39;, 1.1782228218787834),
+ (&#39;Kurtosis&#39;, 6.497123439512502)]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Der p-Wert liegt bei 0.0 damit wird die Nullhyptothese abgelehnt. Das ist ein Indikator für nicht normalverteilte error terms.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Omnibus normtest</span>
+<span class="n">name</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Chi^2&#39;</span><span class="p">,</span> <span class="s1">&#39;Two-tail probability&#39;</span><span class="p">]</span>
+<span class="n">test</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">omni_normtest</span><span class="p">(</span><span class="n">lm2</span><span class="o">.</span><span class="n">resid</span><span class="p">)</span>
+<span class="n">lzip</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Chi^2&#39;, 3447.421799506371), (&#39;Two-tail probability&#39;, 0.0)]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Auch bei diesem Test wird die Nullhyptothese abgelehnt. Das lässt ebenso auf nicht normalverteilte error terms schließen.</p>
+<p>Da die Anzahl an N sehr hoch ist, müssen die Fehler nicht normalverteilt sein. Grund dafür ist das Central Limit Theorem. Es werden keine weiteren Schritte unternommen.</p>
+<p><strong>Correlation of error terms</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Durbin Watson test</span>
+<span class="c1">#TODO Durbin Watson zu nah an 2?</span>
+<span class="n">sm</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">durbin_watson</span><span class="p">(</span><span class="n">lm2</span><span class="o">.</span><span class="n">resid</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.994248958147709
+</pre></div>
+</div>
+</div>
+</div>
+<p>Der Wert liegt zwischen 1 und 2. Aus diesem Grund liegend keine Korrelation vor.</p>
+<p><strong>Collinearity</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Variance inflation factor</span>
+<span class="n">y</span><span class="p">,</span> <span class="n">X</span> <span class="o">=</span> <span class="n">dmatrices</span><span class="p">(</span><span class="s1">&#39;median_house_value ~ median_income + total_rooms_total_bedrooms&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">train_dataset</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s1">&#39;dataframe&#39;</span><span class="p">)</span>
+
+<span class="c1"># For each X, calculate VIF and save in dataframe</span>
+<span class="n">vif</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="n">vif</span><span class="p">[</span><span class="s2">&quot;VIF Factor&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">variance_inflation_factor</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span>
+<span class="n">vif</span><span class="p">[</span><span class="s2">&quot;Feature&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">columns</span>
+
+<span class="n">vif</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>VIF Factor</th>
+      <th>Feature</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>18.29</td>
+      <td>Intercept</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2.06</td>
+      <td>median_income</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2.06</td>
+      <td>total_rooms_total_bedrooms</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Für dieses Modell liegt keine problematische collinearity in den Daten vor.</p>
+<p><strong>Model OLS 3 opt: Build</strong></p>
+<p>In diesem linearen Modell wird das Modell mit multipler linearer Regression auf die bereinigten Trainingsdaten nach der Regression Diagnostics angewendet.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lm3opt</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span> <span class="o">=</span><span class="s1">&#39;median_house_value ~ median_income + C(ocean_proximity) + households_population + total_rooms_households +C(geohash) + housing_median_age&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">train_dataset_opt</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_dataset_opt</span><span class="p">[</span><span class="s1">&#39;y_pred&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">lm3opt</span><span class="o">.</span><span class="n">predict</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Model OLS 3 opt: Metrics and Evaluation</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lm3opt</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="simpletable">
+<caption>OLS Regression Results</caption>
+<tr>
+  <th>Dep. Variable:</th>    <td>median_house_value</td> <th>  R-squared:         </th>  <td>   0.753</td>  
+</tr>
+<tr>
+  <th>Model:</th>                    <td>OLS</td>        <th>  Adj. R-squared:    </th>  <td>   0.753</td>  
+</tr>
+<tr>
+  <th>Method:</th>              <td>Least Squares</td>   <th>  F-statistic:       </th>  <td>   1118.</td>  
+</tr>
+<tr>
+  <th>Date:</th>              <td>Tue, 18 Jan 2022</td>  <th>  Prob (F-statistic):</th>   <td>  0.00</td>   
+</tr>
+<tr>
+  <th>Time:</th>                  <td>18:19:01</td>      <th>  Log-Likelihood:    </th> <td>-1.7063e+05</td>
+</tr>
+<tr>
+  <th>No. Observations:</th>       <td> 13946</td>       <th>  AIC:               </th>  <td>3.413e+05</td> 
+</tr>
+<tr>
+  <th>Df Residuals:</th>           <td> 13907</td>       <th>  BIC:               </th>  <td>3.416e+05</td> 
+</tr>
+<tr>
+  <th>Df Model:</th>               <td>    38</td>       <th>                     </th>      <td> </td>     
+</tr>
+<tr>
+  <th>Covariance Type:</th>       <td>nonrobust</td>     <th>                     </th>      <td> </td>     
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+                  <td></td>                    <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>Intercept</th>                        <td> 2.698e+04</td> <td> 9482.180</td> <td>    2.846</td> <td> 0.004</td> <td> 8396.774</td> <td> 4.56e+04</td>
+</tr>
+<tr>
+  <th>C(ocean_proximity)[T.INLAND]</th>     <td>-4.292e+04</td> <td> 1519.682</td> <td>  -28.246</td> <td> 0.000</td> <td>-4.59e+04</td> <td>-3.99e+04</td>
+</tr>
+<tr>
+  <th>C(ocean_proximity)[T.ISLAND]</th>     <td>-1.734e-08</td> <td> 5.06e-09</td> <td>   -3.430</td> <td> 0.001</td> <td>-2.72e-08</td> <td>-7.43e-09</td>
+</tr>
+<tr>
+  <th>C(ocean_proximity)[T.NEAR BAY]</th>   <td>-1.534e+04</td> <td> 1893.174</td> <td>   -8.100</td> <td> 0.000</td> <td> -1.9e+04</td> <td>-1.16e+04</td>
+</tr>
+<tr>
+  <th>C(ocean_proximity)[T.NEAR OCEAN]</th> <td> 1.194e+04</td> <td> 1543.060</td> <td>    7.735</td> <td> 0.000</td> <td> 8911.029</td> <td>  1.5e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9mu]</th>                <td>-8.401e+04</td> <td> 9096.897</td> <td>   -9.236</td> <td> 0.000</td> <td>-1.02e+05</td> <td>-6.62e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9mv]</th>                <td>-8.419e+04</td> <td> 1.02e+04</td> <td>   -8.281</td> <td> 0.000</td> <td>-1.04e+05</td> <td>-6.43e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9my]</th>                <td>-9.721e+04</td> <td> 1.83e+04</td> <td>   -5.323</td> <td> 0.000</td> <td>-1.33e+05</td> <td>-6.14e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9nz]</th>                <td> 1.989e+04</td> <td> 5.07e+04</td> <td>    0.392</td> <td> 0.695</td> <td>-7.96e+04</td> <td> 1.19e+05</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9pp]</th>                <td>-1.513e+05</td> <td> 1.15e+04</td> <td>  -13.128</td> <td> 0.000</td> <td>-1.74e+05</td> <td>-1.29e+05</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9pr]</th>                <td>-1.441e+05</td> <td> 1.13e+04</td> <td>  -12.756</td> <td> 0.000</td> <td>-1.66e+05</td> <td>-1.22e+05</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9q3]</th>                <td>-4.049e+04</td> <td> 1.24e+04</td> <td>   -3.255</td> <td> 0.001</td> <td>-6.49e+04</td> <td>-1.61e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9q4]</th>                <td>  -4.8e+04</td> <td> 9604.290</td> <td>   -4.998</td> <td> 0.000</td> <td>-6.68e+04</td> <td>-2.92e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9q5]</th>                <td>-4.445e+04</td> <td> 9113.729</td> <td>   -4.877</td> <td> 0.000</td> <td>-6.23e+04</td> <td>-2.66e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9q6]</th>                <td>-7.613e+04</td> <td> 9874.677</td> <td>   -7.710</td> <td> 0.000</td> <td>-9.55e+04</td> <td>-5.68e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9q7]</th>                <td>-9.598e+04</td> <td> 9516.418</td> <td>  -10.086</td> <td> 0.000</td> <td>-1.15e+05</td> <td>-7.73e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9q8]</th>                <td> 2419.1560</td> <td> 9341.024</td> <td>    0.259</td> <td> 0.796</td> <td>-1.59e+04</td> <td> 2.07e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9q9]</th>                <td>-5.011e+04</td> <td> 9137.183</td> <td>   -5.484</td> <td> 0.000</td> <td> -6.8e+04</td> <td>-3.22e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9qb]</th>                <td>-6.596e+04</td> <td> 9409.414</td> <td>   -7.010</td> <td> 0.000</td> <td>-8.44e+04</td> <td>-4.75e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9qc]</th>                <td>-8.729e+04</td> <td> 9261.870</td> <td>   -9.424</td> <td> 0.000</td> <td>-1.05e+05</td> <td>-6.91e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9qd]</th>                <td>-9.338e+04</td> <td> 9417.538</td> <td>   -9.915</td> <td> 0.000</td> <td>-1.12e+05</td> <td>-7.49e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9qe]</th>                <td>-8.036e+04</td> <td> 1.13e+04</td> <td>   -7.119</td> <td> 0.000</td> <td>-1.02e+05</td> <td>-5.82e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9qf]</th>                <td>-7.704e+04</td> <td> 9959.052</td> <td>   -7.736</td> <td> 0.000</td> <td>-9.66e+04</td> <td>-5.75e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9qg]</th>                <td>-9.159e+04</td> <td> 3.02e+04</td> <td>   -3.028</td> <td> 0.002</td> <td>-1.51e+05</td> <td>-3.23e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9qh]</th>                <td>-6.947e+04</td> <td> 9163.446</td> <td>   -7.581</td> <td> 0.000</td> <td>-8.74e+04</td> <td>-5.15e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9qj]</th>                <td>-9.081e+04</td> <td> 1.09e+04</td> <td>   -8.330</td> <td> 0.000</td> <td>-1.12e+05</td> <td>-6.94e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9qk]</th>                <td>-1.503e+05</td> <td> 1.47e+04</td> <td>  -10.237</td> <td> 0.000</td> <td>-1.79e+05</td> <td>-1.21e+05</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9qm]</th>                <td>-1.201e+05</td> <td> 3.02e+04</td> <td>   -3.970</td> <td> 0.000</td> <td>-1.79e+05</td> <td>-6.08e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9qn]</th>                <td>-1.044e+05</td> <td> 1.84e+04</td> <td>   -5.685</td> <td> 0.000</td> <td> -1.4e+05</td> <td>-6.84e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9qs]</th>                <td>-6.967e+04</td> <td> 3.65e+04</td> <td>   -1.911</td> <td> 0.056</td> <td>-1.41e+05</td> <td> 1804.881</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9r0]</th>                <td> -9.34e+04</td> <td> 1.07e+04</td> <td>   -8.719</td> <td> 0.000</td> <td>-1.14e+05</td> <td>-7.24e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9r1]</th>                <td>-9.415e+04</td> <td> 9827.512</td> <td>   -9.580</td> <td> 0.000</td> <td>-1.13e+05</td> <td>-7.49e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9r2]</th>                <td>-1.023e+05</td> <td> 1.37e+04</td> <td>   -7.459</td> <td> 0.000</td> <td>-1.29e+05</td> <td>-7.54e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9r3]</th>                <td>  -1.1e+05</td> <td> 1.42e+04</td> <td>   -7.719</td> <td> 0.000</td> <td>-1.38e+05</td> <td> -8.2e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9r4]</th>                <td>-9.847e+04</td> <td> 1.25e+04</td> <td>   -7.893</td> <td> 0.000</td> <td>-1.23e+05</td> <td> -7.4e+04</td>
+</tr>
+<tr>
+  <th>C(geohash)[T.9r6]</th>                <td>-1.206e+05</td> <td> 2.24e+04</td> <td>   -5.396</td> <td> 0.000</td> <td>-1.64e+05</td> <td>-7.68e+04</td>
+</tr>
+<tr>
+  <th>median_income</th>                    <td> 3.984e+04</td> <td>  292.998</td> <td>  135.976</td> <td> 0.000</td> <td> 3.93e+04</td> <td> 4.04e+04</td>
+</tr>
+<tr>
+  <th>households_population</th>            <td> 2.339e+05</td> <td> 4964.244</td> <td>   47.122</td> <td> 0.000</td> <td> 2.24e+05</td> <td> 2.44e+05</td>
+</tr>
+<tr>
+  <th>total_rooms_households</th>           <td> -207.7435</td> <td>  202.785</td> <td>   -1.024</td> <td> 0.306</td> <td> -605.230</td> <td>  189.743</td>
+</tr>
+<tr>
+  <th>housing_median_age</th>               <td>  429.2258</td> <td>   39.089</td> <td>   10.981</td> <td> 0.000</td> <td>  352.606</td> <td>  505.845</td>
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+  <th>Omnibus:</th>       <td>1178.286</td> <th>  Durbin-Watson:     </th> <td>   1.999</td>
+</tr>
+<tr>
+  <th>Prob(Omnibus):</th>  <td> 0.000</td>  <th>  Jarque-Bera (JB):  </th> <td>2073.371</td>
+</tr>
+<tr>
+  <th>Skew:</th>           <td> 0.609</td>  <th>  Prob(JB):          </th> <td>    0.00</td>
+</tr>
+<tr>
+  <th>Kurtosis:</th>       <td> 4.444</td>  <th>  Cond. No.          </th> <td>1.08e+16</td>
+</tr>
+</table><br/><br/>Notes:<br/>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.<br/>[2] The smallest eigenvalue is 1.18e-25. This might indicate that there are<br/>strong multicollinearity problems or that the design matrix is singular.</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r2_lm3opt</span><span class="p">,</span> <span class="n">rmse_lm3opt</span><span class="p">,</span> <span class="n">mse_lm3opt</span> <span class="o">=</span> <span class="n">metrics_stats</span><span class="p">(</span><span class="n">lm3opt</span><span class="p">,</span><span class="n">train_dataset_opt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>r2:  0.7534
+RMSE  49832.42
+MSE:  2483270183.72
+</pre></div>
+</div>
+</div>
+</div>
+<p>Für dieses Modell liegt der RMSE unter 50 Tsd. USD.  Wird nur diese Größe betrachtet handelt es hierbei um das beste Modell.</p>
+</section>
+<section id="statsmodel-lasso">
+<h3>Statsmodel Lasso<a class="headerlink" href="#statsmodel-lasso" title="Permalink to this headline">¶</a></h3>
+<p><strong>Model Lasso: Build</strong></p>
+<p>Folgendes Modell basiert auf eine Recherche im Internet zur Anwendung von Lasso mit der Bibliothek Statsmodels. Mit dem Parameter <code class="docutils literal notranslate"><span class="pre">L1_wt</span></code> wird eine regularisiertes Modell nach Lasso umgesetzt. Zu dieser Umsetzung habe ich wenige Quelle gefunden.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lmlasso</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span> <span class="o">=</span><span class="s1">&#39;median_house_value ~ median_income + C(ocean_proximity) + households_population + total_rooms_households + total_rooms_total_bedrooms+C(geohash)&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">train_dataset</span><span class="p">)</span><span class="o">.</span><span class="n">fit_regularized</span><span class="p">(</span><span class="n">L1_wt</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_dataset</span><span class="p">[</span><span class="s1">&#39;y_pred&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">lmlasso</span><span class="o">.</span><span class="n">predict</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Model Lasso: Metrics and Evaluation</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rmse_lasso</span><span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">rmse</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">[</span><span class="s1">&#39;median_house_value&#39;</span><span class="p">],</span> <span class="n">train_dataset</span><span class="p">[</span><span class="s1">&#39;y_pred&#39;</span><span class="p">]),</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">mse_lasso</span> <span class="o">=</span> <span class="nb">round</span> <span class="p">(</span><span class="n">mse</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">[</span><span class="s1">&#39;median_house_value&#39;</span><span class="p">],</span> <span class="n">train_dataset</span><span class="p">[</span><span class="s1">&#39;y_pred&#39;</span><span class="p">]),</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;RMSE &quot;</span><span class="p">,</span><span class="n">rmse_lasso</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;MSE: &quot;</span><span class="p">,</span><span class="n">mse_lasso</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RMSE  66702.33
+MSE:  4449200441.47
+</pre></div>
+</div>
+</div>
+</div>
+<p>Der RMSE liegt mit ca. 66,7 Tsd. USD unter 70 Tsd. USD.</p>
+</section>
+<section id="natural-spline-statsmodel">
+<h3>Natural Spline Statsmodel<a class="headerlink" href="#natural-spline-statsmodel" title="Permalink to this headline">¶</a></h3>
+<p><strong>Model Splines: Build</strong></p>
+<p>Das Natural Splines Modell wir mit nur einer Variablen umgesetzt. Da <em>median_income</em> die höchste Korrelation  mit <em>median_house_value</em> aufweist wird dieser in das Modell einbezogen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span> <span class="o">=</span> <span class="n">train_dataset</span><span class="p">[</span><span class="s1">&#39;median_income&#39;</span><span class="p">]</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">train_dataset</span><span class="p">[</span><span class="s1">&#39;median_house_value&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">patsy</span> <span class="kn">import</span> <span class="n">dmatrix</span>
+<span class="n">transformed_x3</span> <span class="o">=</span> <span class="n">dmatrix</span><span class="p">(</span><span class="s2">&quot;cr(train,df = 3)&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;train&quot;</span><span class="p">:</span> <span class="n">X_train</span><span class="p">},</span> <span class="n">return_type</span><span class="o">=</span><span class="s1">&#39;dataframe&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spline</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">GLM</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">transformed_x3</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred</span><span class="o">=</span> <span class="n">spline</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">dmatrix</span><span class="p">(</span><span class="s2">&quot;cr(train, df=3)&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;train&quot;</span><span class="p">:</span> <span class="n">X_train</span><span class="p">},</span> <span class="n">return_type</span><span class="o">=</span><span class="s1">&#39;dataframe&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Model Splines: Metrics and Evaluation</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spline</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="simpletable">
+<caption>Generalized Linear Model Regression Results</caption>
+<tr>
+  <th>Dep. Variable:</th>   <td>median_house_value</td> <th>  No. Observations:  </th>   <td> 14860</td>   
+</tr>
+<tr>
+  <th>Model:</th>                   <td>GLM</td>        <th>  Df Residuals:      </th>   <td> 14857</td>   
+</tr>
+<tr>
+  <th>Model Family:</th>         <td>Gaussian</td>      <th>  Df Model:          </th>   <td>     2</td>   
+</tr>
+<tr>
+  <th>Link Function:</th>        <td>identity</td>      <th>  Scale:             </th> <td>7.0656e+09</td> 
+</tr>
+<tr>
+  <th>Method:</th>                 <td>IRLS</td>        <th>  Log-Likelihood:    </th> <td>-1.8959e+05</td>
+</tr>
+<tr>
+  <th>Date:</th>             <td>Tue, 18 Jan 2022</td>  <th>  Deviance:          </th> <td>1.0497e+14</td> 
+</tr>
+<tr>
+  <th>Time:</th>                 <td>18:28:18</td>      <th>  Pearson chi2:      </th>  <td>1.05e+14</td>  
+</tr>
+<tr>
+  <th>No. Iterations:</th>           <td>3</td>         <th>  Pseudo R-squ. (CS):</th>   <td>0.5934</td>   
+</tr>
+<tr>
+  <th>Covariance Type:</th>      <td>nonrobust</td>     <th>                     </th>      <td> </td>     
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+           <td></td>             <th>coef</th>     <th>std err</th>      <th>z</th>      <th>P>|z|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>Intercept</th>          <td> 2.133e+05</td> <td> 2195.333</td> <td>   97.149</td> <td> 0.000</td> <td> 2.09e+05</td> <td> 2.18e+05</td>
+</tr>
+<tr>
+  <th>cr(train, df=3)[0]</th> <td>-1.642e+05</td> <td> 1937.784</td> <td>  -84.722</td> <td> 0.000</td> <td>-1.68e+05</td> <td> -1.6e+05</td>
+</tr>
+<tr>
+  <th>cr(train, df=3)[1]</th> <td>-1.091e+04</td> <td> 2475.528</td> <td>   -4.407</td> <td> 0.000</td> <td>-1.58e+04</td> <td>-6056.668</td>
+</tr>
+<tr>
+  <th>cr(train, df=3)[2]</th> <td> 3.884e+05</td> <td> 5768.188</td> <td>   67.327</td> <td> 0.000</td> <td> 3.77e+05</td> <td>    4e+05</td>
+</tr>
+</table></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rmse_spline</span><span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">rmse</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">[</span><span class="s1">&#39;median_house_value&#39;</span><span class="p">],</span> <span class="n">y_pred</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">mse_spline</span> <span class="o">=</span> <span class="nb">round</span> <span class="p">(</span><span class="n">mse</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">[</span><span class="s1">&#39;median_house_value&#39;</span><span class="p">],</span> <span class="n">y_pred</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;RMSE &quot;</span><span class="p">,</span><span class="n">rmse_spline</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;MSE: &quot;</span><span class="p">,</span><span class="n">mse_spline</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RMSE  84048.48
+MSE:  7064147575.14
+</pre></div>
+</div>
+</div>
+</div>
+<p>Da ein Ergebnis der Regression Diagnostic ist, dass Spline für diese Problem besser geeignet sind, entspricht das Ergebnis nicht den Erwartungen. Grund kann dafür das Einbeziehen nur einer Variable sein.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_train</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Natural spline with df=3&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x2342d9f1948&gt;
+</pre></div>
+</div>
+<img alt="_images/regression_87_1.png" src="_images/regression_87_1.png" />
+</div>
+</div>
+</section>
+<section id="evaluation">
+<h3>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this headline">¶</a></h3>
+<p>Für die Evaluation werden die RMSE der einzelnen Modelle miteinander verglichen. Das Modell mit dem niedrigsten RMSE wird mit den Testdaten validiert.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span><span class="o">=</span> <span class="p">{</span><span class="s1">&#39;RMSE&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;RMSE OLS 1&#39;</span><span class="p">,</span> <span class="s1">&#39;RMSE OLS 2&#39;</span><span class="p">,</span> <span class="s1">&#39;RMSE OLS 3&#39;</span><span class="p">,</span> <span class="s1">&#39;RMSE OLS 3 opt&#39;</span><span class="p">,</span> <span class="s1">&#39;RMSE Lasso&#39;</span><span class="p">,</span> <span class="s1">&#39;RMSE Spline&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;Werte&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">rmse_lm1</span><span class="p">,</span> <span class="n">rmse_lm2</span><span class="p">,</span> <span class="n">rmse_lm3</span><span class="p">,</span> <span class="n">rmse_lm3opt</span><span class="p">,</span> <span class="n">rmse_lasso</span><span class="p">,</span> <span class="n">rmse_spline</span><span class="p">]</span> <span class="p">}</span>
+<span class="n">df_results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+<span class="n">df_results</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span><span class="s1">&#39;Werte&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>RMSE</th>
+      <th>Werte</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3</th>
+      <td>RMSE OLS 3 opt</td>
+      <td>49832.42</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>RMSE OLS 3</td>
+      <td>63633.85</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>RMSE Lasso</td>
+      <td>66702.33</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>RMSE OLS 2</td>
+      <td>81594.26</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>RMSE Spline</td>
+      <td>84048.48</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>RMSE OLS 1</td>
+      <td>84343.17</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_dataset</span> <span class="o">=</span> <span class="n">add_feautures</span><span class="p">(</span><span class="n">test_dataset</span><span class="p">)</span>
+<span class="n">test_dataset</span> <span class="o">=</span> <span class="n">fill_missingdata</span><span class="p">(</span><span class="n">test_dataset</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_dataset</span><span class="p">[</span><span class="s1">&#39;y_pred&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">lm3opt</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_dataset</span><span class="p">[[</span><span class="s1">&#39;median_income&#39;</span><span class="p">,</span> <span class="s1">&#39;ocean_proximity&#39;</span><span class="p">,</span> <span class="s1">&#39;households_population&#39;</span><span class="p">,</span> <span class="s1">&#39;total_rooms_households&#39;</span><span class="p">,</span> <span class="s1">&#39;housing_median_age&#39;</span><span class="p">,</span> <span class="s1">&#39;geohash&#39;</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r2_test</span><span class="p">,</span> <span class="n">rmse_test</span><span class="p">,</span> <span class="n">mse_test</span> <span class="o">=</span> <span class="n">metrics_stats</span><span class="p">(</span><span class="n">lm3opt</span><span class="p">,</span><span class="n">test_dataset</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>r2:  0.7534
+RMSE  63049.64
+MSE:  3975256654.45
+</pre></div>
+</div>
+</div>
+</div>
+<p>In einem realen Umfeld wäre nach Erstellung des Modells eine vollständige Regression Diagnostics notwendig gewesen, um das Ergebnis richtig einordnen zu können.</p>
+</section>
+</section>
+<section id="model-sklearn">
+<h2>Model sklearn<a class="headerlink" href="#model-sklearn" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">ColumnTransformer</span><span class="p">,</span> <span class="n">make_column_selector</span> <span class="k">as</span> <span class="n">selector</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">from</span> <span class="nn">sklearn.impute</span> <span class="kn">import</span> <span class="n">SimpleImputer</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span><span class="p">,</span> <span class="n">OneHotEncoder</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span><span class="p">,</span> <span class="n">LassoCV</span><span class="p">,</span> <span class="n">Lasso</span><span class="p">,</span> <span class="n">Ridge</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">r2_score</span><span class="p">,</span> <span class="n">mean_absolute_error</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span>
+
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>  
+
+
+<span class="kn">from</span> <span class="nn">func</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">set_config</span>
+
+<span class="o">%</span><span class="k">load_ext</span> autoreload
+<span class="o">%</span><span class="k">autoreload</span> 2
+<span class="n">set_config</span><span class="p">(</span><span class="n">display</span><span class="o">=</span><span class="s2">&quot;diagram&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The autoreload extension is already loaded. To reload it, use:
+  %reload_ext autoreload
+</pre></div>
+</div>
+</div>
+</div>
+<section id="sklearn-ols">
+<h3>sklearn OLS<a class="headerlink" href="#sklearn-ols" title="Permalink to this headline">¶</a></h3>
+<p><strong>Data Preperation</strong></p>
+<p>Zur Datenvorbereitung  mit der Bibliothek scikit-learn wird ein <em>preprocessor</em> angewendet. Der Aufbau des <em>preprocessors</em> ist im Notebook Data genauer beschrieben. In diesem Fall wird dieser über die Funktion erstellt.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">read_data</span><span class="p">()</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">transform_data</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Split Test and Trainingsdata</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;median_house_value&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;median_house_value&#39;</span><span class="p">]</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span> <span class="o">=</span> <span class="n">add_feautures</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Feauture Selection </span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[[</span><span class="s1">&#39;median_income&#39;</span><span class="p">,</span> <span class="s1">&#39;ocean_proximity&#39;</span><span class="p">,</span><span class="s1">&#39;housing_median_age&#39;</span><span class="p">,</span> <span class="s1">&#39;households_population&#39;</span><span class="p">,</span> <span class="s1">&#39;total_rooms_households&#39;</span><span class="p">,</span> <span class="s1">&#39;total_rooms_total_bedrooms&#39;</span><span class="p">,</span> <span class="s1">&#39;geohash&#39;</span><span class="p">]]</span>
+<span class="n">X_train</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>median_income</th>
+      <th>ocean_proximity</th>
+      <th>housing_median_age</th>
+      <th>households_population</th>
+      <th>total_rooms_households</th>
+      <th>total_rooms_total_bedrooms</th>
+      <th>geohash</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>14196</th>
+      <td>3.2596</td>
+      <td>NEAR OCEAN</td>
+      <td>33.0</td>
+      <td>0.270870</td>
+      <td>5.017657</td>
+      <td>4.985646</td>
+      <td>9mu</td>
+    </tr>
+    <tr>
+      <th>8267</th>
+      <td>3.8125</td>
+      <td>NEAR OCEAN</td>
+      <td>49.0</td>
+      <td>0.575342</td>
+      <td>4.473545</td>
+      <td>4.297332</td>
+      <td>9q5</td>
+    </tr>
+    <tr>
+      <th>17445</th>
+      <td>4.1563</td>
+      <td>NEAR OCEAN</td>
+      <td>4.0</td>
+      <td>0.367213</td>
+      <td>5.645833</td>
+      <td>5.731118</td>
+      <td>9q4</td>
+    </tr>
+    <tr>
+      <th>14265</th>
+      <td>1.9425</td>
+      <td>NEAR OCEAN</td>
+      <td>36.0</td>
+      <td>0.250353</td>
+      <td>4.002817</td>
+      <td>3.871935</td>
+      <td>9mu</td>
+    </tr>
+    <tr>
+      <th>2271</th>
+      <td>3.5542</td>
+      <td>INLAND</td>
+      <td>43.0</td>
+      <td>0.434783</td>
+      <td>6.268421</td>
+      <td>5.526682</td>
+      <td>9qd</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>11284</th>
+      <td>6.3700</td>
+      <td>&lt;1H OCEAN</td>
+      <td>35.0</td>
+      <td>0.329787</td>
+      <td>6.129032</td>
+      <td>6.616915</td>
+      <td>9qh</td>
+    </tr>
+    <tr>
+      <th>11964</th>
+      <td>3.0500</td>
+      <td>INLAND</td>
+      <td>33.0</td>
+      <td>0.256132</td>
+      <td>6.868597</td>
+      <td>5.410526</td>
+      <td>9qh</td>
+    </tr>
+    <tr>
+      <th>5390</th>
+      <td>2.9344</td>
+      <td>&lt;1H OCEAN</td>
+      <td>36.0</td>
+      <td>0.300114</td>
+      <td>3.986717</td>
+      <td>3.692443</td>
+      <td>9q5</td>
+    </tr>
+    <tr>
+      <th>860</th>
+      <td>5.7192</td>
+      <td>&lt;1H OCEAN</td>
+      <td>15.0</td>
+      <td>0.314575</td>
+      <td>6.395349</td>
+      <td>5.988275</td>
+      <td>9q9</td>
+    </tr>
+    <tr>
+      <th>15795</th>
+      <td>2.5755</td>
+      <td>NEAR BAY</td>
+      <td>52.0</td>
+      <td>0.474227</td>
+      <td>3.402576</td>
+      <td>3.213688</td>
+      <td>9q8</td>
+    </tr>
+  </tbody>
+</table>
+<p>16512 rows × 7 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preprocessor</span> <span class="o">=</span> <span class="n">build_preprocessor</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Model OLS</strong></p>
+<p>Das erste Modell, welches mit scikit-learn umsgesetzt wird, basiert ebenfalls auf der <em>Ordinary least squares</em>-Methode. Im Unterschied zu Statsmodel wird mit scikit-learn gleich eine Multiple-Regression durchgeführt, da diese deutlich bessere Ergebnisse erzielen konnte.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lm_pipe</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">(</span><span class="s1">&#39;preprocessor&#39;</span><span class="p">,</span> <span class="n">preprocessor</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;lm&#39;</span><span class="p">,</span> <span class="n">LinearRegression</span><span class="p">())</span>
+                        <span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lm_pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-42f9060d-0b3d-4f6d-be51-090f8dd00c2e {color: black;background-color: white;}#sk-42f9060d-0b3d-4f6d-be51-090f8dd00c2e pre{padding: 0;}#sk-42f9060d-0b3d-4f6d-be51-090f8dd00c2e div.sk-toggleable {background-color: white;}#sk-42f9060d-0b3d-4f6d-be51-090f8dd00c2e label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-42f9060d-0b3d-4f6d-be51-090f8dd00c2e label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-42f9060d-0b3d-4f6d-be51-090f8dd00c2e label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-42f9060d-0b3d-4f6d-be51-090f8dd00c2e div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-42f9060d-0b3d-4f6d-be51-090f8dd00c2e div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-42f9060d-0b3d-4f6d-be51-090f8dd00c2e div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-42f9060d-0b3d-4f6d-be51-090f8dd00c2e input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-42f9060d-0b3d-4f6d-be51-090f8dd00c2e input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-42f9060d-0b3d-4f6d-be51-090f8dd00c2e div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-42f9060d-0b3d-4f6d-be51-090f8dd00c2e div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-42f9060d-0b3d-4f6d-be51-090f8dd00c2e input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-42f9060d-0b3d-4f6d-be51-090f8dd00c2e div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-42f9060d-0b3d-4f6d-be51-090f8dd00c2e div.sk-estimator:hover {background-color: #d4ebff;}#sk-42f9060d-0b3d-4f6d-be51-090f8dd00c2e div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-42f9060d-0b3d-4f6d-be51-090f8dd00c2e div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-42f9060d-0b3d-4f6d-be51-090f8dd00c2e div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 2em;bottom: 0;left: 50%;}#sk-42f9060d-0b3d-4f6d-be51-090f8dd00c2e div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;}#sk-42f9060d-0b3d-4f6d-be51-090f8dd00c2e div.sk-item {z-index: 1;}#sk-42f9060d-0b3d-4f6d-be51-090f8dd00c2e div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;}#sk-42f9060d-0b3d-4f6d-be51-090f8dd00c2e div.sk-parallel::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 2em;bottom: 0;left: 50%;}#sk-42f9060d-0b3d-4f6d-be51-090f8dd00c2e div.sk-parallel-item {display: flex;flex-direction: column;position: relative;background-color: white;}#sk-42f9060d-0b3d-4f6d-be51-090f8dd00c2e div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-42f9060d-0b3d-4f6d-be51-090f8dd00c2e div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-42f9060d-0b3d-4f6d-be51-090f8dd00c2e div.sk-parallel-item:only-child::after {width: 0;}#sk-42f9060d-0b3d-4f6d-be51-090f8dd00c2e div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;position: relative;}#sk-42f9060d-0b3d-4f6d-be51-090f8dd00c2e div.sk-label label {font-family: monospace;font-weight: bold;background-color: white;display: inline-block;line-height: 1.2em;}#sk-42f9060d-0b3d-4f6d-be51-090f8dd00c2e div.sk-label-container {position: relative;z-index: 2;text-align: center;}#sk-42f9060d-0b3d-4f6d-be51-090f8dd00c2e div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-42f9060d-0b3d-4f6d-be51-090f8dd00c2e div.sk-text-repr-fallback {display: none;}</style><div id="sk-42f9060d-0b3d-4f6d-be51-090f8dd00c2e" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[(&#x27;preprocessor&#x27;,
+                 ColumnTransformer(transformers=[(&#x27;num&#x27;,
+                                                  Pipeline(steps=[(&#x27;imputer&#x27;,
+                                                                   SimpleImputer(strategy=&#x27;median&#x27;)),
+                                                                  (&#x27;scaler&#x27;,
+                                                                   StandardScaler())]),
+                                                  &lt;sklearn.compose._column_transformer.make_column_selector object at 0x0000023437C3C608&gt;),
+                                                 (&#x27;cat&#x27;,
+                                                  Pipeline(steps=[(&#x27;imputer&#x27;,
+                                                                   SimpleImputer(fill_value=&#x27;missing&#x27;,
+                                                                                 strategy=&#x27;constant&#x27;)),
+                                                                  (&#x27;onehot&#x27;,
+                                                                   OneHotEncoder(dtype=&lt;class &#x27;int&#x27;&gt;,
+                                                                                 handle_unknown=&#x27;ignore&#x27;))]),
+                                                  &lt;sklearn.compose._column_transformer.make_column_selector object at 0x0000023437C3C188&gt;)])),
+                (&#x27;lm&#x27;, LinearRegression())])</pre><b>Please rerun this cell to show the HTML repr or trust the notebook.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="63206260-36c1-49be-a08a-96e93ff9c7a8" type="checkbox" ><label for="63206260-36c1-49be-a08a-96e93ff9c7a8" class="sk-toggleable__label sk-toggleable__label-arrow">Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;preprocessor&#x27;,
+                 ColumnTransformer(transformers=[(&#x27;num&#x27;,
+                                                  Pipeline(steps=[(&#x27;imputer&#x27;,
+                                                                   SimpleImputer(strategy=&#x27;median&#x27;)),
+                                                                  (&#x27;scaler&#x27;,
+                                                                   StandardScaler())]),
+                                                  &lt;sklearn.compose._column_transformer.make_column_selector object at 0x0000023437C3C608&gt;),
+                                                 (&#x27;cat&#x27;,
+                                                  Pipeline(steps=[(&#x27;imputer&#x27;,
+                                                                   SimpleImputer(fill_value=&#x27;missing&#x27;,
+                                                                                 strategy=&#x27;constant&#x27;)),
+                                                                  (&#x27;onehot&#x27;,
+                                                                   OneHotEncoder(dtype=&lt;class &#x27;int&#x27;&gt;,
+                                                                                 handle_unknown=&#x27;ignore&#x27;))]),
+                                                  &lt;sklearn.compose._column_transformer.make_column_selector object at 0x0000023437C3C188&gt;)])),
+                (&#x27;lm&#x27;, LinearRegression())])</pre></div></div></div><div class="sk-serial"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="98235eb4-581f-4797-ac87-01dd1866be42" type="checkbox" ><label for="98235eb4-581f-4797-ac87-01dd1866be42" class="sk-toggleable__label sk-toggleable__label-arrow">preprocessor: ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(transformers=[(&#x27;num&#x27;,
+                                 Pipeline(steps=[(&#x27;imputer&#x27;,
+                                                  SimpleImputer(strategy=&#x27;median&#x27;)),
+                                                 (&#x27;scaler&#x27;, StandardScaler())]),
+                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x0000023437C3C608&gt;),
+                                (&#x27;cat&#x27;,
+                                 Pipeline(steps=[(&#x27;imputer&#x27;,
+                                                  SimpleImputer(fill_value=&#x27;missing&#x27;,
+                                                                strategy=&#x27;constant&#x27;)),
+                                                 (&#x27;onehot&#x27;,
+                                                  OneHotEncoder(dtype=&lt;class &#x27;int&#x27;&gt;,
+                                                                handle_unknown=&#x27;ignore&#x27;))]),
+                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x0000023437C3C188&gt;)])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="5ebda202-0fc2-4a53-88b1-63ace97393ee" type="checkbox" ><label for="5ebda202-0fc2-4a53-88b1-63ace97393ee" class="sk-toggleable__label sk-toggleable__label-arrow">num</label><div class="sk-toggleable__content"><pre>&lt;sklearn.compose._column_transformer.make_column_selector object at 0x0000023437C3C608&gt;</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="36a03b57-0648-4a16-927b-677ab3e6eb17" type="checkbox" ><label for="36a03b57-0648-4a16-927b-677ab3e6eb17" class="sk-toggleable__label sk-toggleable__label-arrow">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(strategy=&#x27;median&#x27;)</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="fe7db17d-0306-4770-863b-4f66a0920d43" type="checkbox" ><label for="fe7db17d-0306-4770-863b-4f66a0920d43" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="4ebe3c05-a000-4898-804e-effc5a8349ad" type="checkbox" ><label for="4ebe3c05-a000-4898-804e-effc5a8349ad" class="sk-toggleable__label sk-toggleable__label-arrow">cat</label><div class="sk-toggleable__content"><pre>&lt;sklearn.compose._column_transformer.make_column_selector object at 0x0000023437C3C188&gt;</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="a1de7043-5fad-4dd4-85af-557f91ee1c7b" type="checkbox" ><label for="a1de7043-5fad-4dd4-85af-557f91ee1c7b" class="sk-toggleable__label sk-toggleable__label-arrow">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(fill_value=&#x27;missing&#x27;, strategy=&#x27;constant&#x27;)</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="8c24d4e6-43aa-466b-b701-42221ae4836a" type="checkbox" ><label for="8c24d4e6-43aa-466b-b701-42221ae4836a" class="sk-toggleable__label sk-toggleable__label-arrow">OneHotEncoder</label><div class="sk-toggleable__content"><pre>OneHotEncoder(dtype=&lt;class &#x27;int&#x27;&gt;, handle_unknown=&#x27;ignore&#x27;)</pre></div></div></div></div></div></div></div></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="ec1f42a1-0435-4eaf-87ee-bf43b8f63455" type="checkbox" ><label for="ec1f42a1-0435-4eaf-87ee-bf43b8f63455" class="sk-toggleable__label sk-toggleable__label-arrow">LinearRegression</label><div class="sk-toggleable__content"><pre>LinearRegression()</pre></div></div></div></div></div></div></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">lm_pipe</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Metrcis and Evaluation</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r2_lm</span><span class="p">,</span> <span class="n">rmse_lm</span><span class="p">,</span> <span class="n">mse_lm</span> <span class="o">=</span> <span class="n">metrics_sk</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>r2:  0.7008
+RMSE  63242.32
+MSE:  3999591280.22
+</pre></div>
+</div>
+</div>
+</div>
+<p>Durch die Wahl geeignter Variablen wird gleich zu Beginn ein Model mit einem RMSE unter 70 Tsd. USD erzielt.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#TODO</span>
+<span class="c1">#sns.residplot(x=y_pred, y=y_train, scatter_kws={&quot;s&quot;: 80})</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="sklearn-lasso">
+<h3>sklearn Lasso<a class="headerlink" href="#sklearn-lasso" title="Permalink to this headline">¶</a></h3>
+<p><strong>Data preperation</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">read_data</span><span class="p">()</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">transform_data</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>longitude</th>
+      <th>latitude</th>
+      <th>housing_median_age</th>
+      <th>total_rooms</th>
+      <th>total_bedrooms</th>
+      <th>population</th>
+      <th>households</th>
+      <th>median_income</th>
+      <th>median_house_value</th>
+      <th>ocean_proximity</th>
+      <th>price_category</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-122.23</td>
+      <td>37.88</td>
+      <td>NaN</td>
+      <td>880</td>
+      <td>129.0</td>
+      <td>322</td>
+      <td>126</td>
+      <td>8.3252</td>
+      <td>NaN</td>
+      <td>NEAR BAY</td>
+      <td>below</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-122.22</td>
+      <td>37.86</td>
+      <td>21.0</td>
+      <td>7099</td>
+      <td>1106.0</td>
+      <td>2401</td>
+      <td>1138</td>
+      <td>8.3014</td>
+      <td>358500.0</td>
+      <td>NEAR BAY</td>
+      <td>above</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-122.24</td>
+      <td>37.85</td>
+      <td>52.0</td>
+      <td>1467</td>
+      <td>190.0</td>
+      <td>496</td>
+      <td>177</td>
+      <td>7.2574</td>
+      <td>352100.0</td>
+      <td>NEAR BAY</td>
+      <td>above</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-122.25</td>
+      <td>37.85</td>
+      <td>52.0</td>
+      <td>1274</td>
+      <td>235.0</td>
+      <td>558</td>
+      <td>219</td>
+      <td>5.6431</td>
+      <td>341300.0</td>
+      <td>NEAR BAY</td>
+      <td>above</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-122.25</td>
+      <td>37.85</td>
+      <td>52.0</td>
+      <td>1627</td>
+      <td>280.0</td>
+      <td>565</td>
+      <td>259</td>
+      <td>3.8462</td>
+      <td>342200.0</td>
+      <td>NEAR BAY</td>
+      <td>above</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>20635</th>
+      <td>-121.09</td>
+      <td>39.48</td>
+      <td>25.0</td>
+      <td>1665</td>
+      <td>374.0</td>
+      <td>845</td>
+      <td>330</td>
+      <td>1.5603</td>
+      <td>78100.0</td>
+      <td>INLAND</td>
+      <td>below</td>
+    </tr>
+    <tr>
+      <th>20636</th>
+      <td>-121.21</td>
+      <td>39.49</td>
+      <td>18.0</td>
+      <td>697</td>
+      <td>150.0</td>
+      <td>356</td>
+      <td>114</td>
+      <td>2.5568</td>
+      <td>77100.0</td>
+      <td>INLAND</td>
+      <td>below</td>
+    </tr>
+    <tr>
+      <th>20637</th>
+      <td>-121.22</td>
+      <td>39.43</td>
+      <td>17.0</td>
+      <td>2254</td>
+      <td>485.0</td>
+      <td>1007</td>
+      <td>433</td>
+      <td>1.7000</td>
+      <td>92300.0</td>
+      <td>INLAND</td>
+      <td>below</td>
+    </tr>
+    <tr>
+      <th>20638</th>
+      <td>-121.32</td>
+      <td>39.43</td>
+      <td>18.0</td>
+      <td>1860</td>
+      <td>409.0</td>
+      <td>741</td>
+      <td>349</td>
+      <td>1.8672</td>
+      <td>84700.0</td>
+      <td>INLAND</td>
+      <td>below</td>
+    </tr>
+    <tr>
+      <th>20639</th>
+      <td>-121.24</td>
+      <td>39.37</td>
+      <td>16.0</td>
+      <td>2785</td>
+      <td>616.0</td>
+      <td>1387</td>
+      <td>530</td>
+      <td>2.3886</td>
+      <td>89400.0</td>
+      <td>INLAND</td>
+      <td>below</td>
+    </tr>
+  </tbody>
+</table>
+<p>20640 rows × 11 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Split Test and Trainingsdata</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;median_house_value&#39;</span><span class="p">,</span> <span class="s1">&#39;price_category&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;median_house_value&#39;</span><span class="p">]</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span> <span class="o">=</span> <span class="n">add_feautures</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preprocessor</span> <span class="o">=</span> <span class="n">build_preprocessor</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bei der Vorbereitung der Daten für das Lasso-Modell werden keine weiteren Variablen ausgeschlossen, da das Model eine Feauture Selection durchführt.</p>
+<p><strong>Model LassoCV: Build</strong></p>
+<p>Zur Bestimmung des optimalen Hyperparameters wird hier eine Lasso Cross Validation angewendet. Dafür werden die Trainingsdaten in 5 Teilsets aufgeteilt.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">LassoCV_pipe</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">(</span><span class="s1">&#39;preprocessor&#39;</span><span class="p">,</span> <span class="n">preprocessor</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;LassoCV&#39;</span><span class="p">,</span> <span class="n">LassoCV</span><span class="p">(</span><span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">10000</span><span class="p">))</span>
+                        <span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">LassoCV_pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-790515e9-7cb8-4480-a6a2-d71a04abe696 {color: black;background-color: white;}#sk-790515e9-7cb8-4480-a6a2-d71a04abe696 pre{padding: 0;}#sk-790515e9-7cb8-4480-a6a2-d71a04abe696 div.sk-toggleable {background-color: white;}#sk-790515e9-7cb8-4480-a6a2-d71a04abe696 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-790515e9-7cb8-4480-a6a2-d71a04abe696 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-790515e9-7cb8-4480-a6a2-d71a04abe696 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-790515e9-7cb8-4480-a6a2-d71a04abe696 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-790515e9-7cb8-4480-a6a2-d71a04abe696 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-790515e9-7cb8-4480-a6a2-d71a04abe696 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-790515e9-7cb8-4480-a6a2-d71a04abe696 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-790515e9-7cb8-4480-a6a2-d71a04abe696 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-790515e9-7cb8-4480-a6a2-d71a04abe696 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-790515e9-7cb8-4480-a6a2-d71a04abe696 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-790515e9-7cb8-4480-a6a2-d71a04abe696 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-790515e9-7cb8-4480-a6a2-d71a04abe696 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-790515e9-7cb8-4480-a6a2-d71a04abe696 div.sk-estimator:hover {background-color: #d4ebff;}#sk-790515e9-7cb8-4480-a6a2-d71a04abe696 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-790515e9-7cb8-4480-a6a2-d71a04abe696 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-790515e9-7cb8-4480-a6a2-d71a04abe696 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 2em;bottom: 0;left: 50%;}#sk-790515e9-7cb8-4480-a6a2-d71a04abe696 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;}#sk-790515e9-7cb8-4480-a6a2-d71a04abe696 div.sk-item {z-index: 1;}#sk-790515e9-7cb8-4480-a6a2-d71a04abe696 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;}#sk-790515e9-7cb8-4480-a6a2-d71a04abe696 div.sk-parallel::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 2em;bottom: 0;left: 50%;}#sk-790515e9-7cb8-4480-a6a2-d71a04abe696 div.sk-parallel-item {display: flex;flex-direction: column;position: relative;background-color: white;}#sk-790515e9-7cb8-4480-a6a2-d71a04abe696 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-790515e9-7cb8-4480-a6a2-d71a04abe696 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-790515e9-7cb8-4480-a6a2-d71a04abe696 div.sk-parallel-item:only-child::after {width: 0;}#sk-790515e9-7cb8-4480-a6a2-d71a04abe696 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;position: relative;}#sk-790515e9-7cb8-4480-a6a2-d71a04abe696 div.sk-label label {font-family: monospace;font-weight: bold;background-color: white;display: inline-block;line-height: 1.2em;}#sk-790515e9-7cb8-4480-a6a2-d71a04abe696 div.sk-label-container {position: relative;z-index: 2;text-align: center;}#sk-790515e9-7cb8-4480-a6a2-d71a04abe696 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-790515e9-7cb8-4480-a6a2-d71a04abe696 div.sk-text-repr-fallback {display: none;}</style><div id="sk-790515e9-7cb8-4480-a6a2-d71a04abe696" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[(&#x27;preprocessor&#x27;,
+                 ColumnTransformer(transformers=[(&#x27;num&#x27;,
+                                                  Pipeline(steps=[(&#x27;imputer&#x27;,
+                                                                   SimpleImputer(strategy=&#x27;median&#x27;)),
+                                                                  (&#x27;scaler&#x27;,
+                                                                   StandardScaler())]),
+                                                  &lt;sklearn.compose._column_transformer.make_column_selector object at 0x0000023437CA2888&gt;),
+                                                 (&#x27;cat&#x27;,
+                                                  Pipeline(steps=[(&#x27;imputer&#x27;,
+                                                                   SimpleImputer(fill_value=&#x27;missing&#x27;,
+                                                                                 strategy=&#x27;constant&#x27;)),
+                                                                  (&#x27;onehot&#x27;,
+                                                                   OneHotEncoder(dtype=&lt;class &#x27;int&#x27;&gt;,
+                                                                                 handle_unknown=&#x27;ignore&#x27;))]),
+                                                  &lt;sklearn.compose._column_transformer.make_column_selector object at 0x0000023437CA2848&gt;)])),
+                (&#x27;LassoCV&#x27;, LassoCV(cv=5, max_iter=10000, random_state=0))])</pre><b>Please rerun this cell to show the HTML repr or trust the notebook.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="fd589a20-312c-4669-97cc-f94b71c89695" type="checkbox" ><label for="fd589a20-312c-4669-97cc-f94b71c89695" class="sk-toggleable__label sk-toggleable__label-arrow">Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;preprocessor&#x27;,
+                 ColumnTransformer(transformers=[(&#x27;num&#x27;,
+                                                  Pipeline(steps=[(&#x27;imputer&#x27;,
+                                                                   SimpleImputer(strategy=&#x27;median&#x27;)),
+                                                                  (&#x27;scaler&#x27;,
+                                                                   StandardScaler())]),
+                                                  &lt;sklearn.compose._column_transformer.make_column_selector object at 0x0000023437CA2888&gt;),
+                                                 (&#x27;cat&#x27;,
+                                                  Pipeline(steps=[(&#x27;imputer&#x27;,
+                                                                   SimpleImputer(fill_value=&#x27;missing&#x27;,
+                                                                                 strategy=&#x27;constant&#x27;)),
+                                                                  (&#x27;onehot&#x27;,
+                                                                   OneHotEncoder(dtype=&lt;class &#x27;int&#x27;&gt;,
+                                                                                 handle_unknown=&#x27;ignore&#x27;))]),
+                                                  &lt;sklearn.compose._column_transformer.make_column_selector object at 0x0000023437CA2848&gt;)])),
+                (&#x27;LassoCV&#x27;, LassoCV(cv=5, max_iter=10000, random_state=0))])</pre></div></div></div><div class="sk-serial"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="df3e87cf-4f72-4fbf-8296-bc0388114e7e" type="checkbox" ><label for="df3e87cf-4f72-4fbf-8296-bc0388114e7e" class="sk-toggleable__label sk-toggleable__label-arrow">preprocessor: ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(transformers=[(&#x27;num&#x27;,
+                                 Pipeline(steps=[(&#x27;imputer&#x27;,
+                                                  SimpleImputer(strategy=&#x27;median&#x27;)),
+                                                 (&#x27;scaler&#x27;, StandardScaler())]),
+                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x0000023437CA2888&gt;),
+                                (&#x27;cat&#x27;,
+                                 Pipeline(steps=[(&#x27;imputer&#x27;,
+                                                  SimpleImputer(fill_value=&#x27;missing&#x27;,
+                                                                strategy=&#x27;constant&#x27;)),
+                                                 (&#x27;onehot&#x27;,
+                                                  OneHotEncoder(dtype=&lt;class &#x27;int&#x27;&gt;,
+                                                                handle_unknown=&#x27;ignore&#x27;))]),
+                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x0000023437CA2848&gt;)])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="80c8b452-9840-4bcf-8ab9-4d3437c51674" type="checkbox" ><label for="80c8b452-9840-4bcf-8ab9-4d3437c51674" class="sk-toggleable__label sk-toggleable__label-arrow">num</label><div class="sk-toggleable__content"><pre>&lt;sklearn.compose._column_transformer.make_column_selector object at 0x0000023437CA2888&gt;</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="95cfe62c-7880-4473-9dc6-ae32883b1f6e" type="checkbox" ><label for="95cfe62c-7880-4473-9dc6-ae32883b1f6e" class="sk-toggleable__label sk-toggleable__label-arrow">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(strategy=&#x27;median&#x27;)</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="5b54edb1-002d-407c-8a52-87cd335a7f3d" type="checkbox" ><label for="5b54edb1-002d-407c-8a52-87cd335a7f3d" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="3d00b4e4-00b4-4925-b1a4-eab5d9e78acd" type="checkbox" ><label for="3d00b4e4-00b4-4925-b1a4-eab5d9e78acd" class="sk-toggleable__label sk-toggleable__label-arrow">cat</label><div class="sk-toggleable__content"><pre>&lt;sklearn.compose._column_transformer.make_column_selector object at 0x0000023437CA2848&gt;</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="4ccbec00-b5a0-4a48-8628-2c492cc5838d" type="checkbox" ><label for="4ccbec00-b5a0-4a48-8628-2c492cc5838d" class="sk-toggleable__label sk-toggleable__label-arrow">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(fill_value=&#x27;missing&#x27;, strategy=&#x27;constant&#x27;)</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="02242f19-123b-43bd-82ae-87c134cc510a" type="checkbox" ><label for="02242f19-123b-43bd-82ae-87c134cc510a" class="sk-toggleable__label sk-toggleable__label-arrow">OneHotEncoder</label><div class="sk-toggleable__content"><pre>OneHotEncoder(dtype=&lt;class &#x27;int&#x27;&gt;, handle_unknown=&#x27;ignore&#x27;)</pre></div></div></div></div></div></div></div></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="18fa77d2-fca3-42bc-9886-1148607a733d" type="checkbox" ><label for="18fa77d2-fca3-42bc-9886-1148607a733d" class="sk-toggleable__label sk-toggleable__label-arrow">LassoCV</label><div class="sk-toggleable__content"><pre>LassoCV(cv=5, max_iter=10000, random_state=0)</pre></div></div></div></div></div></div></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">LassoCV_pipe</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Model LassoCV: Metrics and Evaluation</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r2_lasso</span><span class="p">,</span> <span class="n">rmse_lasso</span><span class="p">,</span> <span class="n">mse_lasso</span> <span class="o">=</span> <span class="n">metrics_sk</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>r2:  0.7046
+RMSE  62842.13
+MSE:  3949133062.48
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alpha</span> <span class="o">=</span> <span class="n">LassoCV_pipe</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s1">&#39;LassoCV&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">alpha_</span>
+<span class="n">alpha</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>79.85195644260375
+</pre></div>
+</div>
+</div>
+</div>
+<p>Durch Auslesen des Attributs <code class="docutils literal notranslate"><span class="pre">alpha_</span></code> wird der am besten geeignte Hyperparameter ausgewählt. Dieser wird im folgenden auf die Lasso-Regression angewendet.</p>
+<p><strong>Model Lasso Best Alpha: Build</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Lasso_alpha_pipe</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">(</span><span class="s1">&#39;preprocessor&#39;</span><span class="p">,</span> <span class="n">preprocessor</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;Lasso&#39;</span><span class="p">,</span> <span class="n">Lasso</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">))</span>
+                        <span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Lasso_alpha_pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-902f1e05-cb22-4b4f-b439-758410898c16 {color: black;background-color: white;}#sk-902f1e05-cb22-4b4f-b439-758410898c16 pre{padding: 0;}#sk-902f1e05-cb22-4b4f-b439-758410898c16 div.sk-toggleable {background-color: white;}#sk-902f1e05-cb22-4b4f-b439-758410898c16 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-902f1e05-cb22-4b4f-b439-758410898c16 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-902f1e05-cb22-4b4f-b439-758410898c16 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-902f1e05-cb22-4b4f-b439-758410898c16 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-902f1e05-cb22-4b4f-b439-758410898c16 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-902f1e05-cb22-4b4f-b439-758410898c16 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-902f1e05-cb22-4b4f-b439-758410898c16 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-902f1e05-cb22-4b4f-b439-758410898c16 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-902f1e05-cb22-4b4f-b439-758410898c16 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-902f1e05-cb22-4b4f-b439-758410898c16 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-902f1e05-cb22-4b4f-b439-758410898c16 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-902f1e05-cb22-4b4f-b439-758410898c16 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-902f1e05-cb22-4b4f-b439-758410898c16 div.sk-estimator:hover {background-color: #d4ebff;}#sk-902f1e05-cb22-4b4f-b439-758410898c16 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-902f1e05-cb22-4b4f-b439-758410898c16 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-902f1e05-cb22-4b4f-b439-758410898c16 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 2em;bottom: 0;left: 50%;}#sk-902f1e05-cb22-4b4f-b439-758410898c16 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;}#sk-902f1e05-cb22-4b4f-b439-758410898c16 div.sk-item {z-index: 1;}#sk-902f1e05-cb22-4b4f-b439-758410898c16 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;}#sk-902f1e05-cb22-4b4f-b439-758410898c16 div.sk-parallel::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 2em;bottom: 0;left: 50%;}#sk-902f1e05-cb22-4b4f-b439-758410898c16 div.sk-parallel-item {display: flex;flex-direction: column;position: relative;background-color: white;}#sk-902f1e05-cb22-4b4f-b439-758410898c16 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-902f1e05-cb22-4b4f-b439-758410898c16 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-902f1e05-cb22-4b4f-b439-758410898c16 div.sk-parallel-item:only-child::after {width: 0;}#sk-902f1e05-cb22-4b4f-b439-758410898c16 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;position: relative;}#sk-902f1e05-cb22-4b4f-b439-758410898c16 div.sk-label label {font-family: monospace;font-weight: bold;background-color: white;display: inline-block;line-height: 1.2em;}#sk-902f1e05-cb22-4b4f-b439-758410898c16 div.sk-label-container {position: relative;z-index: 2;text-align: center;}#sk-902f1e05-cb22-4b4f-b439-758410898c16 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-902f1e05-cb22-4b4f-b439-758410898c16 div.sk-text-repr-fallback {display: none;}</style><div id="sk-902f1e05-cb22-4b4f-b439-758410898c16" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[(&#x27;preprocessor&#x27;,
+                 ColumnTransformer(transformers=[(&#x27;num&#x27;,
+                                                  Pipeline(steps=[(&#x27;imputer&#x27;,
+                                                                   SimpleImputer(strategy=&#x27;median&#x27;)),
+                                                                  (&#x27;scaler&#x27;,
+                                                                   StandardScaler())]),
+                                                  &lt;sklearn.compose._column_transformer.make_column_selector object at 0x0000023437CA2888&gt;),
+                                                 (&#x27;cat&#x27;,
+                                                  Pipeline(steps=[(&#x27;imputer&#x27;,
+                                                                   SimpleImputer(fill_value=&#x27;missing&#x27;,
+                                                                                 strategy=&#x27;constant&#x27;)),
+                                                                  (&#x27;onehot&#x27;,
+                                                                   OneHotEncoder(dtype=&lt;class &#x27;int&#x27;&gt;,
+                                                                                 handle_unknown=&#x27;ignore&#x27;))]),
+                                                  &lt;sklearn.compose._column_transformer.make_column_selector object at 0x0000023437CA2848&gt;)])),
+                (&#x27;Lasso&#x27;, Lasso(alpha=79.85195644260375))])</pre><b>Please rerun this cell to show the HTML repr or trust the notebook.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="a412ea95-80ad-409e-8350-d12918a0a448" type="checkbox" ><label for="a412ea95-80ad-409e-8350-d12918a0a448" class="sk-toggleable__label sk-toggleable__label-arrow">Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;preprocessor&#x27;,
+                 ColumnTransformer(transformers=[(&#x27;num&#x27;,
+                                                  Pipeline(steps=[(&#x27;imputer&#x27;,
+                                                                   SimpleImputer(strategy=&#x27;median&#x27;)),
+                                                                  (&#x27;scaler&#x27;,
+                                                                   StandardScaler())]),
+                                                  &lt;sklearn.compose._column_transformer.make_column_selector object at 0x0000023437CA2888&gt;),
+                                                 (&#x27;cat&#x27;,
+                                                  Pipeline(steps=[(&#x27;imputer&#x27;,
+                                                                   SimpleImputer(fill_value=&#x27;missing&#x27;,
+                                                                                 strategy=&#x27;constant&#x27;)),
+                                                                  (&#x27;onehot&#x27;,
+                                                                   OneHotEncoder(dtype=&lt;class &#x27;int&#x27;&gt;,
+                                                                                 handle_unknown=&#x27;ignore&#x27;))]),
+                                                  &lt;sklearn.compose._column_transformer.make_column_selector object at 0x0000023437CA2848&gt;)])),
+                (&#x27;Lasso&#x27;, Lasso(alpha=79.85195644260375))])</pre></div></div></div><div class="sk-serial"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="75236d56-2e83-4011-bd3c-0451659461d7" type="checkbox" ><label for="75236d56-2e83-4011-bd3c-0451659461d7" class="sk-toggleable__label sk-toggleable__label-arrow">preprocessor: ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(transformers=[(&#x27;num&#x27;,
+                                 Pipeline(steps=[(&#x27;imputer&#x27;,
+                                                  SimpleImputer(strategy=&#x27;median&#x27;)),
+                                                 (&#x27;scaler&#x27;, StandardScaler())]),
+                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x0000023437CA2888&gt;),
+                                (&#x27;cat&#x27;,
+                                 Pipeline(steps=[(&#x27;imputer&#x27;,
+                                                  SimpleImputer(fill_value=&#x27;missing&#x27;,
+                                                                strategy=&#x27;constant&#x27;)),
+                                                 (&#x27;onehot&#x27;,
+                                                  OneHotEncoder(dtype=&lt;class &#x27;int&#x27;&gt;,
+                                                                handle_unknown=&#x27;ignore&#x27;))]),
+                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x0000023437CA2848&gt;)])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="7a4148d7-ba49-4d0d-9460-8a65b9ac8893" type="checkbox" ><label for="7a4148d7-ba49-4d0d-9460-8a65b9ac8893" class="sk-toggleable__label sk-toggleable__label-arrow">num</label><div class="sk-toggleable__content"><pre>&lt;sklearn.compose._column_transformer.make_column_selector object at 0x0000023437CA2888&gt;</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="7be3c244-8d73-473b-b90f-de0006e984d0" type="checkbox" ><label for="7be3c244-8d73-473b-b90f-de0006e984d0" class="sk-toggleable__label sk-toggleable__label-arrow">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(strategy=&#x27;median&#x27;)</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="243b421f-1462-4d3d-92a1-1b8b6b13b072" type="checkbox" ><label for="243b421f-1462-4d3d-92a1-1b8b6b13b072" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="9f969944-6956-43ca-bfc0-eab4fb679bd5" type="checkbox" ><label for="9f969944-6956-43ca-bfc0-eab4fb679bd5" class="sk-toggleable__label sk-toggleable__label-arrow">cat</label><div class="sk-toggleable__content"><pre>&lt;sklearn.compose._column_transformer.make_column_selector object at 0x0000023437CA2848&gt;</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="826c6ba3-dbe5-44d2-967e-7fde3e9689e5" type="checkbox" ><label for="826c6ba3-dbe5-44d2-967e-7fde3e9689e5" class="sk-toggleable__label sk-toggleable__label-arrow">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(fill_value=&#x27;missing&#x27;, strategy=&#x27;constant&#x27;)</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="242d1820-94da-4261-96a0-28c659007a8f" type="checkbox" ><label for="242d1820-94da-4261-96a0-28c659007a8f" class="sk-toggleable__label sk-toggleable__label-arrow">OneHotEncoder</label><div class="sk-toggleable__content"><pre>OneHotEncoder(dtype=&lt;class &#x27;int&#x27;&gt;, handle_unknown=&#x27;ignore&#x27;)</pre></div></div></div></div></div></div></div></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="66c993da-eda6-4a9b-8f1d-8d8920715690" type="checkbox" ><label for="66c993da-eda6-4a9b-8f1d-8d8920715690" class="sk-toggleable__label sk-toggleable__label-arrow">Lasso</label><div class="sk-toggleable__content"><pre>Lasso(alpha=79.85195644260375)</pre></div></div></div></div></div></div></div></div></div>
+</div>
+<p><strong>Model Lasso Best Alpha: Metrics</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r2_lasso</span><span class="p">,</span> <span class="n">rmse_lasso</span><span class="p">,</span> <span class="n">mse_lasso</span> <span class="o">=</span> <span class="n">metrics_sk</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>r2:  0.7046
+RMSE  62842.13
+MSE:  3949133062.48
+</pre></div>
+</div>
+</div>
+</div>
+<p>Der RMSE liegt unter 70 Tsd. USd. und entspricht demententsprechend den Anforderung an das Modell.</p>
+</section>
+<section id="sklearn-spline">
+<h3>sklearn Spline<a class="headerlink" href="#sklearn-spline" title="Permalink to this headline">¶</a></h3>
+<p><strong>Data preperation</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">read_data</span><span class="p">()</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">transform_data</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Split Test and Trainingsdata</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;median_house_value&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;median_house_value&#39;</span><span class="p">]</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span> <span class="o">=</span> <span class="n">add_feautures</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Feauture Selection </span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[[</span><span class="s1">&#39;median_income&#39;</span><span class="p">,</span> <span class="s1">&#39;ocean_proximity&#39;</span><span class="p">,</span><span class="s1">&#39;housing_median_age&#39;</span><span class="p">,</span> <span class="s1">&#39;households_population&#39;</span><span class="p">,</span> <span class="s1">&#39;total_rooms_households&#39;</span><span class="p">,</span> <span class="s1">&#39;total_rooms_total_bedrooms&#39;</span><span class="p">,</span> <span class="s1">&#39;geohash&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preprocessor</span> <span class="o">=</span> <span class="n">build_preprocessor</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Splines: Build</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Splines_pipe</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">(</span><span class="s1">&#39;preprocessor&#39;</span><span class="p">,</span> <span class="n">preprocessor</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;polynomialfeatures&#39;</span><span class="p">,</span> <span class="n">PolynomialFeatures</span><span class="p">()),</span>
+    <span class="p">(</span><span class="s1">&#39;ridge&#39;</span><span class="p">,</span> <span class="n">Ridge</span><span class="p">())</span>
+                        <span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Splines_pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-9f5f45a8-e6c8-4e1b-85e1-e86477b2f31a {color: black;background-color: white;}#sk-9f5f45a8-e6c8-4e1b-85e1-e86477b2f31a pre{padding: 0;}#sk-9f5f45a8-e6c8-4e1b-85e1-e86477b2f31a div.sk-toggleable {background-color: white;}#sk-9f5f45a8-e6c8-4e1b-85e1-e86477b2f31a label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-9f5f45a8-e6c8-4e1b-85e1-e86477b2f31a label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-9f5f45a8-e6c8-4e1b-85e1-e86477b2f31a label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-9f5f45a8-e6c8-4e1b-85e1-e86477b2f31a div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-9f5f45a8-e6c8-4e1b-85e1-e86477b2f31a div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-9f5f45a8-e6c8-4e1b-85e1-e86477b2f31a div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-9f5f45a8-e6c8-4e1b-85e1-e86477b2f31a input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-9f5f45a8-e6c8-4e1b-85e1-e86477b2f31a input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-9f5f45a8-e6c8-4e1b-85e1-e86477b2f31a div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-9f5f45a8-e6c8-4e1b-85e1-e86477b2f31a div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-9f5f45a8-e6c8-4e1b-85e1-e86477b2f31a input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-9f5f45a8-e6c8-4e1b-85e1-e86477b2f31a div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-9f5f45a8-e6c8-4e1b-85e1-e86477b2f31a div.sk-estimator:hover {background-color: #d4ebff;}#sk-9f5f45a8-e6c8-4e1b-85e1-e86477b2f31a div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-9f5f45a8-e6c8-4e1b-85e1-e86477b2f31a div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-9f5f45a8-e6c8-4e1b-85e1-e86477b2f31a div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 2em;bottom: 0;left: 50%;}#sk-9f5f45a8-e6c8-4e1b-85e1-e86477b2f31a div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;}#sk-9f5f45a8-e6c8-4e1b-85e1-e86477b2f31a div.sk-item {z-index: 1;}#sk-9f5f45a8-e6c8-4e1b-85e1-e86477b2f31a div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;}#sk-9f5f45a8-e6c8-4e1b-85e1-e86477b2f31a div.sk-parallel::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 2em;bottom: 0;left: 50%;}#sk-9f5f45a8-e6c8-4e1b-85e1-e86477b2f31a div.sk-parallel-item {display: flex;flex-direction: column;position: relative;background-color: white;}#sk-9f5f45a8-e6c8-4e1b-85e1-e86477b2f31a div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-9f5f45a8-e6c8-4e1b-85e1-e86477b2f31a div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-9f5f45a8-e6c8-4e1b-85e1-e86477b2f31a div.sk-parallel-item:only-child::after {width: 0;}#sk-9f5f45a8-e6c8-4e1b-85e1-e86477b2f31a div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;position: relative;}#sk-9f5f45a8-e6c8-4e1b-85e1-e86477b2f31a div.sk-label label {font-family: monospace;font-weight: bold;background-color: white;display: inline-block;line-height: 1.2em;}#sk-9f5f45a8-e6c8-4e1b-85e1-e86477b2f31a div.sk-label-container {position: relative;z-index: 2;text-align: center;}#sk-9f5f45a8-e6c8-4e1b-85e1-e86477b2f31a div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-9f5f45a8-e6c8-4e1b-85e1-e86477b2f31a div.sk-text-repr-fallback {display: none;}</style><div id="sk-9f5f45a8-e6c8-4e1b-85e1-e86477b2f31a" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[(&#x27;preprocessor&#x27;,
+                 ColumnTransformer(transformers=[(&#x27;num&#x27;,
+                                                  Pipeline(steps=[(&#x27;imputer&#x27;,
+                                                                   SimpleImputer(strategy=&#x27;median&#x27;)),
+                                                                  (&#x27;scaler&#x27;,
+                                                                   StandardScaler())]),
+                                                  &lt;sklearn.compose._column_transformer.make_column_selector object at 0x00000271208E7308&gt;),
+                                                 (&#x27;cat&#x27;,
+                                                  Pipeline(steps=[(&#x27;imputer&#x27;,
+                                                                   SimpleImputer(fill_value=&#x27;missing&#x27;,
+                                                                                 strategy=&#x27;constant&#x27;)),
+                                                                  (&#x27;onehot&#x27;,
+                                                                   OneHotEncoder(dtype=&lt;class &#x27;int&#x27;&gt;,
+                                                                                 handle_unknown=&#x27;ignore&#x27;))]),
+                                                  &lt;sklearn.compose._column_transformer.make_column_selector object at 0x00000271208E7348&gt;)])),
+                (&#x27;polynomialfeatures&#x27;, PolynomialFeatures()),
+                (&#x27;ridge&#x27;, Ridge())])</pre><b>Please rerun this cell to show the HTML repr or trust the notebook.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="c2fe3053-e8bb-4ccf-84cd-e7b0d918a4e2" type="checkbox" ><label for="c2fe3053-e8bb-4ccf-84cd-e7b0d918a4e2" class="sk-toggleable__label sk-toggleable__label-arrow">Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;preprocessor&#x27;,
+                 ColumnTransformer(transformers=[(&#x27;num&#x27;,
+                                                  Pipeline(steps=[(&#x27;imputer&#x27;,
+                                                                   SimpleImputer(strategy=&#x27;median&#x27;)),
+                                                                  (&#x27;scaler&#x27;,
+                                                                   StandardScaler())]),
+                                                  &lt;sklearn.compose._column_transformer.make_column_selector object at 0x00000271208E7308&gt;),
+                                                 (&#x27;cat&#x27;,
+                                                  Pipeline(steps=[(&#x27;imputer&#x27;,
+                                                                   SimpleImputer(fill_value=&#x27;missing&#x27;,
+                                                                                 strategy=&#x27;constant&#x27;)),
+                                                                  (&#x27;onehot&#x27;,
+                                                                   OneHotEncoder(dtype=&lt;class &#x27;int&#x27;&gt;,
+                                                                                 handle_unknown=&#x27;ignore&#x27;))]),
+                                                  &lt;sklearn.compose._column_transformer.make_column_selector object at 0x00000271208E7348&gt;)])),
+                (&#x27;polynomialfeatures&#x27;, PolynomialFeatures()),
+                (&#x27;ridge&#x27;, Ridge())])</pre></div></div></div><div class="sk-serial"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="03f83bb1-1e84-491b-a2db-e2183b598c5a" type="checkbox" ><label for="03f83bb1-1e84-491b-a2db-e2183b598c5a" class="sk-toggleable__label sk-toggleable__label-arrow">preprocessor: ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(transformers=[(&#x27;num&#x27;,
+                                 Pipeline(steps=[(&#x27;imputer&#x27;,
+                                                  SimpleImputer(strategy=&#x27;median&#x27;)),
+                                                 (&#x27;scaler&#x27;, StandardScaler())]),
+                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x00000271208E7308&gt;),
+                                (&#x27;cat&#x27;,
+                                 Pipeline(steps=[(&#x27;imputer&#x27;,
+                                                  SimpleImputer(fill_value=&#x27;missing&#x27;,
+                                                                strategy=&#x27;constant&#x27;)),
+                                                 (&#x27;onehot&#x27;,
+                                                  OneHotEncoder(dtype=&lt;class &#x27;int&#x27;&gt;,
+                                                                handle_unknown=&#x27;ignore&#x27;))]),
+                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x00000271208E7348&gt;)])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="e0d2e4de-1bff-4fdf-8ca7-5c6e520ea3f5" type="checkbox" ><label for="e0d2e4de-1bff-4fdf-8ca7-5c6e520ea3f5" class="sk-toggleable__label sk-toggleable__label-arrow">num</label><div class="sk-toggleable__content"><pre>&lt;sklearn.compose._column_transformer.make_column_selector object at 0x00000271208E7308&gt;</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="f4f561bd-997d-49db-afad-a48ce34ff14a" type="checkbox" ><label for="f4f561bd-997d-49db-afad-a48ce34ff14a" class="sk-toggleable__label sk-toggleable__label-arrow">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(strategy=&#x27;median&#x27;)</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="b38a1cf1-5acf-4f6d-ad84-2cd60997009a" type="checkbox" ><label for="b38a1cf1-5acf-4f6d-ad84-2cd60997009a" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="c4754a9c-7b56-4251-b6cf-db8b60236300" type="checkbox" ><label for="c4754a9c-7b56-4251-b6cf-db8b60236300" class="sk-toggleable__label sk-toggleable__label-arrow">cat</label><div class="sk-toggleable__content"><pre>&lt;sklearn.compose._column_transformer.make_column_selector object at 0x00000271208E7348&gt;</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="e161cb0b-6e6e-4230-afd0-22fef24d361f" type="checkbox" ><label for="e161cb0b-6e6e-4230-afd0-22fef24d361f" class="sk-toggleable__label sk-toggleable__label-arrow">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(fill_value=&#x27;missing&#x27;, strategy=&#x27;constant&#x27;)</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="ea5e69d2-903b-4b4c-a771-74c24532f728" type="checkbox" ><label for="ea5e69d2-903b-4b4c-a771-74c24532f728" class="sk-toggleable__label sk-toggleable__label-arrow">OneHotEncoder</label><div class="sk-toggleable__content"><pre>OneHotEncoder(dtype=&lt;class &#x27;int&#x27;&gt;, handle_unknown=&#x27;ignore&#x27;)</pre></div></div></div></div></div></div></div></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="0a8d3432-86bf-47c9-be80-bc96382efb82" type="checkbox" ><label for="0a8d3432-86bf-47c9-be80-bc96382efb82" class="sk-toggleable__label sk-toggleable__label-arrow">PolynomialFeatures</label><div class="sk-toggleable__content"><pre>PolynomialFeatures()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="1ddcdfd0-51ef-4a94-b585-7fa5fde9ea6c" type="checkbox" ><label for="1ddcdfd0-51ef-4a94-b585-7fa5fde9ea6c" class="sk-toggleable__label sk-toggleable__label-arrow">Ridge</label><div class="sk-toggleable__content"><pre>Ridge()</pre></div></div></div></div></div></div></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">Splines_pipe</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r2_spline</span><span class="p">,</span> <span class="n">rmse_spline</span><span class="p">,</span> <span class="n">mse_spline</span> <span class="o">=</span> <span class="n">metrics_sk</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>r2:  0.7628
+RMSE  56311.61
+MSE:  3170997160.3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#TODO Graph?#TODO Frage Scipy statt sklearn</span>
+<span class="c1">#from scipy.interpolate import CubicSpline</span>
+<span class="c1">#natural_spline = CubicSpline(x, y, bc_type=&#39;natural&#39;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="evaluation-sklearn">
+<h3>Evaluation Sklearn<a class="headerlink" href="#evaluation-sklearn" title="Permalink to this headline">¶</a></h3>
+<p><strong>Select best model</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span><span class="o">=</span> <span class="p">{</span><span class="s1">&#39;RMSE&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;RMSE OLS&#39;</span><span class="p">,</span> <span class="s1">&#39;RMSE Lasso&#39;</span><span class="p">,</span> <span class="s1">&#39;RMSE Spline&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;Werte&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">rmse_lm</span><span class="p">,</span> <span class="n">rmse_lasso</span><span class="p">,</span> <span class="n">rmse_spline</span><span class="p">]</span> <span class="p">}</span>
+<span class="n">df_results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+<span class="n">df_results</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span><span class="s1">&#39;Werte&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>RMSE</th>
+      <th>Werte</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2</th>
+      <td>RMSE Spline</td>
+      <td>56311.61</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>RMSE Lasso</td>
+      <td>57838.12</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>RMSE OLS</td>
+      <td>63242.32</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p><strong>Predict with test data</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_test</span> <span class="o">=</span> <span class="n">add_feautures</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">X_test</span><span class="p">[[</span><span class="s1">&#39;median_income&#39;</span><span class="p">,</span> <span class="s1">&#39;ocean_proximity&#39;</span><span class="p">,</span><span class="s1">&#39;housing_median_age&#39;</span><span class="p">,</span> <span class="s1">&#39;households_population&#39;</span><span class="p">,</span> <span class="s1">&#39;total_rooms_households&#39;</span><span class="p">,</span> <span class="s1">&#39;total_rooms_total_bedrooms&#39;</span><span class="p">,</span> <span class="s1">&#39;geohash&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_test_pred</span> <span class="o">=</span> <span class="n">Splines_pipe</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Final Results</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_test</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">y_test</span><span class="o">.</span><span class="n">median</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">r2_test</span><span class="p">,</span> <span class="n">rmse_test</span><span class="p">,</span> <span class="n">mse_test</span> <span class="o">=</span> <span class="n">metrics_sk</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_test_pred</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>r2:  0.7366
+RMSE  58720.25
+MSE:  3448068054.55
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="classification.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Model: Klassifikation</p>
+        </div>
+    </a>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          Durch Sophie Horn<br/>
+        
+            &copy; Urheberrechte © 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

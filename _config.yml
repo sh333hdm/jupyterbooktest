@@ -9,6 +9,7 @@ logo: logo.png
 # See https://jupyterbook.org/content/execute.html
 execute:
   execute_notebooks: force
+  home_page_in_navbar       : true  # Whether to include your home page in the left Navigation Bar
 
 # Define the name of the latex output file for PDF builds
 latex:

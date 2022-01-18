@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Hello, I am using Jupyterbooks &#8212; Sophie&#39;s book</title>
+    <title>Plan &#8212; Applied Statistics Projektarbeit</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -52,7 +52,7 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Markdown Files" href="markdown.html" />
+    <link rel="next" title="Data" href="data.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -81,35 +81,35 @@
       <img src="_static/logo.png" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">Sophie's book</h1>
+      <h1 class="site-logo" id="site-title">Applied Statistics Projektarbeit</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Dieses Buch durchsuchen ..." aria-label="Dieses Buch durchsuchen ..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1 current">
   <a class="reference internal" href="#">
-   Hello, I am using Jupyterbooks
+   Plan
   </a>
  </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="markdown.html">
-   Markdown Files
+  <a class="reference internal" href="data.html">
+   Data
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="notebooks.html">
-   Content with notebooks
+  <a class="reference internal" href="classification.html">
+   Model: Klassifikation
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="myfile.html">
-   Here’s my sample title
+  <a class="reference internal" href="regression.html">
+   Model: Regression
   </a>
  </li>
 </ul>
@@ -137,8 +137,8 @@
             
             <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
                 data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                aria-expanded="true" aria-label="Navigation umschalten" aria-controls="site-navigation"
+                title="Navigation umschalten" data-toggle="tooltip" data-placement="left">
                 <i class="fas fa-bars"></i>
                 <i class="fas fa-arrow-left"></i>
                 <i class="fas fa-arrow-up"></i>
@@ -146,7 +146,7 @@
             
             
 <div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Laden Sie diese Seite herunter"><i
             class="fas fa-download"></i></button>
 
     <div class="dropdown-buttons">
@@ -154,10 +154,10 @@
         
         <!-- Download raw file -->
         <a class="dropdown-buttons" href="_sources/intro.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                class="btn btn-secondary topbarbtn" title="Quelldatei herunterladen" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="In PDF drucken"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
@@ -170,12 +170,12 @@
     <div class="dropdown-buttons sourcebuttons">
         <a class="repository-button"
             href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
+                data-toggle="tooltip" data-placement="left" title="Quell-Repository"><i
+                    class="fab fa-github"></i>Repository</button></a>
         <a class="issues-button"
             href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fintro.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+                title="Öffnen Sie ein Problem"><i class="fas fa-lightbulb"></i>offenes Thema</button></a>
         
     </div>
 </div>
@@ -183,8 +183,8 @@
             <!-- Full screen (wrap in <a> to have style consistency -->
 
 <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Vollbildmodus"
+        title="Vollbildmodus"><i
             class="fas fa-expand"></i></button></a>
 
             <!-- Launch buttons -->
@@ -194,6 +194,29 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Inhalt
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#problembeschreibung">
+   Problembeschreibung
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#identifikation-der-variablen">
+   Identifikation der Variablen
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#festlegung-von-metriken">
+   Festlegung von Metriken
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -202,18 +225,28 @@
         
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="hello-i-am-using-jupyterbooks">
-<h1>Hello, I am using Jupyterbooks<a class="headerlink" href="#hello-i-am-using-jupyterbooks" title="Permalink to this headline">¶</a></h1>
-<p>Hello, I am using Jypterbooks and it works pretty well.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Here is a note!</p>
-</div>
-<p>And here is a code block:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span> <span class="o">=</span> <span class="n">mc</span><span class="o">^</span><span class="mi">2</span>
-</pre></div>
-</div>
-<p>Check out the content pages bundled with this sample book to see more.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="plan">
+<h1>Plan<a class="headerlink" href="#plan" title="Permalink to this headline">¶</a></h1>
+<section id="problembeschreibung">
+<h2>Problembeschreibung<a class="headerlink" href="#problembeschreibung" title="Permalink to this headline">¶</a></h2>
+<p>Wir untersuchen den mittleren Immobilienwerte von Distrikten in Kaliforniern. Ziel ist es die Preise möglichst präzise vorauszusagen in welchen Distrikten sich ein Kauf lohnt. Ziel ist es dadurch ein Expertenteam eines Immobilienbüros zu ersetzen.  Um bewerten zu können, ob das Expertenteam ersetzt werden kann, muss ein Regressions-Modell den Immobilienpreis mit einer RMSE von 70.000USD vorhersagen können. Zusätzlich sollte ein Klassifikationsmodell mit einem F1-Score &gt; 0.8 vorhersagen können, ob der mittlere Immobilienwert in einem Distrikt über 150 Tsd. USD liegt.</p>
+</section>
+<section id="identifikation-der-variablen">
+<h2>Identifikation der Variablen<a class="headerlink" href="#identifikation-der-variablen" title="Permalink to this headline">¶</a></h2>
+<p>Im ersten Schritt werden dafür die benötigten und möglichen Variablen für die Modell festgelegt. Grundlage dafür ist ein Paper mit dem Titel „Modeling House Price Prediction using Regression Analysis and Particle Swarm Optimization“ erschienen im “International Journal of Advanced Computer Science and Applications, Vol. 8, No. 10, 2017”. In der Veröffentlichung werden die Einflussfaktoren in 3 Kategorien unterteilt: „Location“, „Physical condition“ und „Concept“. Dien „Location“ bezieht sich auf die geographische Lage eines Objekts, kann aber auch Eigenschaften, wie z.B. die Nähe zu Natur einschließen.  Unter „Physical condition“ fassen die Autoren Merkmale, wie z.B. die Anzahl von Schlafzimmer, die Verfügbarkeit eines Gartens und das Alter der Immobilie zusammen. „Concept“ bezieht sich auf die Idee, welchen den Käufer mit einer Immobilie vermittelt wird z.B. durch ein elitäres Umfeld.
+Auf Basis der Recherche besitzt der Datensatz folgende Features:</p>
+<ul class="simple">
+<li><p><strong>„Physical condition“</strong>: housing_median_age, total_rooms, total_bedrooms</p></li>
+<li><p><strong>„Concepts“</strong>: population, households, median_income</p></li>
+<li><p><strong>“Location”</strong>: ocean_proximity, longitude, latitude</p></li>
+</ul>
+</section>
+<section id="festlegung-von-metriken">
+<h2>Festlegung von Metriken<a class="headerlink" href="#festlegung-von-metriken" title="Permalink to this headline">¶</a></h2>
+<p>Das Projekt ist ein Erfolg, wenn der mittlere Immobilienpreise eines Distrikts mit einem RMSE von 70 Tsd. USD oder mit einem F1-Score über 0.8 vorhergesagt werden kann, ob der mittlere Immobilienpreis über 150 Tsd. USD liegt.
+Das Projekt ist fehlgeschlagen, wenn der RMSE über 85 Tsd. USD liegt oder der F1-Score unter 0.75.</p>
+<p><img alt="Image" src="_images/map.JPG" /></p>
+</section>
 <div class="toctree-wrapper compound">
 </div>
 </section>
@@ -243,10 +276,10 @@
         
             <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='right-next' id="next-link" href="markdown.html" title="next page">
+    <a class='right-next' id="next-link" href="data.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Markdown Files</p>
+        <p class="prev-next-title">Data</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
@@ -258,9 +291,9 @@
     <div class="container">
       <p>
         
-          By Sophie<br/>
+          Durch Sophie Horn<br/>
         
-            &copy; Copyright 2021.<br/>
+            &copy; Urheberrechte © 2021.<br/>
       </p>
     </div>
   </footer>
