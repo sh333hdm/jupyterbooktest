@@ -16,7 +16,7 @@ Auf Basis der Recherche besitzt der Datensatz folgende Features:
 - **physical condition**: housing_median_age, total_rooms, total_bedrooms
 - **concepts**: population, households, median_income
 - **location**: ocean_proximity, longitude, latitude
-- 
+
 ## Festlegung von Metriken
 Das Projekt ist ein Erfolg, wenn der mittlere Immobilienpreise eines Distrikts mit einem RMSE von 70 Tsd. USD oder mit einem F1-Score über 0.8 vorhergesagt werden kann, ob der mittlere Immobilienpreis über 150 Tsd. USD liegt. 
 Das Projekt ist fehlgeschlagen, wenn der RMSE über 85 Tsd. USD liegt oder der F1-Score unter 0.75. 
