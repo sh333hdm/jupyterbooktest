@@ -52,7 +52,7 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Regression Project" href="regression.html" />
+    <link rel="next" title="Model: Regression" href="regression.html" />
     <link rel="prev" title="Data" href="data.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -110,7 +110,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="regression.html">
-   Regression Project
+   Model: Regression
   </a>
  </li>
 </ul>
@@ -274,10 +274,10 @@
                 
   <section class="tex2jax_ignore mathjax_ignore" id="model-klassifikation">
 <h1>Model: Klassifikation<a class="headerlink" href="#model-klassifikation" title="Permalink to this headline">¶</a></h1>
-<p>Ziel der Klassifikation ist es die Variabel <em>price category</em> mit einem F1-Score größer als 0.8 vorherzusagen. Die Variable <em>price category</em> gibt an ob der mittlere Immobilienwert eines Distrikts über 150 Tsd. USD liegt.</p>
+<p>Ziel der Klassifikation ist es, die Variabel <em>price category</em> mit einem F1-Score größer als 0.8 vorherzusagen. Die Variable <em>price category</em> gibt an, ob der mittlere Immobilienwert eines Distrikts über 150 Tsd. USD liegt.</p>
 <p>In diesem Notebook wird die Klassifikation einmal mit der Bibliothek Statsmodels und der Bibliothek scikit-learn durchgeführt. Die Dokumention zu beiden Modellen ist unterteilt in: <em>data preperation</em>, <em>model</em> und <em>evaluation</em>.</p>
 <blockquote>
-<div><p>Über den <a class="reference external" href="https://sh333hdm.github.io/jupyterbooktest/intro.html">Link</a> ist die Ansicht der Projektarbeit als Jupyter Book möglich.</p>
+<div><p>Über diesen <a class="reference external" href="https://sh333hdm.github.io/jupyterbooktest/intro.html">Link</a> ist die Ansicht der Projektarbeit als Jupyter Book möglich.</p>
 </div></blockquote>
 <section id="statsmodel-model">
 <h2>Statsmodel Model<a class="headerlink" href="#statsmodel-model" title="Permalink to this headline">¶</a></h2>
@@ -303,7 +303,7 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">read_data</span><span class="p">()</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">transform_data</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-<span class="n">train_dataset</span><span class="p">,</span> <span class="n">evaluate_dataset</span><span class="p">,</span> <span class="n">train_dataset_total</span><span class="p">,</span> <span class="n">test_dataset</span> <span class="o">=</span> <span class="n">split_data</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="n">train_dataset</span><span class="p">,</span> <span class="n">test_dataset</span> <span class="o">=</span> <span class="n">split_data</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 <span class="n">train_dataset</span> <span class="o">=</span> <span class="n">fill_missingdata</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">)</span>
 <span class="n">train_dataset</span> <span class="o">=</span> <span class="n">add_feautures</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">)</span>
 <span class="n">train_dataset</span>
@@ -311,21 +311,246 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="o">~</span>\<span class="n">AppData</span>\<span class="n">Local</span>\<span class="n">Temp</span><span class="o">/</span><span class="n">ipykernel_1256</span><span class="o">/</span><span class="mf">2720515760.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">df</span> <span class="o">=</span> <span class="n">read_data</span><span class="p">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">df</span> <span class="o">=</span> <span class="n">transform_data</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">train_dataset</span><span class="p">,</span> <span class="n">evaluate_dataset</span><span class="p">,</span> <span class="n">train_dataset_total</span><span class="p">,</span> <span class="n">test_dataset</span> <span class="o">=</span> <span class="n">split_data</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">train_dataset</span> <span class="o">=</span> <span class="n">fill_missingdata</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">train_dataset</span> <span class="o">=</span> <span class="n">add_feautures</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">)</span>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-<span class="ne">ValueError</span>: not enough values to unpack (expected 4, got 2)
-</pre></div>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>longitude</th>
+      <th>latitude</th>
+      <th>housing_median_age</th>
+      <th>total_rooms</th>
+      <th>total_bedrooms</th>
+      <th>population</th>
+      <th>households</th>
+      <th>median_income</th>
+      <th>median_house_value</th>
+      <th>ocean_proximity</th>
+      <th>price_category</th>
+      <th>households_population</th>
+      <th>total_rooms_households</th>
+      <th>total_rooms_total_bedrooms</th>
+      <th>geohash</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>14740</th>
+      <td>-117.05</td>
+      <td>32.58</td>
+      <td>22.0</td>
+      <td>2101</td>
+      <td>399.0</td>
+      <td>1551</td>
+      <td>371</td>
+      <td>4.1518</td>
+      <td>136900.0</td>
+      <td>NEAR OCEAN</td>
+      <td>below</td>
+      <td>0.239201</td>
+      <td>5.663073</td>
+      <td>5.265664</td>
+      <td>9mu</td>
+    </tr>
+    <tr>
+      <th>10101</th>
+      <td>-117.97</td>
+      <td>33.92</td>
+      <td>32.0</td>
+      <td>2620</td>
+      <td>398.0</td>
+      <td>1296</td>
+      <td>429</td>
+      <td>5.7796</td>
+      <td>241300.0</td>
+      <td>&lt;1H OCEAN</td>
+      <td>above</td>
+      <td>0.331019</td>
+      <td>6.107226</td>
+      <td>6.582915</td>
+      <td>9qh</td>
+    </tr>
+    <tr>
+      <th>20566</th>
+      <td>-121.84</td>
+      <td>38.65</td>
+      <td>29.0</td>
+      <td>3167</td>
+      <td>548.0</td>
+      <td>1554</td>
+      <td>534</td>
+      <td>4.3487</td>
+      <td>200700.0</td>
+      <td>INLAND</td>
+      <td>above</td>
+      <td>0.343629</td>
+      <td>5.930712</td>
+      <td>5.779197</td>
+      <td>9qc</td>
+    </tr>
+    <tr>
+      <th>2670</th>
+      <td>-115.60</td>
+      <td>33.20</td>
+      <td>37.0</td>
+      <td>709</td>
+      <td>187.0</td>
+      <td>390</td>
+      <td>142</td>
+      <td>2.4511</td>
+      <td>72500.0</td>
+      <td>INLAND</td>
+      <td>below</td>
+      <td>0.364103</td>
+      <td>4.992958</td>
+      <td>3.791444</td>
+      <td>9mv</td>
+    </tr>
+    <tr>
+      <th>15709</th>
+      <td>-122.43</td>
+      <td>37.79</td>
+      <td>25.0</td>
+      <td>1637</td>
+      <td>394.0</td>
+      <td>649</td>
+      <td>379</td>
+      <td>5.0049</td>
+      <td>460000.0</td>
+      <td>NEAR BAY</td>
+      <td>above</td>
+      <td>0.583975</td>
+      <td>4.319261</td>
+      <td>4.154822</td>
+      <td>9q8</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>7616</th>
+      <td>-118.22</td>
+      <td>33.86</td>
+      <td>16.0</td>
+      <td>8732</td>
+      <td>1489.0</td>
+      <td>3944</td>
+      <td>1493</td>
+      <td>5.1948</td>
+      <td>203500.0</td>
+      <td>&lt;1H OCEAN</td>
+      <td>above</td>
+      <td>0.378550</td>
+      <td>5.848627</td>
+      <td>5.864338</td>
+      <td>9q5</td>
+    </tr>
+    <tr>
+      <th>8767</th>
+      <td>-118.39</td>
+      <td>33.81</td>
+      <td>35.0</td>
+      <td>1008</td>
+      <td>165.0</td>
+      <td>391</td>
+      <td>167</td>
+      <td>3.7778</td>
+      <td>487500.0</td>
+      <td>NEAR OCEAN</td>
+      <td>above</td>
+      <td>0.427110</td>
+      <td>6.035928</td>
+      <td>6.109091</td>
+      <td>9q5</td>
+    </tr>
+    <tr>
+      <th>16388</th>
+      <td>-121.30</td>
+      <td>38.05</td>
+      <td>52.0</td>
+      <td>122</td>
+      <td>26.0</td>
+      <td>62</td>
+      <td>25</td>
+      <td>1.1500</td>
+      <td>112500.0</td>
+      <td>INLAND</td>
+      <td>below</td>
+      <td>0.403226</td>
+      <td>4.880000</td>
+      <td>4.692308</td>
+      <td>9qc</td>
+    </tr>
+    <tr>
+      <th>19949</th>
+      <td>-119.37</td>
+      <td>36.21</td>
+      <td>35.0</td>
+      <td>2228</td>
+      <td>476.0</td>
+      <td>1567</td>
+      <td>449</td>
+      <td>1.4455</td>
+      <td>54100.0</td>
+      <td>INLAND</td>
+      <td>below</td>
+      <td>0.286535</td>
+      <td>4.962138</td>
+      <td>4.680672</td>
+      <td>9q7</td>
+    </tr>
+    <tr>
+      <th>10078</th>
+      <td>-120.27</td>
+      <td>39.35</td>
+      <td>11.0</td>
+      <td>2520</td>
+      <td>401.0</td>
+      <td>397</td>
+      <td>165</td>
+      <td>4.6650</td>
+      <td>145600.0</td>
+      <td>INLAND</td>
+      <td>below</td>
+      <td>0.415617</td>
+      <td>15.272727</td>
+      <td>6.284289</td>
+      <td>9qf</td>
+    </tr>
+  </tbody>
+</table>
+<p>16511 rows × 15 columns</p>
+</div></div></div>
 </div>
-</div>
-</div>
-<p>In diesem Schritt werden die Funktionen <a class="reference external" href="http://func.py">func.py</a> verwendet. Diese sind im Notebook <a class="reference external" href="https://sh333hdm.github.io/jupyterbooktest/intro.html">Data</a>  näher erläutert.</p>
+<p>In diesem Schritt werden die Funktionen <a class="reference external" href="http://func.py">func.py</a> verwendet. Diese sind im Notebook <a class="reference external" href="https://sh333hdm.github.io/jupyterbooktest/data.html">Data</a>  näher erläutert.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_dataset</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span> <span class="s1">&#39;latitude&#39;</span><span class="p">,</span> <span class="s1">&#39;total_rooms&#39;</span><span class="p">,</span> <span class="s1">&#39;total_bedrooms&#39;</span><span class="p">,</span> <span class="s1">&#39;population&#39;</span><span class="p">,</span><span class="s1">&#39;households&#39;</span><span class="p">,</span> <span class="s1">&#39;median_house_value&#39;</span><span class="p">,</span> <span class="s1">&#39;housing_median_age&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
@@ -350,9 +575,9 @@
 </div>
 </div>
 </div>
-<p>Die Klassifikation wird durch das Modell der logistischen Regression umgesetzt. In Statsmodels wird dafür die Klasse <em>Generalized Linear Model</em> genutzt.
-Die Varaiblen werden dem Model mit Hilfe der <code class="docutils literal notranslate"><span class="pre">formula.api</span></code> übergeben. Bei der Übergabe werden die kategorialen Variablen <em>price_category</em>, <em>ocean_proximity</em> und <em>geohash</em> explizit durch die patsy-funktion <code class="docutils literal notranslate"><span class="pre">C()</span></code> als solche gekennzeichnet. Damit wird sichergestellt, dass diesem im Modell als kategorialen Variablen behandelt werden und ein Dummy-Coding durchgeführt wird.
-Mit dem Parameter sm.family.Binomial() wird eine binomiale Verteilung spezifiziert.</p>
+<p>Die Klassifikation wird mit dem Modell der logistischen Regression umgesetzt. In Statsmodels wird dafür die Klasse <em>Generalized Linear Model</em> genutzt.
+Die Varaiblen werden dem Model mit Hilfe der <code class="docutils literal notranslate"><span class="pre">formula.api</span></code> übergeben. Bei der Übergabe werden die kategorialen Variablen <em>price_category</em>, <em>ocean_proximity</em> und <em>geohash</em> explizit durch die patsy-funktion <code class="docutils literal notranslate"><span class="pre">C()</span></code> als solche gekennzeichnet. Damit wird sichergestellt, dass diese im Modell als kategorialen Variablen behandelt werden und ein Dummy-Coding durchgeführt wird.
+Mit dem Parameter <code class="docutils literal notranslate"><span class="pre">sm.family.Binomial()</span></code> wird eine Binomialverteilung spezifiziert.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
@@ -362,58 +587,58 @@ Mit dem Parameter sm.family.Binomial() wird eine binomiale Verteilung spezifizie
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                    Generalized Linear Model Regression Results                                     
 ====================================================================================================================
-Dep. Variable:     [&#39;C(price_category)[above]&#39;, &#39;C(price_category)[below]&#39;]   No. Observations:                14860
-Model:                                                                  GLM   Df Residuals:                    14820
+Dep. Variable:     [&#39;C(price_category)[above]&#39;, &#39;C(price_category)[below]&#39;]   No. Observations:                16511
+Model:                                                                  GLM   Df Residuals:                    16471
 Model Family:                                                      Binomial   Df Model:                           39
 Link Function:                                                        logit   Scale:                          1.0000
-Method:                                                                IRLS   Log-Likelihood:                -4658.0
-Date:                                                      Tue, 18 Jan 2022   Deviance:                       9315.9
-Time:                                                              07:54:45   Pearson chi2:                 1.59e+08
-No. Iterations:                                                          24   Pseudo R-squ. (CS):             0.5000
+Method:                                                                IRLS   Log-Likelihood:                -5165.0
+Date:                                                      Wed, 19 Jan 2022   Deviance:                       10330.
+Time:                                                              21:53:09   Pearson chi2:                 1.59e+08
+No. Iterations:                                                          24   Pseudo R-squ. (CS):             0.4999
 Covariance Type:                                                  nonrobust                                         
 ====================================================================================================
                                        coef    std err          z      P&gt;|z|      [0.025      0.975]
 ----------------------------------------------------------------------------------------------------
-Intercept                           19.6753   2.93e+04      0.001      0.999   -5.73e+04    5.74e+04
-C(ocean_proximity)[T.INLAND]        -3.0577      0.100    -30.451      0.000      -3.255      -2.861
-C(ocean_proximity)[T.ISLAND]        -0.3264   1.55e+05  -2.11e-06      1.000   -3.04e+05    3.04e+05
-C(ocean_proximity)[T.NEAR BAY]      -1.6696      0.132    -12.641      0.000      -1.928      -1.411
-C(ocean_proximity)[T.NEAR OCEAN]    -0.1215      0.098     -1.245      0.213      -0.313       0.070
-C(geohash)[T.9mu]                  -25.3679   2.93e+04     -0.001      0.999   -5.74e+04    5.73e+04
-C(geohash)[T.9mv]                  -25.3889   2.93e+04     -0.001      0.999   -5.74e+04    5.73e+04
-C(geohash)[T.9my]                  -24.3682   2.93e+04     -0.001      0.999   -5.74e+04    5.73e+04
-C(geohash)[T.9nz]                   -0.5809   2.18e+05  -2.66e-06      1.000   -4.27e+05    4.27e+05
-C(geohash)[T.9pp]                  -28.6716   2.93e+04     -0.001      0.999   -5.74e+04    5.73e+04
-C(geohash)[T.9pr]                  -28.6613   2.93e+04     -0.001      0.999   -5.74e+04    5.73e+04
-C(geohash)[T.9q3]                  -25.2572   2.93e+04     -0.001      0.999   -5.74e+04    5.73e+04
-C(geohash)[T.9q4]                  -24.9507   2.93e+04     -0.001      0.999   -5.74e+04    5.73e+04
-C(geohash)[T.9q5]                  -24.0745   2.93e+04     -0.001      0.999   -5.74e+04    5.73e+04
-C(geohash)[T.9q6]                  -24.4740   2.93e+04     -0.001      0.999   -5.74e+04    5.73e+04
-C(geohash)[T.9q7]                  -26.6171   2.93e+04     -0.001      0.999   -5.74e+04    5.73e+04
-C(geohash)[T.9q8]                  -21.7439   2.93e+04     -0.001      0.999   -5.74e+04    5.73e+04
-C(geohash)[T.9q9]                  -23.3464   2.93e+04     -0.001      0.999   -5.74e+04    5.73e+04
-C(geohash)[T.9qb]                  -24.6530   2.93e+04     -0.001      0.999   -5.74e+04    5.73e+04
-C(geohash)[T.9qc]                  -24.2213   2.93e+04     -0.001      0.999   -5.74e+04    5.73e+04
-C(geohash)[T.9qd]                  -25.5592   2.93e+04     -0.001      0.999   -5.74e+04    5.73e+04
-C(geohash)[T.9qe]                  -24.9655   2.93e+04     -0.001      0.999   -5.74e+04    5.73e+04
-C(geohash)[T.9qf]                  -24.8405   2.93e+04     -0.001      0.999   -5.74e+04    5.73e+04
-C(geohash)[T.9qg]                  -48.4660    1.2e+05     -0.000      1.000   -2.36e+05    2.36e+05
-C(geohash)[T.9qh]                  -23.7646   2.93e+04     -0.001      0.999   -5.74e+04    5.73e+04
-C(geohash)[T.9qj]                  -24.9451   2.93e+04     -0.001      0.999   -5.74e+04    5.73e+04
-C(geohash)[T.9qk]                  -28.0202   2.93e+04     -0.001      0.999   -5.74e+04    5.73e+04
-C(geohash)[T.9qm]                  -47.8376   1.25e+05     -0.000      1.000   -2.45e+05    2.45e+05
-C(geohash)[T.9qn]                  -47.9593   6.68e+04     -0.001      0.999   -1.31e+05    1.31e+05
-C(geohash)[T.9qs]                  -47.3189   1.54e+05     -0.000      1.000   -3.03e+05    3.03e+05
-C(geohash)[T.9r0]                  -27.9511   2.93e+04     -0.001      0.999   -5.74e+04    5.73e+04
-C(geohash)[T.9r1]                  -26.1174   2.93e+04     -0.001      0.999   -5.74e+04    5.73e+04
-C(geohash)[T.9r2]                  -47.7908   5.06e+04     -0.001      0.999   -9.92e+04    9.91e+04
-C(geohash)[T.9r3]                  -47.4079   5.49e+04     -0.001      0.999   -1.08e+05    1.07e+05
-C(geohash)[T.9r4]                  -47.9470   4.44e+04     -0.001      0.999   -8.71e+04     8.7e+04
-C(geohash)[T.9r6]                  -47.3100    9.1e+04     -0.001      1.000   -1.78e+05    1.78e+05
-median_income                        1.3391      0.036     37.273      0.000       1.269       1.410
-households_population                6.5287      0.310     21.089      0.000       5.922       7.136
-total_rooms_households               0.0400      0.011      3.654      0.000       0.019       0.061
-total_rooms_total_bedrooms          -0.1393      0.036     -3.827      0.000      -0.211      -0.068
+Intercept                           19.6453   2.81e+04      0.001      0.999    -5.5e+04    5.51e+04
+C(ocean_proximity)[T.INLAND]        -3.1030      0.096    -32.437      0.000      -3.290      -2.916
+C(ocean_proximity)[T.ISLAND]        -0.1551    1.1e+05  -1.41e-06      1.000   -2.16e+05    2.16e+05
+C(ocean_proximity)[T.NEAR BAY]      -1.6422      0.126    -13.079      0.000      -1.888      -1.396
+C(ocean_proximity)[T.NEAR OCEAN]    -0.1097      0.092     -1.189      0.234      -0.291       0.071
+C(geohash)[T.9mu]                  -25.3299   2.81e+04     -0.001      0.999   -5.51e+04     5.5e+04
+C(geohash)[T.9mv]                  -25.1393   2.81e+04     -0.001      0.999   -5.51e+04     5.5e+04
+C(geohash)[T.9my]                  -24.2906   2.81e+04     -0.001      0.999   -5.51e+04     5.5e+04
+C(geohash)[T.9nz]                   -0.5135   2.18e+05  -2.36e-06      1.000   -4.27e+05    4.27e+05
+C(geohash)[T.9pp]                  -28.7449   2.81e+04     -0.001      0.999   -5.51e+04     5.5e+04
+C(geohash)[T.9pr]                  -28.6773   2.81e+04     -0.001      0.999   -5.51e+04     5.5e+04
+C(geohash)[T.9q3]                  -25.2297   2.81e+04     -0.001      0.999   -5.51e+04     5.5e+04
+C(geohash)[T.9q4]                  -24.8572   2.81e+04     -0.001      0.999   -5.51e+04     5.5e+04
+C(geohash)[T.9q5]                  -23.9944   2.81e+04     -0.001      0.999   -5.51e+04     5.5e+04
+C(geohash)[T.9q6]                  -24.2804   2.81e+04     -0.001      0.999   -5.51e+04     5.5e+04
+C(geohash)[T.9q7]                  -26.7234   2.81e+04     -0.001      0.999   -5.51e+04     5.5e+04
+C(geohash)[T.9q8]                  -21.7419   2.81e+04     -0.001      0.999   -5.51e+04     5.5e+04
+C(geohash)[T.9q9]                  -23.2579   2.81e+04     -0.001      0.999   -5.51e+04     5.5e+04
+C(geohash)[T.9qb]                  -24.6369   2.81e+04     -0.001      0.999   -5.51e+04     5.5e+04
+C(geohash)[T.9qc]                  -24.1357   2.81e+04     -0.001      0.999   -5.51e+04     5.5e+04
+C(geohash)[T.9qd]                  -25.3059   2.81e+04     -0.001      0.999   -5.51e+04     5.5e+04
+C(geohash)[T.9qe]                  -24.7848   2.81e+04     -0.001      0.999   -5.51e+04     5.5e+04
+C(geohash)[T.9qf]                  -24.8114   2.81e+04     -0.001      0.999   -5.51e+04     5.5e+04
+C(geohash)[T.9qg]                  -48.3501    1.2e+05     -0.000      1.000   -2.36e+05    2.36e+05
+C(geohash)[T.9qh]                  -23.6964   2.81e+04     -0.001      0.999   -5.51e+04     5.5e+04
+C(geohash)[T.9qj]                  -24.9047   2.81e+04     -0.001      0.999   -5.51e+04     5.5e+04
+C(geohash)[T.9qk]                  -28.1188   2.81e+04     -0.001      0.999   -5.51e+04     5.5e+04
+C(geohash)[T.9qm]                  -47.7310   1.25e+05     -0.000      1.000   -2.45e+05    2.45e+05
+C(geohash)[T.9qn]                  -47.8688   6.62e+04     -0.001      0.999    -1.3e+05     1.3e+05
+C(geohash)[T.9qs]                  -47.1914   1.54e+05     -0.000      1.000   -3.02e+05    3.02e+05
+C(geohash)[T.9r0]                  -27.8988   2.81e+04     -0.001      0.999   -5.51e+04     5.5e+04
+C(geohash)[T.9r1]                  -26.0948   2.81e+04     -0.001      0.999   -5.51e+04     5.5e+04
+C(geohash)[T.9r2]                  -47.7291   4.83e+04     -0.001      0.999   -9.47e+04    9.46e+04
+C(geohash)[T.9r3]                  -47.3123   5.33e+04     -0.001      0.999   -1.05e+05    1.05e+05
+C(geohash)[T.9r4]                  -47.8198   4.32e+04     -0.001      0.999   -8.48e+04    8.47e+04
+C(geohash)[T.9r6]                  -47.2022   9.07e+04     -0.001      1.000   -1.78e+05    1.78e+05
+median_income                        1.3372      0.034     39.157      0.000       1.270       1.404
+households_population                6.3443      0.292     21.730      0.000       5.772       6.917
+total_rooms_households               0.0413      0.011      3.821      0.000       0.020       0.063
+total_rooms_total_bedrooms          -0.1322      0.035     -3.804      0.000      -0.200      -0.064
 ====================================================================================================
 </pre></div>
 </div>
@@ -458,59 +683,59 @@ total_rooms_total_bedrooms          -0.1393      0.036     -3.827      0.000    
   </thead>
   <tbody>
     <tr>
-      <th>13940</th>
-      <td>2.5446</td>
-      <td>INLAND</td>
-      <td>below</td>
-      <td>0.361233</td>
-      <td>22.646341</td>
-      <td>5.727946</td>
-      <td>9qh</td>
-      <td>0.218661</td>
-    </tr>
-    <tr>
-      <th>14754</th>
-      <td>2.8750</td>
+      <th>14740</th>
+      <td>4.1518</td>
       <td>NEAR OCEAN</td>
       <td>below</td>
-      <td>0.274969</td>
-      <td>4.417040</td>
-      <td>4.227468</td>
+      <td>0.239201</td>
+      <td>5.663073</td>
+      <td>5.265664</td>
       <td>9mu</td>
-      <td>0.358694</td>
+      <td>0.692780</td>
     </tr>
     <tr>
-      <th>4404</th>
-      <td>3.1944</td>
-      <td>&lt;1H OCEAN</td>
-      <td>below</td>
-      <td>0.287154</td>
-      <td>4.438596</td>
-      <td>4.252101</td>
-      <td>9q5</td>
-      <td>0.792244</td>
-    </tr>
-    <tr>
-      <th>8646</th>
-      <td>6.3231</td>
+      <th>10101</th>
+      <td>5.7796</td>
       <td>&lt;1H OCEAN</td>
       <td>above</td>
-      <td>0.560570</td>
-      <td>4.434322</td>
-      <td>4.211268</td>
-      <td>9q5</td>
-      <td>0.999337</td>
+      <td>0.331019</td>
+      <td>6.107226</td>
+      <td>6.582915</td>
+      <td>9qh</td>
+      <td>0.994290</td>
     </tr>
     <tr>
-      <th>18791</th>
-      <td>1.7935</td>
+      <th>20566</th>
+      <td>4.3487</td>
+      <td>INLAND</td>
+      <td>above</td>
+      <td>0.343629</td>
+      <td>5.930712</td>
+      <td>5.779197</td>
+      <td>9qc</td>
+      <td>0.470785</td>
+    </tr>
+    <tr>
+      <th>2670</th>
+      <td>2.4511</td>
       <td>INLAND</td>
       <td>below</td>
-      <td>0.410156</td>
-      <td>5.628571</td>
-      <td>4.728000</td>
-      <td>9r0</td>
-      <td>0.001245</td>
+      <td>0.364103</td>
+      <td>4.992958</td>
+      <td>3.791444</td>
+      <td>9mv</td>
+      <td>0.035429</td>
+    </tr>
+    <tr>
+      <th>15709</th>
+      <td>5.0049</td>
+      <td>NEAR BAY</td>
+      <td>above</td>
+      <td>0.583975</td>
+      <td>4.319261</td>
+      <td>4.154822</td>
+      <td>9q8</td>
+      <td>0.998145</td>
     </tr>
     <tr>
       <th>...</th>
@@ -524,63 +749,63 @@ total_rooms_total_bedrooms          -0.1393      0.036     -3.827      0.000    
       <td>...</td>
     </tr>
     <tr>
-      <th>8243</th>
-      <td>2.0769</td>
+      <th>7616</th>
+      <td>5.1948</td>
+      <td>&lt;1H OCEAN</td>
+      <td>above</td>
+      <td>0.378550</td>
+      <td>5.848627</td>
+      <td>5.864338</td>
+      <td>9q5</td>
+      <td>0.988633</td>
+    </tr>
+    <tr>
+      <th>8767</th>
+      <td>3.7778</td>
       <td>NEAR OCEAN</td>
-      <td>below</td>
-      <td>0.276923</td>
-      <td>3.941667</td>
-      <td>3.254587</td>
+      <td>above</td>
+      <td>0.427110</td>
+      <td>6.035928</td>
+      <td>6.109091</td>
       <td>9q5</td>
-      <td>0.443452</td>
+      <td>0.939609</td>
     </tr>
     <tr>
-      <th>12332</th>
-      <td>3.2578</td>
+      <th>16388</th>
+      <td>1.1500</td>
       <td>INLAND</td>
       <td>below</td>
-      <td>0.422198</td>
-      <td>5.755155</td>
-      <td>4.740977</td>
-      <td>9qj</td>
-      <td>0.162644</td>
+      <td>0.403226</td>
+      <td>4.880000</td>
+      <td>4.692308</td>
+      <td>9qc</td>
+      <td>0.019534</td>
     </tr>
     <tr>
-      <th>5775</th>
-      <td>4.3438</td>
-      <td>&lt;1H OCEAN</td>
-      <td>above</td>
-      <td>0.408163</td>
-      <td>5.003846</td>
-      <td>5.142292</td>
-      <td>9q5</td>
-      <td>0.972518</td>
-    </tr>
-    <tr>
-      <th>13740</th>
-      <td>4.6806</td>
+      <th>19949</th>
+      <td>1.4455</td>
       <td>INLAND</td>
-      <td>above</td>
-      <td>0.351380</td>
-      <td>6.716012</td>
-      <td>6.157895</td>
-      <td>9qh</td>
-      <td>0.695464</td>
+      <td>below</td>
+      <td>0.286535</td>
+      <td>4.962138</td>
+      <td>4.680672</td>
+      <td>9q7</td>
+      <td>0.001065</td>
     </tr>
     <tr>
-      <th>10245</th>
-      <td>7.2478</td>
-      <td>&lt;1H OCEAN</td>
-      <td>above</td>
-      <td>0.316034</td>
-      <td>7.855392</td>
-      <td>7.836186</td>
-      <td>9qh</td>
-      <td>0.998996</td>
+      <th>10078</th>
+      <td>4.6650</td>
+      <td>INLAND</td>
+      <td>below</td>
+      <td>0.415617</td>
+      <td>15.272727</td>
+      <td>6.284289</td>
+      <td>9qf</td>
+      <td>0.600237</td>
     </tr>
   </tbody>
 </table>
-<p>14860 rows × 8 columns</p>
+<p>16511 rows × 8 columns</p>
 </div></div></div>
 </div>
 <p>Ergebnis der logistischen Regression sind Wahrscheinlichkeiten p für das Eintreten der Ausprägung <em>above</em> der kategorialen Variabel <em>price_category</em>.</p>
@@ -629,79 +854,79 @@ total_rooms_total_bedrooms          -0.1393      0.036     -3.827      0.000    
   </thead>
   <tbody>
     <tr>
-      <th>13940</th>
-      <td>2.5446</td>
-      <td>INLAND</td>
-      <td>below</td>
-      <td>0.361233</td>
-      <td>22.646341</td>
-      <td>5.727946</td>
-      <td>9qh</td>
-      <td>0.218661</td>
-      <td>below</td>
-      <td>below</td>
-      <td>below</td>
-      <td>below</td>
-    </tr>
-    <tr>
-      <th>14754</th>
-      <td>2.8750</td>
+      <th>14740</th>
+      <td>4.1518</td>
       <td>NEAR OCEAN</td>
       <td>below</td>
-      <td>0.274969</td>
-      <td>4.417040</td>
-      <td>4.227468</td>
+      <td>0.239201</td>
+      <td>5.663073</td>
+      <td>5.265664</td>
       <td>9mu</td>
-      <td>0.358694</td>
-      <td>below</td>
-      <td>below</td>
-      <td>below</td>
+      <td>0.692780</td>
+      <td>above</td>
+      <td>above</td>
+      <td>above</td>
       <td>below</td>
     </tr>
     <tr>
-      <th>4404</th>
-      <td>3.1944</td>
-      <td>&lt;1H OCEAN</td>
-      <td>below</td>
-      <td>0.287154</td>
-      <td>4.438596</td>
-      <td>4.252101</td>
-      <td>9q5</td>
-      <td>0.792244</td>
-      <td>above</td>
-      <td>above</td>
-      <td>above</td>
-      <td>above</td>
-    </tr>
-    <tr>
-      <th>8646</th>
-      <td>6.3231</td>
+      <th>10101</th>
+      <td>5.7796</td>
       <td>&lt;1H OCEAN</td>
       <td>above</td>
-      <td>0.560570</td>
-      <td>4.434322</td>
-      <td>4.211268</td>
-      <td>9q5</td>
-      <td>0.999337</td>
+      <td>0.331019</td>
+      <td>6.107226</td>
+      <td>6.582915</td>
+      <td>9qh</td>
+      <td>0.994290</td>
       <td>above</td>
       <td>above</td>
       <td>above</td>
       <td>above</td>
     </tr>
     <tr>
-      <th>18791</th>
-      <td>1.7935</td>
+      <th>20566</th>
+      <td>4.3487</td>
+      <td>INLAND</td>
+      <td>above</td>
+      <td>0.343629</td>
+      <td>5.930712</td>
+      <td>5.779197</td>
+      <td>9qc</td>
+      <td>0.470785</td>
+      <td>above</td>
+      <td>below</td>
+      <td>below</td>
+      <td>below</td>
+    </tr>
+    <tr>
+      <th>2670</th>
+      <td>2.4511</td>
       <td>INLAND</td>
       <td>below</td>
-      <td>0.410156</td>
-      <td>5.628571</td>
-      <td>4.728000</td>
-      <td>9r0</td>
-      <td>0.001245</td>
+      <td>0.364103</td>
+      <td>4.992958</td>
+      <td>3.791444</td>
+      <td>9mv</td>
+      <td>0.035429</td>
       <td>below</td>
       <td>below</td>
       <td>below</td>
       <td>below</td>
+    </tr>
+    <tr>
+      <th>15709</th>
+      <td>5.0049</td>
+      <td>NEAR BAY</td>
+      <td>above</td>
+      <td>0.583975</td>
+      <td>4.319261</td>
+      <td>4.154822</td>
+      <td>9q8</td>
+      <td>0.998145</td>
+      <td>above</td>
+      <td>above</td>
+      <td>above</td>
+      <td>above</td>
     </tr>
     <tr>
       <th>...</th>
@@ -719,86 +944,86 @@ total_rooms_total_bedrooms          -0.1393      0.036     -3.827      0.000    
       <td>...</td>
     </tr>
     <tr>
-      <th>8243</th>
-      <td>2.0769</td>
+      <th>7616</th>
+      <td>5.1948</td>
+      <td>&lt;1H OCEAN</td>
+      <td>above</td>
+      <td>0.378550</td>
+      <td>5.848627</td>
+      <td>5.864338</td>
+      <td>9q5</td>
+      <td>0.988633</td>
+      <td>above</td>
+      <td>above</td>
+      <td>above</td>
+      <td>above</td>
+    </tr>
+    <tr>
+      <th>8767</th>
+      <td>3.7778</td>
       <td>NEAR OCEAN</td>
-      <td>below</td>
-      <td>0.276923</td>
-      <td>3.941667</td>
-      <td>3.254587</td>
-      <td>9q5</td>
-      <td>0.443452</td>
       <td>above</td>
-      <td>below</td>
-      <td>below</td>
-      <td>below</td>
+      <td>0.427110</td>
+      <td>6.035928</td>
+      <td>6.109091</td>
+      <td>9q5</td>
+      <td>0.939609</td>
+      <td>above</td>
+      <td>above</td>
+      <td>above</td>
+      <td>above</td>
     </tr>
     <tr>
-      <th>12332</th>
-      <td>3.2578</td>
+      <th>16388</th>
+      <td>1.1500</td>
       <td>INLAND</td>
       <td>below</td>
-      <td>0.422198</td>
-      <td>5.755155</td>
-      <td>4.740977</td>
-      <td>9qj</td>
-      <td>0.162644</td>
+      <td>0.403226</td>
+      <td>4.880000</td>
+      <td>4.692308</td>
+      <td>9qc</td>
+      <td>0.019534</td>
       <td>below</td>
       <td>below</td>
       <td>below</td>
       <td>below</td>
     </tr>
     <tr>
-      <th>5775</th>
-      <td>4.3438</td>
-      <td>&lt;1H OCEAN</td>
-      <td>above</td>
-      <td>0.408163</td>
-      <td>5.003846</td>
-      <td>5.142292</td>
-      <td>9q5</td>
-      <td>0.972518</td>
-      <td>above</td>
-      <td>above</td>
-      <td>above</td>
-      <td>above</td>
-    </tr>
-    <tr>
-      <th>13740</th>
-      <td>4.6806</td>
+      <th>19949</th>
+      <td>1.4455</td>
       <td>INLAND</td>
-      <td>above</td>
-      <td>0.351380</td>
-      <td>6.716012</td>
-      <td>6.157895</td>
-      <td>9qh</td>
-      <td>0.695464</td>
+      <td>below</td>
+      <td>0.286535</td>
+      <td>4.962138</td>
+      <td>4.680672</td>
+      <td>9q7</td>
+      <td>0.001065</td>
+      <td>below</td>
+      <td>below</td>
+      <td>below</td>
+      <td>below</td>
+    </tr>
+    <tr>
+      <th>10078</th>
+      <td>4.6650</td>
+      <td>INLAND</td>
+      <td>below</td>
+      <td>0.415617</td>
+      <td>15.272727</td>
+      <td>6.284289</td>
+      <td>9qf</td>
+      <td>0.600237</td>
       <td>above</td>
       <td>above</td>
       <td>above</td>
       <td>below</td>
-    </tr>
-    <tr>
-      <th>10245</th>
-      <td>7.2478</td>
-      <td>&lt;1H OCEAN</td>
-      <td>above</td>
-      <td>0.316034</td>
-      <td>7.855392</td>
-      <td>7.836186</td>
-      <td>9qh</td>
-      <td>0.998996</td>
-      <td>above</td>
-      <td>above</td>
-      <td>above</td>
-      <td>above</td>
     </tr>
   </tbody>
 </table>
-<p>14860 rows × 12 columns</p>
+<p>16511 rows × 12 columns</p>
 </div></div></div>
 </div>
-<p>Zum bestimmten den Metriken<em>Accuracy</em>, <em>Precision</em>, <em>Recall</em> und <em>F1 Score</em>, sowie der Confusion-Matrix der einzelnen Grenzwerte wird die Funktion <code class="docutils literal notranslate"><span class="pre">print_metrics</span></code> angewendet. Diese wird in der Datei <a class="reference external" href="http://func.py">func.py</a> definiert und ist der Funktion im <a class="reference external" href="https://colab.research.google.com/github/kirenz/applied-statistics/blob/main/docs/cl-logistic-whr.ipynb">Notebook: World happiness report</a> nachempfunden.</p>
+<p>Zum bestimmten den Metriken <em>Accuracy</em>, <em>Precision</em>, <em>Recall</em> und <em>F1 Score</em>, sowie der Confusion-Matrix der einzelnen Grenzwerte wird die Funktion <code class="docutils literal notranslate"><span class="pre">print_metrics</span></code> angewendet. Diese wird in der Datei <a class="reference external" href="http://func.py">func.py</a> definiert und ist der Funktion im <a class="reference external" href="https://colab.research.google.com/github/kirenz/applied-statistics/blob/main/docs/cl-logistic-whr.ipynb">Notebook: World happiness report</a> nachempfunden.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">print_metrics</span><span class="p">(</span><span class="n">data_set_prob</span><span class="p">,</span> <span class="s1">&#39;Threshold 0.4&#39;</span><span class="p">)</span>
@@ -814,53 +1039,53 @@ Metrics for: Threshold 0.4
 
 Predicted  above  below
 Actual                 
-above       8731    601
-below       1527   4001
-Accuracy:  0.8568
-Precision: 0.8694
-Recall:    0.7238
-F1 Score:  0.7899 
+above       9728    663
+below       1703   4417
+Accuracy:  0.8567
+Precision: 0.8695
+Recall:    0.7217
+F1 Score:  0.7887 
 
 --------------------------------------------------
 Metrics for: Threshold 0.5
 
 Predicted  above  below
 Actual                 
-above       8439    893
-below       1131   4397
-Accuracy:  0.8638
+above       9402    989
+below       1249   4871
+Accuracy:  0.8645
 Precision: 0.8312
-Recall:    0.7954
-F1 Score:  0.8129 
+Recall:    0.7959
+F1 Score:  0.8132 
 
 --------------------------------------------------
 Metrics for: Threshold 0.6
 
 Predicted  above  below
 Actual                 
-above       8069   1263
-below        788   4740
-Accuracy:  0.8620
-Precision: 0.7896
-Recall:    0.8575
-F1 Score:  0.8221 
+above       9002   1389
+below        878   5242
+Accuracy:  0.8627
+Precision: 0.7905
+Recall:    0.8565
+F1 Score:  0.8222 
 
 --------------------------------------------------
 Metrics for: Threshold 0.7
 
 Predicted  above  below
 Actual                 
-above       7568   1764
-below        534   4994
-Accuracy:  0.8454
-Precision: 0.7390
-Recall:    0.9034
-F1 Score:  0.8130 
+above       8447   1944
+below        592   5528
+Accuracy:  0.8464
+Precision: 0.7398
+Recall:    0.9033
+F1 Score:  0.8134 
 </pre></div>
 </div>
 </div>
 </div>
-<p>Die Klassifikation mit den Grenzwert 0.6 hat den höchsten F1-Score mit 0.8221. Im Schritt Plan wurde festgelegt, dass der F1-Score, dass ausschlagegebende Kriterium ist. Daher wird dieser Grenzwert auch für die Testdaten angewendet.</p>
+<p>Die Klassifikation mit den Grenzwert 0.6 hat den höchsten F1-Score mit 0.82. Im Schritt Plan wurde festgelegt, dass der F1-Score, dass ausschlaggebende Kriterium ist. Daher wird dieser Grenzwert auch für die Testdaten angewendet.</p>
 </section>
 <section id="evaluate">
 <h3>Evaluate<a class="headerlink" href="#evaluate" title="Permalink to this headline">¶</a></h3>
@@ -1133,17 +1358,17 @@ Metrics for: Threshold 0.6
 
 Predicted  above  below
 Actual                 
-above       2292    336
-below        236   1264
-Accuracy:  0.8614
-Precision: 0.7900
-Recall:    0.8427
-F1 Score:  0.8155 
+above       2293    335
+below        241   1259
+Accuracy:  0.8605
+Precision: 0.7898
+Recall:    0.8393
+F1 Score:  0.8138 
 </pre></div>
 </div>
 </div>
 </div>
-<p>Mit dem Testdaten wird ein F1-Score von 0.8155 erhalten. Dieser liegt über den Zielwert von 0.8. Das Model kann damit als Erfolg gewertet werden.</p>
+<p>Mit dem Testdaten wird ein F1-Score von 0.81 erhalten. Dieser liegt über den Zielwert von 0.8. Das Model kann damit als Erfolg gewertet werden.</p>
 </section>
 </section>
 <section id="scikit-learn-model">
@@ -1211,7 +1436,7 @@ F1 Score:  0.8155
 </div>
 </div>
 </div>
-<p>Zur Datenvorbereitung für die Klassifikation mit der Bibliothek scikit-learn wird ein <em>preprocessor</em> angewendet. Der Aufbau des <em>preprocessors</em> ist im Notebook Data genauer beschrieben. In diesem Fall wird dieser über die Funktion <code class="docutils literal notranslate"><span class="pre">build_preprocessor</span></code>erstellt.</p>
+<p>Zur Datenvorbereitung für die Klassifikation mit der Bibliothek scikit-learn wird ein <em>preprocessor</em> angewendet. Der Aufbau des <em>preprocessors</em> ist im Notebook Data genauer beschrieben. In diesem Fall wird dieser über die Funktion <code class="docutils literal notranslate"><span class="pre">build_preprocessor</span></code> erstellt.</p>
 </section>
 <section id="id2">
 <h3>Model<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
@@ -1268,7 +1493,7 @@ weighted avg       0.87      0.87      0.87     16512
 </div>
 </div>
 <p>Für die Ausgabe der Metriken der Klassifikation stellt scikit-learn Funktionen zur Verfügung. Wie bei dem Model mit Statsmodels wird zu Bewertung des Models die <em>Confusion Matrix</em> und die Metriken <em>Accuracy</em>, <em>Precision</em>, <em>Recall</em> und <em>F1 Score</em> betrachtet.</p>
-<p>Da bei der Erstellung des Models mit scikit-learn ein Grenzwert von 0.5 angewendet wird. Können im folgenden anderen Grenzwerte getestet werden:</p>
+<p>Da bei der Erstellung des Models mit scikit-learn ein Grenzwert von 0.5 angewendet wird, können im folgenden anderen Grenzwerte getestet werden:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pred_proba</span> <span class="o">=</span> <span class="n">lr_pipe</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
@@ -1353,7 +1578,10 @@ weighted avg       0.84      0.84      0.84      4128
 <img alt="_images/classification_49_0.png" src="_images/classification_49_0.png" />
 </div>
 </div>
-<p>Mit den Testdaten wird ein F1-Score von 0.84 erreicht. Das Modell kann damit als Erfolg gewertet werden.</p>
+<p>Mit den Testdaten wird ein F1-Score von 0.84 erreicht.</p>
+<blockquote>
+<div><p>Im Rahmen der Anforderungen kann die Klassifikation als Erfolg gewertet werden.</p>
+</div></blockquote>
 </section>
 </section>
 </section>
@@ -1393,7 +1621,7 @@ weighted avg       0.84      0.84      0.84      4128
     <a class='right-next' id="next-link" href="regression.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Regression Project</p>
+        <p class="prev-next-title">Model: Regression</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

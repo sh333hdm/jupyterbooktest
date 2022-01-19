@@ -3,7 +3,7 @@
 
 # # Data
 
-# > Über den [Link](https://sh333hdm.github.io/jupyterbooktest/intro.html) ist die Ansicht der Projektarbeit als Jupyter Book möglich. 
+# > Über diesen [Link](https://sh333hdm.github.io/jupyterbooktest/intro.html) ist die Ansicht der Projektarbeit als Jupyter Book möglich. 
 
 # In[1]:
 
@@ -19,7 +19,7 @@ from statsmodels.stats import descriptivestats
 sns.set_theme(palette="Pastel2", style="whitegrid") 
 
 
-# ## Data ingestion
+# ## Data Ingestion
 
 # In[2]:
 
@@ -54,7 +54,7 @@ df['median_house_value'] = pd.to_numeric(df['median_house_value'], errors='coerc
 df['housing_median_age'] = pd.to_numeric(df['housing_median_age'], errors='coerce')
 
 
-# Da Anomalien ausschließlich in der ersten Zeile vorkommen, werde diese schon bei der Umwandlung zum Datentyp "numeric" entfernt. Durch Setzen des Parameter `errors='coerce'` werden die ungültigen Werte mit NAN aufgefüllt. 
+# Da Anomalien ausschließlich in der ersten Zeile vorkommen, werde diese schon bei der Umwandlung zum Datentyp "numeric" entfernt. Durch setzen des Parameter `errors='coerce'` werden die ungültigen Werte mit NAN aufgefüllt. 
 
 # In[5]:
 
@@ -105,7 +105,7 @@ train_dataset.isnull().sum()
 sns.heatmap(train_dataset.isnull(),yticklabels=False,cbar=False, cmap='flare')
 
 
-# NAN tritt insgesamt 162mal auf. Auf Grund der geringen Anzahl werden die Datensätze entfernt.  
+# Der Wert NAN tritt insgesamt 162 mal auf. Auf Grund der geringen Anzahl werden die Datensätze entfernt.  
 
 # In[11]:
 
@@ -116,13 +116,13 @@ train_dataset.dropna(inplace=True)
 train_dataset.isnull().sum()
 
 
-# Für die Modell mit scikit-learn wird der `SimpleImputer` genutzt. Die numerischen NAN-Werte, werden dafür mit dem Median aufgefüllt. 
+# Für die Modelle mit scikit-learn wird der `SimpleImputer` genutzt. Die numerischen NAN-Werte, werden dafür mit dem Median aufgefüllt. 
 
 # ## Analyse Data
 
-# ### Geographischer Daten- Mapping
+# ### Geographische Daten- Mapping
 
-# Im ersten Schritt wird der *median_house_value* auf Kartendarstellung visualisert. 
+# Im ersten Schritt wird der *median_house_value* auf Kartendarstellungen visualisert. 
 
 # In[12]:
 
@@ -160,7 +160,17 @@ fig.update_layout(
 fig.show()
 
 
+# Darstellung Github Pages: [Link](https://sh333hdm.github.io/jupyterbooktest/map1.html)
+
 # In[13]:
+
+
+import plotly.io as pio
+
+pio.write_html(fig, file='map1.html', auto_open=True)
+
+
+# In[14]:
 
 
 
@@ -172,17 +182,25 @@ fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 fig.show()
 
 
+# In[15]:
+
+
+pio.write_html(fig, file='map2.html', auto_open=True)
+
+
+# Darstellung Github Pages: [Link](https://sh333hdm.github.io/jupyterbooktest/map2.html)
+
 # ### Geographische Variablen - Scatterplot
 
 # Um die Beziehung der Variablen *Longitude/Latitude* zu *median_house_value* und *ocean_proximity* besser nachvollziehen zu können, werden diese Werte im zweiten Schritt als Streudiagramm analysiert. 
 
-# In[14]:
+# In[16]:
 
 
 plt.rcParams['figure.figsize'] = [16, 16]
 
 
-# In[15]:
+# In[17]:
 
 
 sns.regplot(data = train_dataset, x="longitude", y="latitude",  fit_reg=False)
@@ -190,39 +208,39 @@ sns.regplot(data = train_dataset, x="longitude", y="latitude",  fit_reg=False)
 
 # Im Scatterplot ist der US-Bundesstaat Kalifornien mit den Ballungsgebieten San Francisco und Los Angeles abgebildet. 
 
-# In[16]:
+# In[18]:
 
 
 sns.scatterplot(data=train_dataset, x="longitude", y="latitude", size="population", legend=True, sizes=(20, 2000))
 
 
-# Die Größe der Population-Kreis bestätigt die Annahme, dass es sich um Ballungsgebiete handelt. 
+# Die Größe der Populationszentren bestätigt die Annahme, dass es sich um Ballungsgebiete handelt. 
 
-# In[17]:
+# In[19]:
 
 
 
 sns.scatterplot(data = train_dataset, x="longitude", y="latitude",  hue = "price_category")
 
 
-# Die Hervorhebung der Ausprägungen der kategorialen Variable *price_category* lässt vermuten, dass es eine Zusammenhang zwischen der Lage und *median_house_value*/*price_category* gibt. 
+# Die Hervorhebung der Ausprägungen der kategorialen Variable *price_category* lässt vermuten, dass es einen Zusammenhang zwischen der Lage und *median_house_value*/*price_category* gibt. 
 
-# In[18]:
+# In[20]:
 
 
 sns.scatterplot(data=train_dataset, x="longitude", y="latitude", size="median_house_value", hue="price_category", legend=True, sizes=(20, 2000))
 
 
-# In[19]:
+# In[21]:
 
 
 df_below = train_dataset[train_dataset['price_category'] == 'below']
 sns.scatterplot(data=df_below, x="longitude", y="latitude", size="median_house_value", legend=True, sizes=(20, 2000))
 
 
-# * Die Distrikte mit einem *median_house_value* von unter 150 Tsd. sind über die gesamt Kalifornien verteilt.
+# * Die Distrikte mit einem *median_house_value* von unter 150 Tsd. sind über den gesamten Staat Kalifornien verteilt.
 
-# In[20]:
+# In[22]:
 
 
 df_above = train_dataset[train_dataset['price_category'] == 'above']
@@ -232,15 +250,15 @@ sns.scatterplot(data=df_above, x="longitude", y="latitude", size="median_house_v
 # * Die Distrikte  mit einem *median_house_value* von über 150 Tsd. scheinen sich auf bestimmte Flächen zu konzentrieren. 
 # * Aus diesem Grund kann es sinnvoll sein *longitude*/ *latitude* mit in der Erstellung der Modelle zu berücksichtigen. Beim Feauture Engineering sollte dafür ein geeigneter Weg gefunden werden. 
 
-# ### Numerischen Variablen -Übersicht
+# ### Numerische Variablen -Übersicht
 
-# In[21]:
+# In[23]:
 
 
 train_dataset.describe()
 
 
-# In[22]:
+# In[24]:
 
 
 sns.pairplot(train_dataset)
@@ -249,9 +267,9 @@ sns.pairplot(train_dataset)
 # Folgende erste Erkenntnisse können aus den `pairplot` geschlossen werden: 
 # * *median_house_value* hat die deutlichste Beziehung mit *median_income*. Die Beziehung ist positiv. 
 # * Zu den anderen numerischen Größen (in Bezug auf *median_house_value*) ist im `pairplot` kein eindeutiger Zusammenhang identifizierbar. 
-# * Die Variablen *households*, *population*, *total_bedrooms* und *total_rooms* scheinen untereinander in Beziehung (positiv)zu stehen. 
+# * Die Variablen *households*, *population*, *total_bedrooms* und *total_rooms* scheinen untereinander in Beziehung (positiv) zu stehen. 
 
-# In[23]:
+# In[25]:
 
 
 fig, axs = plt.subplots(1, 7, figsize=(30,6))
@@ -266,15 +284,15 @@ sns.histplot(data=train_dataset, x="median_house_value", ax=axs[6])
 
 # Folgende Erkenntnisse lassen sich aus dem Diagrammen ableiten: 
 # 
-# * Die Verteilungen von *population, households, total_rooms, total_bedrooms, median_income, median_house_value* sind links schief. 
+# * Die Verteilungen von *population, households, total_rooms, total_bedrooms, median_income, median_house_value* sind linksschief. 
 # * Auffällig sind Ausschläge am Maximum-Punkt bestimmter Variablen: 
 #   * Peak bei *median_house_value* 50000 
 #   * Peak bei *house_median_age* 50 Jahre
 #   * Peak bei *median_income* bei 15,0 
-#   * Schlussfolgerung: Werte scheinen eine obere Grenze zu haben. Alle Distrikte oberhalb der jeweiligen Grenze scheinen zu einem Datenpunkt zusammengefasst sein. 
+#   * Schlussfolgerung: Werte scheinen eine obere Grenze zu haben. Alle Distrikte oberhalb der jeweiligen Grenze scheinen zu einem Datenpunkt zusammengefasst zu sein. 
 #   * Für die Anwendung eines linearen Modells kann es sinnvoll sein diese Werte zu entfernen. 
 
-# In[24]:
+# In[26]:
 
 
 #Mögliche Funktion
@@ -286,7 +304,7 @@ sns.histplot(data=train_dataset, x="median_house_value", ax=axs[6])
 
 # ### Numerische Variablen -Korrelation 
 
-# In[25]:
+# In[27]:
 
 
 #Korellation untersuchen 
@@ -295,7 +313,7 @@ corr_matrix = train_dataset_corr.corr()
 corr_matrix
 
 
-# In[26]:
+# In[28]:
 
 
 # Simple heatmap
@@ -309,32 +327,32 @@ heatmap = sns.heatmap(corr_matrix, mask = mask, square = True, cmap= cmap,  anno
 
 # * Wie nach Auswertung des `pairplots` vermutet, bestätigt sich, dass *median_house_value* mit *median_income* am stärksten korreliert. 
 # * Die Korrelation zu den anderen Variablen ist gering. 
-# * Es besteht eine sehr hohe Korrelation zwischen *total_rooms, total_bedrooms*, *households* und *population*. Bei gemeinsamer Verwendung in einem Modell deutet dies auf Multikollinearität hin. 
+# * Es besteht eine sehr hohe Korrelation zwischen *total_rooms, total_bedrooms*, *households* und *population*. Bei gemeinsamer Verwendung in einem Modell deutet dies auf Multikollinearität hin. Dies sollte vermieden werden.
 
 # ### Numerische Variablen- Deskriptive Statistik
 
-# In[27]:
+# In[29]:
 
 
 round(train_dataset.describe(),2).transpose()
 
 
-# Die deskriptive Statistik der numerischen Variablen erfolgt auf Grundlage der Lagemaße Median (median), Mittelwert (mean) und Modus (mode), sowie der Streuungsmaße Standardabweichung (std), Spannweite (range) und Interquartilabstand. 
+# Die deskriptive Statistik der numerischen Variablen erfolgt auf Grundlage der Lagemaße Median (median), Mittelwert (mean) und Modus (mode), sowie der Streuungsmaße Standardabweichung (std), Spannweite (range) und des Interquartilabstand. 
 
-# In[28]:
+# In[30]:
 
 
 descriptivestats.describe(data = train_dataset[['median_house_value', 'median_income', 'housing_median_age', 'population', 'households']],stats = ["mean", "median", "mode", "std", "range", "min", "max", "percentiles","iqr"], categorical= False).transpose()
 
 
-# * Die obere Grenze der Werte *housing_median_age, median_income* und *median_house_value* wird auch in der deskriptiven Statistik deutlich in dem der Modus gleichhoch ist wie der maximal Wert. 
+# * Die obere Grenze der Werte *housing_median_age, median_income* und *median_house_value* wird auch in der deskriptiven Statistik deutlich. Der Modus ist genauso hoch wieder der Maximalwert.
 # * Die weiteren ermittelten Größen werden in die EDA einbezogen. 
 
 # ### Numerische Variabeln- EDA
 
 # **EDA Median Income**
 
-# In[29]:
+# In[31]:
 
 
 sns.regplot(x=train_dataset["median_house_value"], y=train_dataset["median_income"], line_kws={"color":"r","alpha":0.7,"lw":5})
@@ -343,7 +361,7 @@ sns.regplot(x=train_dataset["median_house_value"], y=train_dataset["median_incom
 # * Die positive Beziehung wird durch das Streuungsdiagramm visuell verdeutlicht. 
 # 
 
-# In[30]:
+# In[32]:
 
 
 fig, axs = plt.subplots(1, 3, figsize=(20,5))
@@ -353,10 +371,10 @@ sns.violinplot(y=train_dataset["median_income"],ax=axs[2])
 
 
 # * Im Boxplot wird deutlich, dass die Interquartilrange im Vergleich zur Spannweite gering ist. 
-# * Da im Boxplot Ausreißer als oberhalb der Grenze von 1,5 des Interquartilsabstands definiert  werden, ist eine Vielzahl an Ausreißer zu erkennen. 
-# * Aus diesem Grund wurde noch ein Violin-Plot zur Darstellung gewählt. 
+# * Da im Boxplot Ausreißer über den Interquartilsabstands (>1,5) definiert  werden, ist eine Vielzahl an Ausreißer zu erkennen. 
+# * Aus diesem Grund ist die Verteilung zusätzlich mit einem Violin-Plot dargstellt. 
 
-# In[31]:
+# In[33]:
 
 
 fig, axs = plt.subplots(1, 2, figsize=(15,5))
@@ -364,24 +382,24 @@ sns.boxplot( x=train_dataset["price_category"], y=train_dataset["median_income"]
 sns.kdeplot(data=train_dataset, x="median_income", hue="price_category",ax=axs[1])
 
 
-# * Sowohl in der Boxplot- wie auch in der Densitiy-Darstellung wird unterschiedliche Verteilung des *median_incomes* deutlich. 
-# * Der Median liegt bei above-Distrikten bei einem mittleren Einkommen von 45 Tsd USD und bei below-Distrikten bei 26 Tsd USD. 
+# * Sowohl in der Boxplot, wie auch in der Densitiy-Darstellung, wird die unterschiedliche Verteilung des *median_incomes* deutlich. 
+# * Der Median liegt bei above-Distrikten bei einem mittleren Einkommen von 45 Tsd. USD und bei below-Distrikten bei 26 Tsd. USD. 
 
 # > Das Feature *median_income* sollte in den statistischen Modell (Klassifikation und Regression) mit berücksichtigt werden.
 
 # **EDA housing_age**
 
-# In[32]:
+# In[34]:
 
 
 sns.regplot(x=train_dataset["median_house_value"], y=train_dataset["housing_median_age"], line_kws={"color":"r","alpha":0.7,"lw":5})
 
 
-# * Im Streudiagramm ist kein deutliche Beziehung zwischen *housing_median_age* und *median_house_value* erkennbar. 
-# * Vielmehr scheint das mittlere Immobilienalter über die Gesamte Fläche zu streuen. 
+# * Im Streudiagramm ist keine deutliche Beziehung zwischen *housing_median_age* und *median_house_value* erkennbar. 
+# * Vielmehr scheint das mittlere Immobilienalter über die gesamte Fläche zu streuen. 
 # 
 
-# In[33]:
+# In[35]:
 
 
 fig, axs = plt.subplots(1, 3, figsize=(20,5))
@@ -390,9 +408,9 @@ sns.boxplot(data=train_dataset, x="housing_median_age",ax=axs[1])
 sns.violinplot(y=train_dataset["housing_median_age"],ax=axs[2])
 
 
-# Um weitere Visualisierung der Beziehung zwischen housing_median_age und median_house_value darzustellen, wird aus Erstem eine kategoriale Variable erstellt. 
+# Um weitere Visualisierungen der Beziehung zwischen *housing_median_age* und *median_house_value* darzustellen, wird aus Erstem eine kategoriale Variable erstellt. 
 
-# In[34]:
+# In[36]:
 
 
 train_dataset['housingage_cat'] = '00'
@@ -402,27 +420,27 @@ train_dataset['housingage_cat'][(train_dataset['housing_median_age'] >29) & (tra
 train_dataset['housingage_cat'][(train_dataset['housing_median_age'] >37)] = '100'
 
 
-# In[35]:
+# In[37]:
 
 
 train_dataset
 
 
-# In[36]:
+# In[38]:
 
 
 sns.boxplot( x=train_dataset["housingage_cat"], y=train_dataset["median_house_value"])
 
 
-# In[37]:
+# In[39]:
 
 
 train_dataset.drop(columns= 'housingage_cat', inplace = True)
 
 
-# Auch in dieser Darstellung ist kein eindeutige Beziehung erkennbar und die generierte Variable wird wieder entfernt. 
+# Auch in dieser Darstellung ist keine eindeutige Beziehung erkennbar und die generierte Variable wird wieder entfernt. 
 
-# In[38]:
+# In[40]:
 
 
 fig, axs = plt.subplots(1, 2, figsize=(15,5))
@@ -430,35 +448,35 @@ sns.boxplot( x=train_dataset["price_category"], y=train_dataset["housing_median_
 sns.kdeplot(data=train_dataset, x="housing_median_age", hue="price_category",ax=axs[1])
 
 
-# Auch bei Betrachtung der Beziehung zwischen *price_category* und *housing_median_age*, ist kein eindeutiger Zusammenhang erkennbar. 
+# Ebenfalls bei der Betrachtung der Beziehung zwischen *price_category* und *housing_median_age*, ist kein eindeutiger Zusammenhang erkennbar. 
 
 # > Bei *housing_median_age* ist keine eindeutige Beziehung zu *median_house_value* oder *price_category* erkennbar.
 # > Der positive Effekt auf das Modell wird als gering eingeschätzt. 
 
 # ### Kategoriale Variablen- Deskriptive Statistik
 
-# In[39]:
+# In[41]:
 
 
 from statsmodels.stats import descriptivestats
 descriptivestats.describe(data = train_dataset, categorical= True).ocean_proximity.dropna()
 
 
-# In[40]:
+# In[42]:
 
 
 train_dataset.ocean_proximity[train_dataset['ocean_proximity'] == 'ISLAND'].count()
 
 
-# Die kategoriale Variable *ocean_proximity* hat 5 Ausprägung: "<1H OCEAN", "INLAND", "NEAR BAY", "NEAR OCEAN" und "ISLAND". 
+# Die kategoriale Variable *ocean_proximity* hat fünf Ausprägung: "<1H OCEAN", "INLAND", "NEAR BAY", "NEAR OCEAN" und "ISLAND". 
 # 
-# Durch die Analyse der Verteilung wird deutlich, dass die Ausprägungen <1H OCEAN (44%)und Inland (32%) am häufigsten vorkommen. Distrikte "NEAR BAY" und "NEAR OCEAN" kommen seltenere vor. Sehr selten sind Distrikte auf einer Insel. In dem Trainingsdatensatz sind es nur 4 Distrikte.
+# Durch die Analyse der Verteilung wird deutlich, dass die Ausprägungen <1H OCEAN (44%)und Inland (32%) am häufigsten vorkommen. Distrikte "NEAR BAY" und "NEAR OCEAN" kommen seltenere vor. Sehr selten liegen Distrikte auf Inseln. In dem Trainingsdatensatz sind es nur vier 4 Distrikte.
 
 # ### Kategoriale Variable- EDA
 
 # Im folgenden wird die Variable "ocean_proximity" detailiert betrachtet. 
 
-# In[41]:
+# In[43]:
 
 
 sns.scatterplot(data = train_dataset, x="longitude", y="latitude",  hue = "ocean_proximity")
@@ -466,7 +484,7 @@ sns.scatterplot(data = train_dataset, x="longitude", y="latitude",  hue = "ocean
 
 # Zum Nachvollziehen der kategorialen Variable *ocean_proximity* ist diese im Scatterplot durch `hue` dargestellt. 
 
-# In[42]:
+# In[44]:
 
 
 sns.histplot(data=train_dataset, x="ocean_proximity")
@@ -476,7 +494,7 @@ sns.histplot(data=train_dataset, x="ocean_proximity")
 # * Sehr wenige Distrikte befinden sich auf Insel.
 # 
 
-# In[43]:
+# In[45]:
 
 
 from pySankey.sankey import sankey
@@ -487,7 +505,7 @@ sankey(train_dataset["price_category"], train_dataset["ocean_proximity"], aspect
 # * Die meisten Distrikte, die zur Preiskategorie "above" gehören, liegen weniger als eine Stunde vom Ozean entfernt. 
 # * Dementsprechend kann es sinnvoll sein, die kategoriale Variable *ocean_proximity* bei der Klassifikation mit einzubeziehen. 
 
-# In[44]:
+# In[46]:
 
 
 sns.relplot(data = train_dataset, 
@@ -496,23 +514,23 @@ sns.relplot(data = train_dataset,
             hue = "ocean_proximity")
 
 
-# In[45]:
+# In[47]:
 
 
 sns.histplot(data = train_dataset, x="median_house_value", hue="ocean_proximity")
 
 
-# * Das Histogramm bestätigt, dass die Nähe zum Ozean Einfluss auf *median_house_value*"* hat. 
-# * Für Distrikten im Inland ist die Verteilung im Vergleich zum Beispiel zu "<1h Ocean" linksverschoben. 
-# * Da die Variable *ocean_proximity* 5 Ausprägungen hat, ist es sinnvoll sich die Verteilung in separaten Plots anzuschauen.
+# * Das Histogramm bestätigt, dass die Nähe zum Ozean Einfluss auf *median_house_value* hat. 
+# * Bei Distrikten im Inland ist die Verteilung im Vergleich zu "<1h Ocean" linksverschoben. 
+# * Da die Variable *ocean_proximity* fünf Ausprägungen hat, ist es sinnvoll sich die Verteilung in separaten Plots anzuschauen.
 
-# In[46]:
+# In[48]:
 
 
 sns.displot(train_dataset, x="median_house_value", col="ocean_proximity")
 
 
-# * Die unterscheidliche Verteilung scheint die Vermutung zu Bestätigen. 
+# * Die unterscheidlichen Verteilungen scheinen die Vermutung zu bestätigen. 
 # 
 
 # > Die Variable *ocean_proximity* sollte in dem statistischen  Modell (Klassifikation und Regression) mit berücksichtigt werden.
@@ -521,9 +539,9 @@ sns.displot(train_dataset, x="median_house_value", col="ocean_proximity")
 
 # ### Feature extraction 
 
-# Wie in der EDA festgestellt, besitzen die Variablen *total_rooms, total_bedrooms, population* und *households* eine hohe Korrelation untereinander und eine niedrige Korrelation zum *median_house_value*. Für das Modell wird versucht aus der Kombination der Variablen neue Merkmale zu generieren, welche eine höhere Korrelation zu der zu bestimmenden Größe aufweisen.  
+# Wie in der EDA dargestellt, besitzen die Variablen *total_rooms, total_bedrooms, population* und *households* eine hohe Korrelation untereinander und eine niedrige Korrelation zum *median_house_value*. Für das Modell wird versucht aus der Kombination der Variablen neue Merkmale zu generieren, welche eine höhere Korrelation zu der zu bestimmenden Größe aufweisen.  
 
-# In[47]:
+# In[49]:
 
 
 train_dataset['households_population'] = train_dataset['households']/train_dataset['population']
@@ -531,16 +549,16 @@ train_dataset['total_rooms_households'] = train_dataset['total_rooms']/train_dat
 train_dataset['total_rooms_total_bedrooms'] = train_dataset['total_rooms']/train_dataset['total_bedrooms']
 
 
-# In[48]:
+# In[50]:
 
 
 corr = train_dataset.corr()
 corr["median_house_value"].sort_values(ascending=False)
 
 
-# Die Variablen * households_population, total_rooms_households* und *total_rooms_total_bedrooms* wurden iterativ bestimmt. Grundlage für die Auswahl dieser Features ist die Korrelation zu *median_house_value*. Wie oben gezeigt weisen die konstruierten Features eine höhere Korrelation auf, als die ursprünglichen Variablen im Datensatz.
+# Die Variablen *households_population, total_rooms_households* und *total_rooms_total_bedrooms* wurden iterativ bestimmt. Grundlage für die Auswahl dieser Features ist die Korrelation zu *median_house_value*. Wie oben gezeigt weisen die konstruierten Features eine höhere Korrelation auf, als die ursprünglichen Variablen im Datensatz.
 
-# In[49]:
+# In[51]:
 
 
 fig, axs = plt.subplots(1, 3, figsize=(15,5))
@@ -551,11 +569,11 @@ sns.regplot(x=train_dataset["median_house_value"], y=train_dataset["total_rooms_
 
 # ### Feature creation
 
-# Wie bei der Analyse der geographischen Daten festgestellt, kann es sinnvoll zu sein diese in dem statistischen Modell zu berücksichtigen. Es hat sich gezeigt, dass in bestimmten geographischen Bereichen verstärkt Distrikte mit hohem *median_house_value* liegen. Um Koordinatenangaben in Bereiche zu gliedern, können verschiedene Verfahren angewendet werden, z.B. Clustering. Ein anderer Ansatz ist die Verwendung von geohashes mit der Python-Bibliothek geohash. Im zu Grunde liegenden Konzept werden GPS-Daten in eine Kombination aus Buchstaben und Ziffern kodiert. Die Erde wird dabei in ein Schema aus Rechtecken unterteilt. Die Größe des Gitters wird über die Anzahl der Buchstaben bestimmt.[Quelle: [Wikpedia](https://en.wikipedia.org/wiki/Geohash)]
+# Wie bei der Analyse der geographischen Daten festgestellt, kann es sinnvoll sein diese im statistischen Modell zu berücksichtigen. Es hat sich gezeigt, dass in bestimmten geographischen Bereichen verstärkt Distrikte mit hohem *median_house_value* liegen. Um Koordinatenangaben in Bereiche zu gliedern, können verschiedene Verfahren angewendet werden, z.B. Clustering. Ein anderer Ansatz ist die Verwendung von geohashes mit der Python-Bibliothek geohash. Im zu Grunde liegenden Konzept werden GPS-Daten in eine Kombination aus Buchstaben und Ziffern kodiert. Die Erde wird dabei in ein Schema aus Rechtecken unterteilt. Die Größe des Gitters wird über die Anzahl der Buchstaben bestimmt.[Quelle: [Wikpedia](https://en.wikipedia.org/wiki/Geohash)]
 # 
-# <img src="doc\geohash_grid.JPG" alt="drawing" width="400"/>
+# <img src="doc\geohash_grid.JPG" width="400"/>
 
-# In[50]:
+# In[52]:
 
 
 import geohash as gh
@@ -566,16 +584,16 @@ train_dataset['geohash'] = train_dataset['geohash'].astype("category")
 train_dataset
 
 
-# In[51]:
+# In[53]:
 
 
 train_dataset['geohash'].describe(include=['category'])
 
 
-# Die Größe der Gitter ist auf drei Stellen des geohashs auslegt. Dies entspricht einem Gitter von einer Länge und Höhe von 156km. Das neue Feature "geohash" hat eine Ausprägung von 32 Werten. Mit einer 4stelligen Auflösung wäre es 493 Werte. Damit würde das Risiko für overfitting erhöht und die Anzahl der Spalten bei der Bildung von Dummy-Variabln aufgebläht werden. 
+# Die Größe der Gitter ist auf drei Stellen des geohashs auslegt. Dies entspricht einem Gitter von einer Länge und Höhe von 156 km. Das neue Feature "geohash" hat eine Ausprägung von 32 Werten. Mit einer vierstelligen Auflösung wäre es 493 Werte. Damit würde das Risiko für overfitting erhöht und die Anzahl der Spalten bei der Bildung von Dummy-Variablen aufgebläht werden. 
 # Da es sich um eine künstlich erzeugte kategoriale Variable handelt, besteht ebenfalls das Risiko, dass in den Testdaten Ausprägungen vorkommen mit welchen das Modell nicht trainiert wurde. 
 
-# In[52]:
+# In[54]:
 
 
 sns.scatterplot(data=train_dataset, x="longitude", y="latitude", hue="geohash", legend= False)

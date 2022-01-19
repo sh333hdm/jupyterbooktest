@@ -3,11 +3,11 @@
 
 # # Model: Klassifikation 
 
-# Ziel der Klassifikation ist es die Variabel *price category* mit einem F1-Score größer als 0.8 vorherzusagen. Die Variable *price category* gibt an ob der mittlere Immobilienwert eines Distrikts über 150 Tsd. USD liegt. 
+# Ziel der Klassifikation ist es, die Variabel *price category* mit einem F1-Score größer als 0.8 vorherzusagen. Die Variable *price category* gibt an, ob der mittlere Immobilienwert eines Distrikts über 150 Tsd. USD liegt. 
 
 # In diesem Notebook wird die Klassifikation einmal mit der Bibliothek Statsmodels und der Bibliothek scikit-learn durchgeführt. Die Dokumention zu beiden Modellen ist unterteilt in: *data preperation*, *model* und *evaluation*. 
 
-# > Über den [Link](https://sh333hdm.github.io/jupyterbooktest/intro.html) ist die Ansicht der Projektarbeit als Jupyter Book möglich. 
+# > Über diesen [Link](https://sh333hdm.github.io/jupyterbooktest/intro.html) ist die Ansicht der Projektarbeit als Jupyter Book möglich. 
 
 # ## Statsmodel Model
 
@@ -33,15 +33,15 @@ get_ipython().run_line_magic('autoreload', '2')
 
 df = read_data()
 df = transform_data(df)
-train_dataset, evaluate_dataset, train_dataset_total, test_dataset = split_data(df)
+train_dataset, test_dataset = split_data(df)
 train_dataset = fill_missingdata(train_dataset)
 train_dataset = add_feautures(train_dataset)
 train_dataset
 
 
-# In diesem Schritt werden die Funktionen func.py verwendet. Diese sind im Notebook [Data](https://sh333hdm.github.io/jupyterbooktest/intro.html)  näher erläutert. 
+# In diesem Schritt werden die Funktionen func.py verwendet. Diese sind im Notebook [Data](https://sh333hdm.github.io/jupyterbooktest/data.html)  näher erläutert. 
 
-# In[29]:
+# In[3]:
 
 
 train_dataset.drop(columns=['longitude', 'latitude', 'total_rooms', 'total_bedrooms', 'population','households', 'median_house_value', 'housing_median_age'], inplace= True)
@@ -55,24 +55,24 @@ train_dataset.drop(columns=['longitude', 'latitude', 'total_rooms', 'total_bedro
 
 # ### Model
 
-# In[30]:
+# In[4]:
 
 
 model = smf.glm(formula = 'C(price_category) ~ median_income + C(ocean_proximity) + households_population + total_rooms_households + total_rooms_total_bedrooms+C(geohash)' , data=train_dataset, family=sm.families.Binomial()).fit()
 
 
-# Die Klassifikation wird durch das Modell der logistischen Regression umgesetzt. In Statsmodels wird dafür die Klasse *Generalized Linear Model* genutzt. 
-# Die Varaiblen werden dem Model mit Hilfe der ``formula.api`` übergeben. Bei der Übergabe werden die kategorialen Variablen *price_category*, *ocean_proximity* und *geohash* explizit durch die patsy-funktion `C()` als solche gekennzeichnet. Damit wird sichergestellt, dass diesem im Modell als kategorialen Variablen behandelt werden und ein Dummy-Coding durchgeführt wird. 
-# Mit dem Parameter sm.family.Binomial() wird eine binomiale Verteilung spezifiziert. 
+# Die Klassifikation wird mit dem Modell der logistischen Regression umgesetzt. In Statsmodels wird dafür die Klasse *Generalized Linear Model* genutzt. 
+# Die Varaiblen werden dem Model mit Hilfe der ``formula.api`` übergeben. Bei der Übergabe werden die kategorialen Variablen *price_category*, *ocean_proximity* und *geohash* explizit durch die patsy-funktion `C()` als solche gekennzeichnet. Damit wird sichergestellt, dass diese im Modell als kategorialen Variablen behandelt werden und ein Dummy-Coding durchgeführt wird. 
+# Mit dem Parameter `sm.family.Binomial()` wird eine Binomialverteilung spezifiziert. 
 # 
 
-# In[38]:
+# In[5]:
 
 
 print(model.summary())
 
 
-# In[32]:
+# In[6]:
 
 
 data_set_prob = train_dataset
@@ -82,7 +82,7 @@ data_set_prob
 
 # Ergebnis der logistischen Regression sind Wahrscheinlichkeiten p für das Eintreten der Ausprägung *above* der kategorialen Variabel *price_category*. 
 
-# In[33]:
+# In[7]:
 
 
 data_set_prob['Threshold 0.4'] = np.where(data_set_prob['Probability_above'] > 0.4, 'above', 'below')
@@ -92,9 +92,9 @@ data_set_prob['Threshold 0.7'] = np.where(data_set_prob['Probability_above'] > 0
 data_set_prob
 
 
-# Zum bestimmten den Metriken*Accuracy*, *Precision*, *Recall* und *F1 Score*, sowie der Confusion-Matrix der einzelnen Grenzwerte wird die Funktion `print_metrics` angewendet. Diese wird in der Datei func.py definiert und ist der Funktion im [Notebook: World happiness report]( https://colab.research.google.com/github/kirenz/applied-statistics/blob/main/docs/cl-logistic-whr.ipynb) nachempfunden. 
+# Zum bestimmten den Metriken *Accuracy*, *Precision*, *Recall* und *F1 Score*, sowie der Confusion-Matrix der einzelnen Grenzwerte wird die Funktion `print_metrics` angewendet. Diese wird in der Datei func.py definiert und ist der Funktion im [Notebook: World happiness report]( https://colab.research.google.com/github/kirenz/applied-statistics/blob/main/docs/cl-logistic-whr.ipynb) nachempfunden. 
 
-# In[39]:
+# In[8]:
 
 
 print_metrics(data_set_prob, 'Threshold 0.4')
@@ -103,11 +103,11 @@ print_metrics(data_set_prob, 'Threshold 0.6')
 print_metrics(data_set_prob, 'Threshold 0.7')
 
 
-# Die Klassifikation mit den Grenzwert 0.6 hat den höchsten F1-Score mit 0.8221. Im Schritt Plan wurde festgelegt, dass der F1-Score, dass ausschlagegebende Kriterium ist. Daher wird dieser Grenzwert auch für die Testdaten angewendet.  
+# Die Klassifikation mit den Grenzwert 0.6 hat den höchsten F1-Score mit 0.82. Im Schritt Plan wurde festgelegt, dass der F1-Score, dass ausschlaggebende Kriterium ist. Daher wird dieser Grenzwert auch für die Testdaten angewendet.  
 
 # ### Evaluate
 
-# In[35]:
+# In[9]:
 
 
 test_dataset = fill_missingdata(test_dataset)
@@ -117,24 +117,24 @@ test_dataset
 
 # Um das Modell auf Testdaten anzuwenden, müssen diese auch mit den Funktionen `fill_missingdata` und `add_features` vorbereitet werden. 
 
-# In[36]:
+# In[10]:
 
 
 test_dataset['y_pred'] = model.predict(test_dataset[['median_income', 'ocean_proximity','housing_median_age', 'households_population', 'total_rooms_households', 'total_rooms_total_bedrooms', 'geohash']])
 
 
-# In[37]:
+# In[11]:
 
 
 test_dataset['Threshold 0.6'] = np.where(test_dataset['y_pred'] > 0.6, 'above', 'below')
 print_metrics(test_dataset, 'Threshold 0.6')
 
 
-# Mit dem Testdaten wird ein F1-Score von 0.8155 erhalten. Dieser liegt über den Zielwert von 0.8. Das Model kann damit als Erfolg gewertet werden.  
+# Mit dem Testdaten wird ein F1-Score von 0.81 erhalten. Dieser liegt über den Zielwert von 0.8. Das Model kann damit als Erfolg gewertet werden.  
 
 # ## scikit-learn Model
 
-# In[91]:
+# In[12]:
 
 
 from sklearn.model_selection import train_test_split
@@ -157,14 +157,14 @@ set_config(display="diagram")
 
 # ### Data preperation
 
-# In[73]:
+# In[13]:
 
 
 df = read_data()
 df = transform_data(df)
 
 
-# In[74]:
+# In[14]:
 
 
 #Split Test and Trainingsdata
@@ -173,29 +173,29 @@ y = df['price_category']
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 
-# In[75]:
+# In[15]:
 
 
 X_train = add_feautures(X_train)
 
 
-# In[78]:
+# In[16]:
 
 
 X_train.drop(columns=['longitude', 'latitude', 'total_rooms', 'total_bedrooms', 'population','households'], inplace= True)
 
 
-# In[79]:
+# In[17]:
 
 
 preprocessor = build_preprocessor()
 
 
-# Zur Datenvorbereitung für die Klassifikation mit der Bibliothek scikit-learn wird ein *preprocessor* angewendet. Der Aufbau des *preprocessors* ist im Notebook Data genauer beschrieben. In diesem Fall wird dieser über die Funktion `build_preprocessor`erstellt. 
+# Zur Datenvorbereitung für die Klassifikation mit der Bibliothek scikit-learn wird ein *preprocessor* angewendet. Der Aufbau des *preprocessors* ist im Notebook Data genauer beschrieben. In diesem Fall wird dieser über die Funktion `build_preprocessor` erstellt. 
 
 # ### Model
 
-# In[93]:
+# In[18]:
 
 
 lr_pipe = Pipeline(steps=[
@@ -204,7 +204,7 @@ lr_pipe = Pipeline(steps=[
                         ])
 
 
-# In[94]:
+# In[19]:
 
 
 y_pred = lr_pipe.fit(X_train, y_train).predict(X_train)
@@ -212,7 +212,7 @@ y_pred = lr_pipe.fit(X_train, y_train).predict(X_train)
 
 # Mit scikit-learn wird ebenfalls eine logistische Regression durchgeführt. 
 
-# In[95]:
+# In[20]:
 
 
 cm = confusion_matrix(y_train, y_pred)
@@ -223,7 +223,7 @@ disp.plot()
 plt.show()
 
 
-# In[96]:
+# In[21]:
 
 
 print(classification_report(y_train, y_pred))
@@ -231,9 +231,9 @@ print(classification_report(y_train, y_pred))
 
 # Für die Ausgabe der Metriken der Klassifikation stellt scikit-learn Funktionen zur Verfügung. Wie bei dem Model mit Statsmodels wird zu Bewertung des Models die *Confusion Matrix* und die Metriken *Accuracy*, *Precision*, *Recall* und *F1 Score* betrachtet.  
 
-# Da bei der Erstellung des Models mit scikit-learn ein Grenzwert von 0.5 angewendet wird. Können im folgenden anderen Grenzwerte getestet werden: 
+# Da bei der Erstellung des Models mit scikit-learn ein Grenzwert von 0.5 angewendet wird, können im folgenden anderen Grenzwerte getestet werden: 
 
-# In[102]:
+# In[22]:
 
 
 
@@ -263,19 +263,19 @@ plt.show()
 
 # ### Evaluate
 
-# In[103]:
+# In[23]:
 
 
 y_pred = lr_pipe.fit(X_test, y_test).predict(X_test)
 
 
-# In[104]:
+# In[24]:
 
 
 print(classification_report(y_test, y_pred))
 
 
-# In[105]:
+# In[25]:
 
 
 cm = confusion_matrix(y_test, y_pred)
@@ -286,4 +286,6 @@ disp.plot()
 plt.show()
 
 
-# Mit den Testdaten wird ein F1-Score von 0.84 erreicht. Das Modell kann damit als Erfolg gewertet werden. 
+# Mit den Testdaten wird ein F1-Score von 0.84 erreicht. 
+
+# > Im Rahmen der Anforderungen kann die Klassifikation als Erfolg gewertet werden.
